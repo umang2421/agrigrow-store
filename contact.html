@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Feedback | AgriGrow Hub Varanasi</title>
+  <style>
+    :root {
+      --primary: #2d6a4f;
+      --primary-dark: #1b4332;
+      --primary-light: #52b788;
+      --accent: #d8f3dc;
+      --discount: #e63946;
+      --dark: #212529;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 14px 20px;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      text-decoration: none;
+    }
+
+    .back-store-btn {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 16px;
+      border: 1px solid var(--primary);
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+
+    .back-store-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .contact-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .page-header h1 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: #666;
+      font-size: 1.05rem;
+    }
+
+    .content-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 35px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+    }
+
+    .info-column h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-column p {
+      color: #4a5568;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .rating-box {
+      margin: 15px 0 25px 0;
+    }
+
+    .rating-container {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .star-btn {
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #cbd5e1;
+      transition: color 0.15s;
+    }
+
+    .star-btn.active {
+      color: #ffb703;
+    }
+
+    .form-column label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .form-column input, .form-column textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      background: var(--light-bg);
+    }
+
+    .form-column textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-column input:focus, .form-column textarea:focus {
+      outline: 2px solid var(--primary-light);
+      background: var(--white);
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .submit-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 50px;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .content-box { grid-template-columns: 1fr; gap: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span>🌾 AgriGrow</span>
+      </a>
+      <a href="index.html" class="back-store-btn">&larr; Back to Shop</a>
+    </div>
+  </nav>
+
+  <main class="contact-wrapper">
+    <div class="page-header">
+      <h1>Contact Us & Leave Feedback</h1>
+      <p>Have farming queries, tool requirements, or store reviews? We are here for you.</p>
+    </div>
+
+    <div class="content-box">
+      <!-- Location & Support Details -->
+      <div class="info-column">
+        <h3>📞 Direct Support</h3>
+        <p>Call / WhatsApp: <strong>+91 7309530081</strong><br>Email: <strong>umangverma24aug@gmail.com</strong></p>
+
+        <h3>📍 Agro-Hub Depot Location</h3>
+        <p>
+          <strong>AgriGrow Hub</strong><br>
+          Vinayaka Kolhwa, Kamchchha, Bhelupur,<br>
+          Varanasi, Uttar Pradesh 221010
+        </p>
+
+        <!-- Live Google Map -->
+        <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 20px;">
+          <iframe 
+            width="100%" 
+            height="190" 
+            style="border:0;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=25.3005715,82.986275&hl=en&z=16&output=embed">
+          </iframe>
+        </div>
+
+        <div class="rating-box" id="feedback">
+          <h3>🌟 Rate Your Experience</h3>
+          <p>Rate our store quality and equipment support:</p>
+          <div class="rating-container">
+            <button class="star-btn" onclick="setRating(1)">★</button>
+            <button class="star-btn" onclick="setRating(2)">★</button>
+            <button class="star-btn" onclick="setRating(3)">★</button>
+            <button class="star-btn" onclick="setRating(4)">★</button>
+            <button class="star-btn" onclick="setRating(5)">★</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Form -->
+      <div class="form-column">
+        <form id="contactPageForm" onsubmit="submitForm(event)">
+          <label>Full Name / Farmer Name</label>
+          <input type="text" id="custName" placeholder="e.g. Ramesh Kumar" required />
+
+          <label>Email Address</label>
+          <input type="email" id="custEmail" placeholder="yourname@gmail.com" required />
+
+          <label>Contact Phone Number</label>
+          <input type="tel" id="custPhone" placeholder="10-digit mobile number" required />
+
+          <label>Your Message / Tool Requirement / Feedback</label>
+          <textarea id="custMessage" placeholder="Type your query regarding tools, seeds, fertilizers, or order delivery..." required></textarea>
+
+          <button type="submit" class="submit-btn">Send Message Directly</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 AgriGrow E-Commerce Storefront. Varanasi, UP.</p>
+  </footer>
+
+  <script>
+    let selectedRating = 0;
+
+    function setRating(rating) {
+      selectedRating = rating;
+      const stars = document.querySelectorAll('.star-btn');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const message = document.getElementById('custMessage').value.trim();
+      const targetEmail = "umangverma24aug@gmail.com";
+
+      const subject = encodeURIComponent(`AgriGrow Inquiry from ${name}`);
+      const body = encodeURIComponent(
+        `Farmer / Customer Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone}\n` +
+        `Rating Given: ${selectedRating > 0 ? selectedRating + ' / 5 Stars' : 'Not Rated'}\n\n` +
+        `Message & Feedback:\n${message}`
+      );
+
+      // Open user's email client
+      window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+
+      alert(`Thank you, ${name}! Aapka message email client me load ho gaya hai.`);
+      document.getElementById('contactPageForm').reset();
+      setRating(0);
+    }
+  </script>
+</body>
+</html>
