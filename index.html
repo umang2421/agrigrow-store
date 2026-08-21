@@ -839,6 +839,10 @@
         <div class="ub-cat-icon">🌾</div>
         <span class="ub-cat-title">All Offers</span>
       </div>
+      <div class="ub-cat-item" onclick="filterCategory('plants', this)">
+        <div class="ub-cat-icon">🪴</div>
+        <span class="ub-cat-title">Live Plants</span>
+      </div>
       <div class="ub-cat-item" onclick="filterCategory('flowers', this)">
         <div class="ub-cat-icon">🌸</div>
         <span class="ub-cat-title">Flower Seeds & Plants</span>
@@ -1093,14 +1097,13 @@
 
           <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:14px; text-align:left; font-size:0.85rem; margin-bottom:14px;">
             <p><strong>Estimated Delivery:</strong> Within 1 Week (5-7 Days)</p>
-            <p style="color:#555; font-size:0.78rem;">Confirmation message generated for <strong id="successPhone"></strong></p>
+            <p style="color:#555; font-size:0.78rem;">Updates sent via Email & SMS to <span id="successPhone"></span></p>
             <p style="margin-top:6px;"><strong>Deliver to:</strong> <span id="successName"></span> (<span id="successAddr"></span>)</p>
             <p><strong>Total:</strong> <span id="successAmt" style="font-weight:700; color:var(--brand-primary);"></span> via <span id="successMode"></span></p>
           </div>
 
-          <!-- Instant Customer Mobile Receipt Button -->
           <a id="custReceiptLink" href="#" target="_blank" class="wa-btn">
-            💬 Open Receipt on Customer Phone
+            💬 Download Receipt on WhatsApp
           </a>
 
           <button class="ub-pay-btn" style="margin-top:10px; background:var(--brand-secondary);" onclick="closeCheckoutModal()">CONTINUE SHOPPING</button>
@@ -1125,7 +1128,12 @@
   </footer>
 
   <script>
+    // -----------------------------------------------------
+    // API KEYS & SETTINGS (CONFIGURED)
+    // -----------------------------------------------------
     const TARGET_OWNER_EMAIL = "unnatibeejbhandar@gmail.com";
+    const FAST2SMS_API_KEY = "94HWemz16iYQKqXDZRbuds5VpfO3JPFk8NT0cGygoIUBaLAlMnDM6vPBreKpA9fVOHZ8LXqUjhiwduGm";
+    // -----------------------------------------------------
 
     const products = [
       // 🌸 Natural Flower Plants & Seeds
@@ -1137,7 +1145,37 @@
         originalPrice: 400.00,
         discount: "61% off",
         rating: "4.9",
-        image: "flower3.jpg"
+        image: "flower3.jpg.jpg"
+      },
+      {
+        id: 211,
+        title: "Dwarf Jade or Elephant Bush (Crassula)",
+        category: "plants",
+        price: 170.00,
+        originalPrice: 500.00,
+        discount: "66% off",
+        rating: "4.9",
+        image: "flower5.jpg.jpg"
+      },
+      {
+        id: 212,
+        title: "Spider Plant (Chlorophytum comosum)",
+        category: "plants",
+        price: 270.00,
+        originalPrice: 870.00,
+        discount: "69% off",
+        rating: "4.9",
+        image: "flower7.jpg.jpg"
+      },
+      {
+        id: 213,
+        title: "Red Ruellia (Ruellia elegans)",
+        category: "flowers",
+        price: 146.00,
+        originalPrice: 450.00,
+        discount: "67% off",
+        rating: "4.9",
+        image: "flower4.jpg.jpg"
       },
       {
         id: 201,
@@ -1147,7 +1185,7 @@
         originalPrice: 199.00,
         discount: "25% off",
         rating: "4.5",
-        image: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=800&q=80"
+        image: "flower6.jpg.jpg"
       },
       {
         id: 202,
@@ -1839,6 +1877,21 @@
       document.getElementById('codView').style.display = (method === 'cod') ? 'block' : 'none';
     }
 
+    // Direct Background Fast2SMS API Dispatcher
+    async function sendSmsToCustomer(phone, name, orderId, amount, mode) {
+      if (!FAST2SMS_API_KEY) return;
+      
+      const messageText = `Hello ${name},\nYour Unnati Beej Bhandar Order #${orderId} of Rs.${amount} (${mode}) is confirmed.\nDelivery in 5-7 days.\nThank you!`;
+      
+      try {
+        await fetch(`https://www.fast2sms.com/dev/bulkV2?authorization=${FAST2SMS_API_KEY}&route=q&message=${encodeURIComponent(messageText)}&language=english&flash=0&numbers=${phone}`, {
+          method: 'GET'
+        });
+      } catch (err) {
+        console.error("SMS Sending Failed", err);
+      }
+    }
+
     function processOrder(paymentMode) {
       const name = document.getElementById('custName').value.trim();
       const phone = document.getElementById('custPhone').value.trim();
@@ -1873,7 +1926,7 @@
       const orderId = "UB-" + Math.floor(100000 + Math.random() * 900000);
       const itemsList = cart.map(i => `${i.title} (x${i.qty}) = ₹${(i.price * i.qty).toFixed(2)}`).join(' | ');
 
-      // 1. Direct Email Dispatch to unnatibeejbhandar@gmail.com
+      // 1. Direct Background Email Dispatch
       const hiddenForm = document.createElement("form");
       hiddenForm.method = "POST";
       hiddenForm.action = `https://formsubmit.co/${TARGET_OWNER_EMAIL}`;
@@ -1883,7 +1936,7 @@
         "_subject": `🔥 New Unnati Beej Bhandar Order #${orderId} - ₹${total.toFixed(2)}`,
         "Order ID": `#${orderId}`,
         "Customer Name": name,
-        "Customer Mobile": phone,
+        "Mobile Number": phone,
         "Delivery Address": `${address}, Pincode: ${pincode} (${validatedLocation || 'India'})`,
         "Ordered Items": itemsList,
         "Payment Mode": paymentMode,
@@ -1903,7 +1956,10 @@
       hiddenForm.submit();
       document.body.removeChild(hiddenForm);
 
-      // 2. Pre-formatted Customer Mobile Confirmation Message (Direct to Customer's Number)
+      // 2. Direct Background SMS Dispatch (Fast2SMS API)
+      sendSmsToCustomer(phone, name, orderId, total.toFixed(2), paymentMode);
+
+      // 3. Optional WhatsApp Receipt Link
       const confirmationMsg = 
 `🌱 *UNNATI BEEJ BHANDAR - ORDER CONFIRMATION* 🌱
 ━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1922,7 +1978,7 @@ _Thank you for choosing Unnati Beej Bhandar, Varanasi._`;
       const custWaUrl = `https://api.whatsapp.com/send?phone=91${phone}&text=${encodeURIComponent(confirmationMsg)}`;
       document.getElementById('custReceiptLink').href = custWaUrl;
 
-      // 3. Order Confirmation UI View
+      // 4. Order Confirmation UI Display
       document.getElementById('step2Form').style.display = 'none';
       document.getElementById('stepTracker').style.display = 'none';
       document.getElementById('modalTitle').innerText = "Order Confirmed";
