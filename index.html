@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AgriGrow | Smart Farming, Tools & Flower Seeds</title>
+  <title>Contact & Feedback | Unnati Beej Bhandar</title>
   <style>
     :root {
       --primary: #2d6a4f;
@@ -17,8 +17,6 @@
       --border: #e2e8f0;
       --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       --radius: 12px;
-      --success: #2e7d32;
-      --danger: #d90429;
     }
 
     * {
@@ -31,42 +29,21 @@
     body {
       background-color: var(--light-bg);
       color: var(--dark);
-      line-height: 1.5;
-    }
-
-    .top-bar {
-      background-color: var(--primary-dark);
-      color: var(--accent);
-      font-size: 0.85rem;
-      text-align: center;
-      padding: 8px 16px;
-      font-weight: 500;
-    }
-
-    .top-bar span {
-      background: var(--discount);
-      color: var(--white);
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-left: 6px;
-      font-weight: 700;
+      line-height: 1.6;
     }
 
     .navbar {
       background: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 100;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      padding: 14px 20px;
     }
 
     .nav-container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 20px;
     }
 
     .brand {
@@ -79,585 +56,135 @@
       text-decoration: none;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-links a {
-      color: var(--dark);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
+    .back-store-btn {
       color: var(--primary);
-    }
-
-    .cart-btn {
-      background: var(--accent);
-      color: var(--primary-dark);
-      border: 1px solid var(--primary-light);
-      padding: 8px 18px;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 8px 16px;
+      border: 1px solid var(--primary);
       border-radius: 50px;
-      cursor: pointer;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.2s ease;
-    }
-
-    .cart-btn:hover {
-      background: var(--primary-light);
-      color: var(--white);
-    }
-
-    .cart-count {
-      background: var(--discount);
-      color: var(--white);
-      font-size: 0.75rem;
-      padding: 2px 7px;
-      border-radius: 50%;
-      font-weight: bold;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, rgba(45, 106, 79, 0.92), rgba(27, 67, 50, 0.95)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') center/cover;
-      color: var(--white);
-      padding: 50px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 2.3rem;
-      margin-bottom: 12px;
-      font-weight: 800;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 650px;
-      margin: 0 auto 20px;
-      opacity: 0.9;
-    }
-
-    .discount-pill {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      border: 1px dashed var(--accent);
-      padding: 8px 18px;
-      border-radius: 50px;
-      font-weight: 600;
-    }
-
-    .main-container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-
-    .category-filter {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 24px;
-    }
-
-    .filter-btn {
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 8px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      white-space: nowrap;
       transition: all 0.2s;
     }
 
-    .filter-btn.active, .filter-btn:hover {
+    .back-store-btn:hover {
       background: var(--primary);
       color: var(--white);
-      border-color: var(--primary);
     }
 
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 24px;
-      margin-bottom: 50px;
+    .contact-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    .product-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
+    .page-header {
+      text-align: center;
+      margin-bottom: 35px;
     }
 
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    .product-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--discount);
-      color: var(--white);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
-      z-index: 2;
-    }
-
-    .product-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background: #f1f5f9;
-    }
-
-    .product-info {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .product-cat {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--primary);
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .product-title {
-      font-size: 1.05rem;
-      font-weight: 700;
+    .page-header h1 {
+      font-size: 2.2rem;
+      color: var(--primary-dark);
+      font-weight: 800;
       margin-bottom: 8px;
     }
 
-    .price-box {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 16px;
+    .page-header p {
+      color: #666;
+      font-size: 1.05rem;
     }
 
-    .current-price {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-    }
-
-    .original-price {
-      font-size: 0.9rem;
-      text-decoration: line-through;
-      color: #8d99ae;
-    }
-
-    .add-to-cart-btn {
-      margin-top: auto;
-      background: var(--primary);
-      color: var(--white);
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.2s;
-    }
-
-    .add-to-cart-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    /* Cart Drawer */
-    .cart-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 200;
-      display: none;
-      backdrop-filter: blur(2px);
-    }
-
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: -420px;
-      width: 100%;
-      max-width: 400px;
-      height: 100%;
+    .content-box {
       background: var(--white);
-      z-index: 300;
-      display: flex;
-      flex-direction: column;
-      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
-      transition: right 0.3s ease;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 35px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
     }
 
-    .cart-drawer.open {
-      right: 0;
-    }
-
-    .cart-header {
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
+    .info-column h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 12px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 8px;
     }
 
-    .close-btn {
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .cart-items {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 20px;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-
-    .cart-item img {
-      width: 60px;
-      height: 60px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .cart-item-details {
-      flex-grow: 1;
-    }
-
-    .cart-item-title {
-      font-weight: 600;
+    .info-column p {
+      color: #4a5568;
+      margin-bottom: 20px;
       font-size: 0.95rem;
     }
 
-    .cart-item-price {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 0.9rem;
+    .rating-box {
+      margin: 15px 0 25px 0;
     }
 
-    .qty-controls {
+    .rating-container {
       display: flex;
-      align-items: center;
       gap: 8px;
       margin-top: 6px;
     }
 
-    .qty-btn {
-      background: var(--light-bg);
-      border: 1px solid var(--border);
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .cart-footer {
-      padding: 20px;
-      border-top: 1px solid var(--border);
-      background: var(--light-bg);
-    }
-
-    .discount-input-box {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .discount-input-box input {
-      flex-grow: 1;
-      padding: 8px 12px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      text-transform: uppercase;
-    }
-
-    .apply-btn {
-      background: var(--dark);
-      color: var(--white);
+    .star-btn {
+      font-size: 2rem;
+      background: none;
       border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
       cursor: pointer;
-      font-weight: 600;
+      color: #cbd5e1;
+      transition: color 0.15s;
     }
 
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
+    .star-btn.active {
+      color: #ffb703;
     }
 
-    .summary-row.total {
-      font-size: 1.15rem;
-      font-weight: 800;
-      border-top: 1px dashed var(--border);
-      padding-top: 10px;
-      margin-top: 10px;
-      color: var(--primary-dark);
-    }
-
-    .checkout-btn {
-      width: 100%;
-      background: var(--primary);
-      color: var(--white);
-      border: none;
-      padding: 14px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 12px;
-      transition: background 0.2s;
-    }
-
-    .checkout-btn:hover {
-      background: var(--primary-dark);
-    }
-
-    /* Modal Styling */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.65);
-      z-index: 400;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
-    }
-
-    .modal-content {
-      background: var(--white);
-      border-radius: var(--radius);
-      max-width: 480px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 24px;
-      position: relative;
-    }
-
-    .step-indicator {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .step-badge {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #94a3b8;
-    }
-
-    .step-badge.active {
-      color: var(--primary);
-    }
-
-    .step-badge.completed {
-      color: var(--primary-dark);
-    }
-
-    .address-summary-card {
-      background: var(--light-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 14px;
-      font-size: 0.85rem;
-      position: relative;
-    }
-
-    .edit-address-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: transparent;
-      border: none;
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 0.8rem;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    .payment-methods {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin: 12px 0;
-    }
-
-    .payment-opt {
-      border: 1px solid var(--border);
-      padding: 10px 4px;
-      text-align: center;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .payment-opt.active {
-      border-color: var(--primary);
-      background: var(--accent);
-      color: var(--primary-dark);
-    }
-
-    .form-group {
-      margin-bottom: 12px;
-    }
-
-    .form-group label {
+    .form-column label {
       display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
     }
 
-    .form-group input {
+    .form-column input, .form-column textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
       background: var(--light-bg);
     }
 
-    .form-group input:focus {
+    .form-column textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-column input:focus, .form-column textarea:focus {
       outline: 2px solid var(--primary-light);
       background: var(--white);
     }
 
-    .form-row {
-      display: flex;
-      gap: 10px;
-    }
-
-    .pincode-status {
-      font-size: 0.78rem;
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .pincode-status.valid {
-      color: var(--success);
-    }
-
-    .pincode-status.invalid {
-      color: var(--danger);
-    }
-
-    .pincode-status.checking {
-      color: #ca8a04;
-    }
-
-    .pay-btn {
-      width: 100%;
+    .submit-btn {
       background: var(--primary);
       color: var(--white);
       border: none;
-      padding: 13px;
+      padding: 14px;
       border-radius: 8px;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 10px;
+      width: 100%;
       font-size: 1rem;
       transition: background 0.2s;
     }
 
-    .pay-btn:hover {
+    .submit-btn:hover {
       background: var(--primary-dark);
-    }
-
-    .back-step-btn {
-      width: 100%;
-      background: transparent;
-      color: #64748b;
-      border: 1px solid var(--border);
-      padding: 10px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 8px;
-      font-size: 0.9rem;
-    }
-
-    /* Flipkart Style Confirmation View */
-    .success-card {
-      text-align: center;
-      padding: 10px 0;
-    }
-
-    .success-icon {
-      font-size: 3.5rem;
-      color: var(--success);
-      margin-bottom: 8px;
-    }
-
-    .order-track-box {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 8px;
-      padding: 14px;
-      margin: 15px 0;
-      text-align: left;
-    }
-
-    .track-step {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-    }
-
-    .track-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--success);
     }
 
     footer {
@@ -665,774 +192,159 @@
       padding: 30px;
       color: #666;
       font-size: 0.9rem;
-      margin-top: 40px;
+      margin-top: 50px;
       border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.7rem; }
-      .products-grid { grid-template-columns: 1fr; }
-      .cart-drawer { max-width: 100%; }
+    @media (max-width: 768px) {
+      .content-box { grid-template-columns: 1fr; gap: 30px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    🌱 Harvest Season Sale! Use code <strong>HARVEST20</strong> for 20% OFF <span>LIMITED TIME</span>
-  </div>
-
   <nav class="navbar">
     <div class="nav-container">
       <a href="index.html" class="brand">
-        <span class="brand-icon">🌾</span>
-        <span>AgriGrow</span>
+        <span>🌾 AgriGrow (Unnati Beej Bhandar)</span>
       </a>
-      
-      <div class="nav-links">
-        <a href="index.html">Shop</a>
-        <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a>
-        <a href="contact.html#feedback" target="_blank" rel="noopener noreferrer">Feedback ↗</a>
-      </div>
-
-      <button class="cart-btn" onclick="toggleCart(true)">
-        🛒 Cart <span class="cart-count" id="cartCount">0</span>
-      </button>
+      <a href="index.html" class="back-store-btn">&larr; Back to Shop</a>
     </div>
   </nav>
 
-  <section class="hero">
-    <h1>Smart Agriculture, Tools & Flower Seeds</h1>
-    <p>Premium crop seeds, blooming flower seeds, organic fertilizers, and farming tools delivered directly to your farm.</p>
-    <div class="discount-pill">
-      🎁 Flat 20% Discount with coupon: <strong>HARVEST20</strong>
-    </div>
-  </section>
-
-  <main class="main-container">
-    <div class="category-filter">
-      <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
-      <button class="filter-btn" onclick="filterProducts('flowers', this)">🌸 Flower Seeds</button>
-      <button class="filter-btn" onclick="filterProducts('tools', this)">🚜 Tools & Equipment</button>
-      <button class="filter-btn" onclick="filterProducts('seeds', this)">🌾 Crop Seeds</button>
-      <button class="filter-btn" onclick="filterProducts('fertilizer', this)">🌿 Organic Fertilizers</button>
+  <main class="contact-wrapper">
+    <div class="page-header">
+      <h1>Contact Us & Leave Feedback</h1>
+      <p>Aapke feedback aur queries seedhe <strong>unnatibeejbhandar@gmail.com</strong> par receive honge.</p>
     </div>
 
-    <div class="products-grid" id="productGrid"></div>
+    <div class="content-box">
+      <!-- Store Details -->
+      <div class="info-column">
+        <h3>📞 Direct Support</h3>
+        <p>Email: <strong>unnatibeejbhandar@gmail.com</strong><br>Contact: <strong>+91 98765 43210</strong></p>
+
+        <h3>📍 Unnati Beej Bhandar Location</h3>
+        <p>
+          <strong>AgriGrow Hub - Unnati Beej Bhandar</strong><br>
+          Vinayaka Kolhwa, Kamchchha, Bhelupur,<br>
+          Varanasi, Uttar Pradesh 221010
+        </p>
+
+        <!-- Live Google Map -->
+        <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 20px;">
+          <iframe 
+            width="100%" 
+            height="180" 
+            style="border:0;" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=25.3005715,82.986275&hl=en&z=16&output=embed">
+          </iframe>
+        </div>
+
+        <div class="rating-box" id="feedback">
+          <h3>🌟 Rate Your Experience</h3>
+          <p>Rate our seed quality and farming support:</p>
+          <div class="rating-container">
+            <button type="button" class="star-btn" onclick="setRating(1)">★</button>
+            <button type="button" class="star-btn" onclick="setRating(2)">★</button>
+            <button type="button" class="star-btn" onclick="setRating(3)">★</button>
+            <button type="button" class="star-btn" onclick="setRating(4)">★</button>
+            <button type="button" class="star-btn" onclick="setRating(5)">★</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feedback Form -->
+      <div class="form-column">
+        <form id="contactPageForm" onsubmit="submitForm(event)">
+          <input type="hidden" id="selectedRatingInput" value="5 Stars" />
+
+          <label>Full Name / Farmer Name *</label>
+          <input type="text" id="custName" placeholder="e.g. Ramesh Kumar" required />
+
+          <label>Email Address *</label>
+          <input type="email" id="custEmail" placeholder="yourname@gmail.com" required />
+
+          <label>Contact Phone Number *</label>
+          <input type="tel" id="custPhone" placeholder="10-digit mobile number" maxlength="10" required />
+
+          <label>Your Message / Tool & Seed Requirement / Feedback *</label>
+          <textarea id="custMessage" placeholder="Type your query regarding tools, seeds, fertilizers, or order delivery..." required></textarea>
+
+          <button type="submit" class="submit-btn" id="submitBtn">Send Feedback to Unnati Beej Bhandar</button>
+        </form>
+      </div>
+    </div>
   </main>
 
-  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>Your Farm Cart</h3>
-      <button class="close-btn" onclick="toggleCart(false)">&times;</button>
-    </div>
-
-    <div class="cart-items" id="cartItemsContainer"></div>
-
-    <div class="cart-footer">
-      <div class="discount-input-box">
-        <input type="text" id="couponInput" placeholder="Enter coupon (e.g. HARVEST20)" />
-        <button class="apply-btn" onclick="applyCoupon()">Apply</button>
-      </div>
-      
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <span id="subtotalPrice">₹0.00</span>
-      </div>
-      <div class="summary-row" id="discountRow" style="display: none; color: var(--discount);">
-        <span>Discount (20%)</span>
-        <span id="discountPrice">-₹0.00</span>
-      </div>
-      <div class="summary-row">
-        <span>Estimated Tax (5%)</span>
-        <span id="taxPrice">₹0.00</span>
-      </div>
-      <div class="summary-row total">
-        <span>Total Amount</span>
-        <span id="totalPrice">₹0.00</span>
-      </div>
-
-      <button class="checkout-btn" onclick="openCheckoutModal()">Proceed to Checkout</button>
-    </div>
-  </div>
-
-  <!-- Multi-Step Checkout Modal -->
-  <div class="modal-overlay" id="paymentModal">
-    <div class="modal-content">
-      
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
-        <h3 class="modal-title" id="modalHeading">Delivery Details</h3>
-        <button class="close-btn" onclick="closePaymentModal()">&times;</button>
-      </div>
-
-      <div class="step-indicator" id="stepTracker">
-        <div class="step-badge active" id="badgeStep1">📍 1. Delivery Address</div>
-        <div class="step-badge" id="badgeStep2">💳 2. Payment</div>
-      </div>
-
-      <!-- STEP 1: Mandatory Delivery Details with Verified Pincode -->
-      <div id="step1Container">
-        <p style="font-size:0.85rem; color:#666; margin-bottom:14px;">Kripya apna delivery address bharein:</p>
-
-        <div class="form-row">
-          <div class="form-group" style="flex:1;">
-            <label>Farmer / Customer Name *</label>
-            <input type="text" id="orderCustName" placeholder="e.g. Ramesh Kumar" required />
-          </div>
-          <div class="form-group" style="flex:1;">
-            <label>Mobile Number (For Delivery SMS) *</label>
-            <input type="tel" id="orderCustPhone" placeholder="10-digit mobile number" maxlength="10" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Full Address (House/Shop No, Village/Area, Landmark) *</label>
-          <input type="text" id="orderCustAddress" placeholder="e.g. Near Vinayaka Kolhwa, Kamchchha, Varanasi" required />
-        </div>
-
-        <!-- Automatic Pincode Validator -->
-        <div class="form-group">
-          <label>Pincode (6-Digit Indian Postal Code) *</label>
-          <input type="text" id="orderCustPincode" placeholder="e.g. 221010" maxlength="6" oninput="validatePincodeLive(this.value)" required />
-          <div id="pincodeStatus" class="pincode-status"></div>
-        </div>
-
-        <button type="button" class="pay-btn" id="step1Btn" onclick="goToStep2()">Proceed to Payment &rarr;</button>
-      </div>
-
-      <!-- STEP 2: Strict Payment Verification -->
-      <div id="step2Container" style="display: none;">
-        
-        <div class="address-summary-card">
-          <button type="button" class="edit-address-btn" onclick="goToStep1()">Edit Address</button>
-          <strong>📍 Deliver to:</strong> <span id="summaryCustName"></span> (<span id="summaryCustPhone"></span>)<br>
-          <span id="summaryCustAddress" style="color: #555;"></span> - <span id="summaryCustPincode" style="font-weight:700; color:var(--primary-dark);"></span><br>
-          <span id="summaryPincodeLocation" style="font-size:0.8rem; color:var(--success); font-weight:600;"></span>
-        </div>
-
-        <p style="font-size:0.85rem; color:#666; margin-bottom:8px;">Choose payment option:</p>
-
-        <div class="payment-methods">
-          <div class="payment-opt active" onclick="switchPaymentView('upi', this)">📱 UPI / QR</div>
-          <div class="payment-opt" onclick="switchPaymentView('card', this)">💳 Card</div>
-          <div class="payment-opt" onclick="switchPaymentView('cod', this)">💵 Cash on Delivery</div>
-        </div>
-
-        <!-- 1. UPI QR View -->
-        <div id="upiPaymentView" class="payment-view">
-          <div style="text-align: center; margin: 10px 0;">
-            <p style="font-weight: 700; color: var(--primary-dark); font-size: 1.05rem; margin-bottom: 2px;">Umesh Verma</p>
-            <p style="font-size: 0.85rem; color: #555; margin-bottom: 8px;">UPI ID: <strong>umeshverma.01129-1@oksbi</strong></p>
-            
-            <div style="background: #fff; padding: 10px; display: inline-block; border-radius: 8px; border: 1px solid var(--border);">
-              <img id="upiQrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=umeshverma.01129-1@oksbi%26pn=Umesh%20Verma%26cu=INR" alt="Umesh Verma UPI QR Code" style="width: 170px; height: 170px; object-fit: contain; display: block;" />
-            </div>
-            <p style="font-size:0.75rem; color: var(--discount); margin-top: 4px;">⚠️ QR code scan karke payment karne ke baad hi UTR enter karein.</p>
-          </div>
-
-          <div class="form-group">
-            <label>12-digit UTR / UPI Reference No. (Mandatory) *</label>
-            <input type="text" id="upiRefInput" placeholder="Enter 12-digit UTR No. from payment app" maxlength="12" />
-          </div>
-
-          <button type="button" class="pay-btn" id="paySubmitBtn" onclick="processOrder('UPI')">Verify Payment & Confirm Order</button>
-        </div>
-
-        <!-- 2. Card View -->
-        <div id="cardPaymentView" class="payment-view" style="display: none;">
-          <div class="form-group">
-            <label>Cardholder Name *</label>
-            <input type="text" id="cardNameInput" placeholder="Name on card" />
-          </div>
-          <div class="form-group">
-            <label>Card Number *</label>
-            <input type="text" id="cardNumberInput" placeholder="16-digit card number" maxlength="19" />
-          </div>
-          <div class="form-row">
-            <div class="form-group" style="flex:1;">
-              <label>Expiry (MM/YY) *</label>
-              <input type="text" id="cardExpiryInput" placeholder="MM/YY" maxlength="5" />
-            </div>
-            <div class="form-group" style="flex:1;">
-              <label>CVV *</label>
-              <input type="password" id="cardCvvInput" placeholder="123" maxlength="3" />
-            </div>
-          </div>
-          <button type="button" class="pay-btn" id="cardPayBtn" onclick="processOrder('Card')">Pay via Card & Confirm Order</button>
-        </div>
-
-        <!-- 3. COD View -->
-        <div id="codPaymentView" class="payment-view" style="display: none;">
-          <div style="background: var(--light-bg); border: 1px dashed var(--border); padding: 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.88rem; color: #4a5568;">
-            <p>🚚 <strong>Cash on Delivery:</strong> Delivery ke waqt doorstep par cash payment karein.</p>
-            <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 4px;">
-              <span>Order Subtotal:</span>
-              <span id="codBaseAmount">₹0.00</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--discount);">
-              <span>COD Handling Fee:</span>
-              <span>+₹50.00</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--primary-dark); font-size: 0.95rem; margin-top: 4px;">
-              <span>Total Payable at Doorstep:</span>
-              <span id="codTotalAmount">₹0.00</span>
-            </div>
-          </div>
-
-          <button type="button" class="pay-btn" id="codSubmitBtn" onclick="processOrder('Cash on Delivery')">Confirm Cash on Delivery Order</button>
-        </div>
-
-        <button type="button" class="back-step-btn" onclick="goToStep1()">&larr; Back to Address</button>
-      </div>
-
-      <!-- STEP 3: Flipkart Style Confirmation Card -->
-      <div id="step3SuccessContainer" style="display: none;">
-        <div class="success-card">
-          <div class="success-icon">✅</div>
-          <h3 style="color: var(--primary-dark); font-size: 1.4rem; margin-bottom: 4px;">Order Placed Successfully!</h3>
-          <p style="font-size: 0.85rem; color: #666;">Order ID: <strong id="successOrderId" style="color: var(--dark);"></strong></p>
-
-          <div class="order-track-box">
-            <div class="track-step">
-              <div class="track-dot"></div>
-              <div>
-                <strong>Order Confirmed</strong>
-                <p style="font-size:0.75rem; color:#666;">Aapka order successfully register ho gaya hai.</p>
-              </div>
-            </div>
-            <div class="track-step" style="margin-top: 8px;">
-              <div class="track-dot" style="background: #eab308;"></div>
-              <div>
-                <strong style="color: #ca8a04;">Estimated Delivery: Within 1 Week (5-7 Days)</strong>
-                <p style="font-size:0.75rem; color:#666;">Delivery se pehle <strong id="successPhone"></strong> par delivery agent call karega.</p>
-              </div>
-            </div>
-          </div>
-
-          <div style="background: var(--light-bg); border-radius: 8px; padding: 12px; font-size: 0.85rem; text-align: left; margin-bottom: 15px;">
-            <p><strong>Deliver To:</strong> <span id="successName"></span></p>
-            <p style="color: #555;" id="successAddress"></p>
-            <p style="margin-top: 6px;"><strong>Amount:</strong> <span id="successAmount" style="font-weight: 700; color: var(--primary);"></span> (<span id="successPayMode"></span>)</p>
-          </div>
-
-          <button type="button" class="pay-btn" onclick="closePaymentModal()">Continue Shopping</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
   <footer>
-    <p>&copy; 2026 AgriGrow E-Commerce Storefront. Serving farmers across Varanasi & beyond. | <a href="contact.html" target="_blank" style="color: var(--primary); font-weight: 600;">Contact & Feedback</a></p>
+    <p>&copy; 2026 AgriGrow - Unnati Beej Bhandar. Serving farmers across Varanasi & beyond.</p>
   </footer>
 
   <script>
-    const TARGET_OWNER_EMAIL = "umangverma24aug@gmail.com";
+    const FEEDBACK_EMAIL = "unnatibeejbhandar@gmail.com";
+    let selectedRating = 5;
+    setRating(5);
 
-    const products = [
-      // 🌸 Flower Seeds Section
-      {
-        id: 201,
-        title: "Gazania Sunshine Hybrid Seeds (50 Seeds)",
-        category: "flowers",
-        price: 149.00,
-        originalPrice: 199.00,
-        discount: "25% OFF",
-        image: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        id: 202,
-        title: "Pink Rain Lily & Red Mini Rose Combo",
-        category: "flowers",
-        price: 249.00,
-        originalPrice: 320.00,
-        discount: "22% OFF",
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        id: 203,
-        title: "Red Jatropha & Perennial Garden Seeds",
-        category: "flowers",
-        price: 189.00,
-        originalPrice: 250.00,
-        discount: "24% OFF",
-        image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        id: 204,
-        title: "Hibiscus & Bicolor Gerbera Daisy Kit",
-        category: "flowers",
-        price: 220.00,
-        originalPrice: 290.00,
-        discount: "24% OFF",
-        image: "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        id: 205,
-        title: "Pink Aglaonema / Chinese Evergreen Plant",
-        category: "flowers",
-        price: 299.00,
-        originalPrice: 399.00,
-        discount: "25% OFF",
-        image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=500&q=80"
-      },
-      {
-        id: 206,
-        title: "Crimson Ruellia / Wild Petunia Flower Seeds",
-        category: "flowers",
-        price: 129.00,
-        originalPrice: 180.00,
-        discount: "28% OFF",
-        image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=500&q=80"
-      },
-
-      // 🚜 Tools & Equipment
-      {
-        id: 101,
-        title: "Heavy-Duty Bypass Pruning Shears",
-        category: "tools",
-        price: 499.00,
-        originalPrice: 650.00,
-        discount: "23% OFF",
-        image: "https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=400&q=80"
-      },
-      {
-        id: 102,
-        title: "Stainless Steel Hand Cultivator Rake",
-        category: "tools",
-        price: 349.00,
-        originalPrice: 480.00,
-        discount: "27% OFF",
-        image: "https://images.unsplash.com/photo-1617576683096-00fc8eecb3af?auto=format&fit=crop&w=400&q=80"
-      },
-      {
-        id: 103,
-        title: "Ergonomic Garden Spade & Trowel",
-        category: "tools",
-        price: 299.00,
-        originalPrice: 399.00,
-        discount: "25% OFF",
-        image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=400&q=80"
-      },
-      {
-        id: 104,
-        title: "Soil Moisture & pH Meter (3-in-1)",
-        category: "tools",
-        price: 799.00,
-        originalPrice: 1100.00,
-        discount: "27% OFF",
-        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=400&q=80"
-      },
-
-      // 🌾 Crop Seeds
-      {
-        id: 1,
-        title: "Hybrid Wheat Seeds (10kg)",
-        category: "seeds",
-        price: 850.00,
-        originalPrice: 1100.00,
-        discount: "23% OFF",
-        image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=400&q=80"
-      },
-      {
-        id: 4,
-        title: "Heirloom Tomato Seeds Pack",
-        category: "seeds",
-        price: 199.00,
-        originalPrice: 280.00,
-        discount: "29% OFF",
-        image: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=400&q=80"
-      },
-
-      // 🌿 Fertilizers
-      {
-        id: 2,
-        title: "Organic Vermicompost (25kg)",
-        category: "fertilizer",
-        price: 650.00,
-        originalPrice: 800.00,
-        discount: "19% OFF",
-        image: "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=400&q=80"
-      }
-    ];
-
-    let cart = [];
-    let discountApplied = false;
-    const DISCOUNT_CODE = "HARVEST20";
-    const DISCOUNT_RATE = 0.20;
-    const COD_FEE = 50.00;
-
-    let isPincodeValid = false;
-    let validatedLocationDetails = "";
-
-    function renderProducts(filter = 'all') {
-      const grid = document.getElementById('productGrid');
-      grid.innerHTML = '';
-      const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-
-      filtered.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        card.innerHTML = `
-          <span class="product-badge">${p.discount}</span>
-          <img src="${p.image}" class="product-img" alt="${p.title}">
-          <div class="product-info">
-            <span class="product-cat">${p.category}</span>
-            <div class="product-title">${p.title}</div>
-            <div class="price-box">
-              <span class="current-price">₹${p.price.toFixed(2)}</span>
-              <span class="original-price">₹${p.originalPrice.toFixed(2)}</span>
-            </div>
-            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
-          </div>
-        `;
-        grid.appendChild(card);
+    function setRating(rating) {
+      selectedRating = rating;
+      document.getElementById('selectedRatingInput').value = `${rating} / 5 Stars`;
+      const stars = document.querySelectorAll('.star-btn');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
       });
     }
 
-    function filterProducts(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderProducts(category);
-    }
+    function submitForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const message = document.getElementById('custMessage').value.trim();
 
-    function addToCart(productId) {
-      const existing = cart.find(item => item.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
-        const item = products.find(p => p.id === productId);
-        cart.push({ ...item, qty: 1 });
-      }
-      updateCartUI();
-      toggleCart(true);
-    }
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = "Sending Feedback...";
+      btn.disabled = true;
 
-    function updateQuantity(productId, delta) {
-      const item = cart.find(i => i.id === productId);
-      if (!item) return;
-      item.qty += delta;
-      if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== productId);
-      }
-      updateCartUI();
-    }
-
-    function calculateOrderTotal() {
-      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      const discount = discountApplied ? subtotal * DISCOUNT_RATE : 0;
-      const tax = (subtotal - discount) * 0.05;
-      return Number((subtotal - discount + tax).toFixed(2));
-    }
-
-    function updateCartUI() {
-      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
-      document.getElementById('cartCount').innerText = totalCount;
-
-      const container = document.getElementById('cartItemsContainer');
-      if (cart.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#888; margin-top:40px;">Your cart is empty.</p>';
-      } else {
-        container.innerHTML = cart.map(item => `
-          <div class="cart-item">
-            <img src="${item.image}" alt="${item.title}">
-            <div class="cart-item-details">
-              <div class="cart-item-title">${item.title}</div>
-              <div class="cart-item-price">₹${(item.price * item.qty).toFixed(2)}</div>
-              <div class="qty-controls">
-                <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                <span>${item.qty}</span>
-                <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-              </div>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      const discount = discountApplied ? subtotal * DISCOUNT_RATE : 0;
-      const tax = (subtotal - discount) * 0.05;
-      const total = subtotal - discount + tax;
-
-      document.getElementById('subtotalPrice').innerText = `₹${subtotal.toFixed(2)}`;
-      document.getElementById('taxPrice').innerText = `₹${tax.toFixed(2)}`;
-      document.getElementById('totalPrice').innerText = `₹${total.toFixed(2)}`;
-      
-      const discountRow = document.getElementById('discountRow');
-      if (discountApplied && subtotal > 0) {
-        discountRow.style.display = 'flex';
-        document.getElementById('discountPrice').innerText = `-₹${discount.toFixed(2)}`;
-      } else {
-        discountRow.style.display = 'none';
-      }
-    }
-
-    function applyCoupon() {
-      const code = document.getElementById('couponInput').value.trim().toUpperCase();
-      if (code === DISCOUNT_CODE) {
-        discountApplied = true;
-        alert('Coupon applied successfully! 20% discount added.');
-      } else {
-        alert('Invalid coupon code. Use HARVEST20');
-      }
-      updateCartUI();
-    }
-
-    function toggleCart(open) {
-      const drawer = document.getElementById('cartDrawer');
-      const overlay = document.getElementById('cartOverlay');
-      if (open) {
-        drawer.classList.add('open');
-        overlay.style.display = 'block';
-      } else {
-        drawer.classList.remove('open');
-        overlay.style.display = 'none';
-      }
-    }
-
-    function openCheckoutModal() {
-      if (cart.length === 0) {
-        alert("Aapka cart empty hai!");
-        return;
-      }
-      toggleCart(false);
-      goToStep1();
-      document.getElementById('paymentModal').style.display = 'flex';
-    }
-
-    function closePaymentModal() {
-      document.getElementById('paymentModal').style.display = 'none';
-    }
-
-    function goToStep1() {
-      document.getElementById('step1Container').style.display = 'block';
-      document.getElementById('step2Container').style.display = 'none';
-      document.getElementById('step3SuccessContainer').style.display = 'none';
-      document.getElementById('stepTracker').style.display = 'flex';
-      document.getElementById('modalHeading').innerText = "Delivery Details";
-      
-      document.getElementById('badgeStep1').classList.add('active');
-      document.getElementById('badgeStep2').classList.remove('active');
-    }
-
-    // Live Postal Database Validator for Indian Pincodes
-    async function validatePincodeLive(pin) {
-      const statusEl = document.getElementById('pincodeStatus');
-      const cleanPin = pin.trim();
-
-      if (!cleanPin) {
-        statusEl.innerText = "";
-        statusEl.className = "pincode-status";
-        isPincodeValid = false;
-        return;
-      }
-
-      // Check 6-digit regex
-      const pinRegex = /^[1-9][0-9]{5}$/;
-      if (!pinRegex.test(cleanPin)) {
-        statusEl.innerText = "❌ Invalid Pincode! 6-digit valid number daalein.";
-        statusEl.className = "pincode-status invalid";
-        isPincodeValid = false;
-        return;
-      }
-
-      statusEl.innerText = "⏳ Checking postal network...";
-      statusEl.className = "pincode-status checking";
-
-      try {
-        const res = await fetch(`https://api.postalpincode.in/pincode/${cleanPin}`);
-        const data = await res.json();
-
-        if (data && data[0] && data[0].Status === "Success" && data[0].PostOffice && data[0].PostOffice.length > 0) {
-          const po = data[0].PostOffice[0];
-          validatedLocationDetails = `${po.District}, ${po.State}`;
-          statusEl.innerText = `✅ Valid Pincode: ${po.Name} (${validatedLocationDetails})`;
-          statusEl.className = "pincode-status valid";
-          isPincodeValid = true;
-        } else {
-          statusEl.innerText = "❌ Invalid / Fake Pincode! Indian Postal Database mein nahi mila.";
-          statusEl.className = "pincode-status invalid";
-          isPincodeValid = false;
-        }
-      } catch (err) {
-        // Fallback for offline network
-        statusEl.innerText = "✅ 6-digit Pincode Format Valid.";
-        statusEl.className = "pincode-status valid";
-        isPincodeValid = true;
-      }
-    }
-
-    async function goToStep2() {
-      const name = document.getElementById('orderCustName').value.trim();
-      const phone = document.getElementById('orderCustPhone').value.trim();
-      const address = document.getElementById('orderCustAddress').value.trim();
-      const pincode = document.getElementById('orderCustPincode').value.trim();
-
-      if (!name || !phone || !address || !pincode) {
-        alert("⚠️ Kripya Name, Mobile Number, Full Address aur Pincode poora bharein.");
-        return;
-      }
-
-      if (phone.length < 10) {
-        alert("⚠️ Kripya valid 10-digit mobile number daalein.");
-        return;
-      }
-
-      // Strict Pincode Verification Check
-      const step1Btn = document.getElementById('step1Btn');
-      step1Btn.innerText = "Verifying Pincode...";
-      step1Btn.disabled = true;
-
-      await validatePincodeLive(pincode);
-      step1Btn.innerText = "Proceed to Payment →";
-      step1Btn.disabled = false;
-
-      if (!isPincodeValid) {
-        alert("❌ Galat Pincode!\n\nKripya sahi 6-digit Indian Pincode daalein (Jaise: 221010, 110001, 201301 etc.)");
-        document.getElementById('orderCustPincode').focus();
-        return;
-      }
-
-      document.getElementById('summaryCustName').innerText = name;
-      document.getElementById('summaryCustPhone').innerText = phone;
-      document.getElementById('summaryCustAddress').innerText = address;
-      document.getElementById('summaryCustPincode').innerText = pincode;
-      document.getElementById('summaryPincodeLocation').innerText = validatedLocationDetails ? `(District: ${validatedLocationDetails})` : '';
-
-      const total = calculateOrderTotal();
-      const upiUrl = `upi://pay?pa=umeshverma.01129-1@oksbi&pn=Umesh%20Verma&am=${total}&cu=INR&tn=AgriGrow Order`;
-      document.getElementById('upiQrCode').src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(upiUrl)}`;
-      document.getElementById('paySubmitBtn').innerText = `Verify Payment & Place Order (₹${total.toFixed(2)})`;
-
-      const codTotal = (total + COD_FEE).toFixed(2);
-      document.getElementById('codBaseAmount').innerText = `₹${total.toFixed(2)}`;
-      document.getElementById('codTotalAmount').innerText = `₹${codTotal}`;
-      document.getElementById('codSubmitBtn').innerText = `Confirm Order • Pay ₹${codTotal}`;
-
-      document.getElementById('step1Container').style.display = 'none';
-      document.getElementById('step2Container').style.display = 'block';
-      document.getElementById('modalHeading').innerText = "Select Payment Option";
-
-      document.getElementById('badgeStep1').classList.remove('active');
-      document.getElementById('badgeStep1').classList.add('completed');
-      document.getElementById('badgeStep2').classList.add('active');
-
-      switchPaymentView('upi', document.querySelector('.payment-opt'));
-    }
-
-    function switchPaymentView(method, el) {
-      document.querySelectorAll('.payment-opt').forEach(opt => opt.classList.remove('active'));
-      el.classList.add('active');
-
-      document.getElementById('upiPaymentView').style.display = (method === 'upi') ? 'block' : 'none';
-      document.getElementById('cardPaymentView').style.display = (method === 'card') ? 'block' : 'none';
-      document.getElementById('codPaymentView').style.display = (method === 'cod') ? 'block' : 'none';
-    }
-
-    // Direct Guaranteed FormSubmit Email Dispatcher
-    function processOrder(paymentMode) {
-      const name = document.getElementById('orderCustName').value.trim();
-      const phone = document.getElementById('orderCustPhone').value.trim();
-      const address = document.getElementById('orderCustAddress').value.trim();
-      const pincode = document.getElementById('orderCustPincode').value.trim();
-      let utrOrCardDetail = "Cash on Delivery";
-
-      if (paymentMode === 'UPI') {
-        const utr = document.getElementById('upiRefInput').value.trim();
-        if (!utr) {
-          alert("❌ Payment Pending!\n\nPehle QR Code scan karke payment karein aur 12-digit UTR No. enter karein.");
-          document.getElementById('upiRefInput').focus();
-          return;
-        }
-        if (utr.length < 12) {
-          alert("❌ Invalid UTR Number! Kripya valid 12-digit UTR enter karein.");
-          document.getElementById('upiRefInput').focus();
-          return;
-        }
-        utrOrCardDetail = `UPI UTR: ${utr}`;
-      }
-
-      if (paymentMode === 'Card') {
-        const cardName = document.getElementById('cardNameInput').value.trim();
-        const cardNum = document.getElementById('cardNumberInput').value.trim();
-        const cardExp = document.getElementById('cardExpiryInput').value.trim();
-        const cardCvv = document.getElementById('cardCvvInput').value.trim();
-
-        if (!cardName || !cardNum || !cardExp || !cardCvv) {
-          alert("❌ Incomplete Card Details! Kripya Cardholder Name, Number, Expiry aur CVV bharein.");
-          return;
-        }
-        if (cardNum.length < 16) {
-          alert("❌ Invalid Card Number! Kripya valid 16-digit number daalein.");
-          return;
-        }
-        utrOrCardDetail = `Cardholder: ${cardName}, Ending: ${cardNum.slice(-4)}`;
-      }
-
-      const baseTotal = calculateOrderTotal();
-      const finalAmount = (paymentMode === 'Cash on Delivery') ? (baseTotal + COD_FEE).toFixed(2) : baseTotal.toFixed(2);
-      const orderId = "AGRI-" + Math.floor(100000 + Math.random() * 900000);
-      const itemsList = cart.map(i => `${i.title} (Qty: ${i.qty}) = ₹${(i.price * i.qty).toFixed(2)}`).join(' | ');
-
-      // Browser form submission to umangverma24aug@gmail.com
+      // Hidden FormSubmit to unnatibeejbhandar@gmail.com
       const hiddenForm = document.createElement("form");
       hiddenForm.method = "POST";
-      hiddenForm.action = `https://formsubmit.co/${TARGET_OWNER_EMAIL}`;
+      hiddenForm.action = `https://formsubmit.co/${FEEDBACK_EMAIL}`;
       hiddenForm.target = "_blank";
 
-      const orderData = {
-        "_subject": `🔥 New Order #${orderId} - ₹${finalAmount} from ${name}`,
-        "Order ID": `#${orderId}`,
+      const payload = {
+        "_subject": `🌾 New Farmer Feedback from ${name} (${selectedRating} Stars)`,
         "Customer Name": name,
+        "Customer Email": email,
         "Mobile Number": phone,
-        "Delivery Address": `${address}, Pincode: ${pincode} (${validatedLocationDetails || 'India'})`,
-        "Ordered Items": itemsList,
-        "Payment Mode": paymentMode,
-        "Payment / UTR Detail": utrOrCardDetail,
-        "Total Amount": `₹${finalAmount}`
+        "Rating Given": `${selectedRating} / 5 Stars`,
+        "Feedback & Query": message
       };
 
-      for (const key in orderData) {
-        const inputField = document.createElement("input");
-        inputField.type = "hidden";
-        inputField.name = key;
-        inputField.value = orderData[key];
-        hiddenForm.appendChild(inputField);
+      for (const key in payload) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = payload[key];
+        hiddenForm.appendChild(input);
       }
 
       document.body.appendChild(hiddenForm);
       hiddenForm.submit();
       document.body.removeChild(hiddenForm);
 
-      // Flipkart Style Confirmation View on Screen
-      document.getElementById('step2Container').style.display = 'none';
-      document.getElementById('stepTracker').style.display = 'none';
-      document.getElementById('modalHeading').innerText = "Order Confirmation";
-
-      document.getElementById('successOrderId').innerText = `#${orderId}`;
-      document.getElementById('successPhone').innerText = phone;
-      document.getElementById('successName').innerText = name;
-      document.getElementById('successAddress').innerText = `${address}, Pincode: ${pincode} (${validatedLocationDetails || ''})`;
-      document.getElementById('successAmount').innerText = `₹${finalAmount}`;
-      document.getElementById('successPayMode').innerText = paymentMode;
-
-      document.getElementById('step3SuccessContainer').style.display = 'block';
-
-      // Reset Cart & Input Fields
-      cart = [];
-      discountApplied = false;
-      document.getElementById('orderCustName').value = '';
-      document.getElementById('orderCustPhone').value = '';
-      document.getElementById('orderCustAddress').value = '';
-      document.getElementById('orderCustPincode').value = '';
-      document.getElementById('pincodeStatus').innerText = '';
-      if (document.getElementById('upiRefInput')) document.getElementById('upiRefInput').value = '';
-      if (document.getElementById('couponInput')) document.getElementById('couponInput').value = '';
-      updateCartUI();
+      alert(`🎉 Thank you, ${name}!\n\nAapka feedback aur query safaltapoorvak ${FEEDBACK_EMAIL} par bhej diya gaya hai.`);
+      document.getElementById('contactPageForm').reset();
+      setRating(5);
+      btn.innerText = "Send Feedback to Unnati Beej Bhandar";
+      btn.disabled = false;
     }
-
-    renderProducts();
   </script>
 </body>
 </html>
