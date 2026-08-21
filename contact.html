@@ -1,325 +1,1918 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact & Feedback | AgriGrow Hub Varanasi</title>
+  <title>Unnati Beej Bhandar | Certified Seeds, Tools, Fertilizers, Pesticides & Decor Flowers</title>
   <style>
     :root {
-      --primary: #2d6a4f;
-      --primary-dark: #1b4332;
-      --primary-light: #52b788;
-      --accent: #d8f3dc;
-      --discount: #e63946;
-      --dark: #212529;
-      --light-bg: #f8f9fa;
+      --brand-primary: #0f4c3a;
+      --brand-secondary: #1b7a5a;
+      --brand-accent: #d4a373;
+      --brand-gold: #f4a261;
+      --brand-orange: #e76f51;
+      --brand-green: #2a9d8f;
+      --brand-dark: #1e293b;
+      --brand-gray: #64748b;
+      --brand-light: #f8fafc;
       --white: #ffffff;
       --border: #e2e8f0;
-      --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      --radius: 12px;
+      --shadow: 0 4px 20px rgba(15, 76, 58, 0.08);
+      --danger: #ef4444;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
     body {
-      background-color: var(--light-bg);
-      color: var(--dark);
-      line-height: 1.6;
+      background-color: #f1f5f9;
+      color: var(--brand-dark);
+      line-height: 1.4;
     }
 
-    .navbar {
-      background: var(--white);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      padding: 14px 20px;
+    /* Header */
+    .ub-header {
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(15, 76, 58, 0.25);
     }
 
-    .nav-container {
-      max-width: 1100px;
+    .ub-header-container {
+      max-width: 1280px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+    }
+
+    .ub-brand {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .ub-brand-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ub-brand-sub {
+      font-size: 0.72rem;
+      color: var(--brand-gold);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .ub-search-box {
+      flex: 1;
+      max-width: 540px;
+      position: relative;
+      background: var(--white);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .ub-search-box input {
+      width: 100%;
+      border: none;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      outline: none;
+      border-radius: 6px;
+    }
+
+    .ub-cart-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+
+    .ub-cart-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .ub-cart-badge {
+      background: var(--brand-orange);
+      color: var(--white);
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 50px;
+      font-weight: 700;
+    }
+
+    /* Category Strip */
+    .ub-category-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .ub-category-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 10px;
+      overflow-x: auto;
+      gap: 12px;
+    }
+
+    .ub-cat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      min-width: 85px;
+      text-decoration: none;
+      color: var(--brand-dark);
+      transition: all 0.2s;
+    }
+
+    .ub-cat-item:hover, .ub-cat-item.active {
+      color: var(--brand-secondary);
+      font-weight: 700;
+    }
+
+    .ub-cat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #eef7f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .ub-cat-item.active .ub-cat-icon {
+      background: #d8f3dc;
+      border-color: var(--brand-secondary);
+      transform: translateY(-2px);
+    }
+
+    .ub-cat-title {
+      font-size: 0.82rem;
+      white-space: nowrap;
+    }
+
+    /* Main Container */
+    .ub-main {
+      max-width: 1280px;
+      margin: 12px auto;
+      padding: 0 10px;
+    }
+
+    /* Banner */
+    .ub-deal-banner {
+      background: linear-gradient(135deg, #0f4c3a 0%, #1b7a5a 50%, #2a9d8f 100%);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .ub-deal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .ub-deal-sub {
+      font-size: 0.85rem;
+      color: var(--brand-gold);
+      margin-top: 2px;
+    }
+
+    /* Products Section Card */
+    .ub-card-section {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .ub-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+    }
+
+    .ub-section-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--brand-primary);
+    }
+
+    /* Products Grid */
+    .ub-product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .ub-product-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      background: var(--white);
+    }
+
+    .ub-product-card:hover {
+      box-shadow: 0 8px 24px rgba(15, 76, 58, 0.12);
+      border-color: var(--brand-secondary);
+      transform: translateY(-3px);
+    }
+
+    .ub-img-wrap {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #f8fafc;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .ub-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .ub-img-wrap:hover img {
+      transform: scale(1.08);
+    }
+
+    .ub-zoom-tag {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(15, 76, 58, 0.85);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 3px 6px;
+      border-radius: 4px;
+      pointer-events: none;
+      font-weight: 600;
+    }
+
+    .ub-p-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--brand-dark);
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 40px;
+    }
+
+    .ub-rating-pill {
+      background: var(--brand-primary);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+
+    .ub-p-pricing {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .ub-current-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--brand-primary);
+    }
+
+    .ub-original-price {
+      font-size: 0.85rem;
+      color: var(--brand-gray);
+      text-decoration: line-through;
+    }
+
+    .ub-discount-txt {
+      font-size: 0.82rem;
+      color: var(--brand-orange);
+      font-weight: 700;
+    }
+
+    .ub-add-btn {
+      background: var(--brand-secondary);
+      color: var(--white);
+      border: none;
+      padding: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: auto;
+      transition: background 0.2s;
+    }
+
+    .ub-add-btn:hover {
+      background: var(--brand-primary);
+    }
+
+    /* Lightbox Modal (Big Image View) */
+    .ub-lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 500;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .ub-lightbox-card {
+      background: var(--white);
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      position: relative;
+      animation: zoomIn 0.25s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .ub-lightbox-img-container {
+      width: 100%;
+      height: 380px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .ub-lightbox-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .ub-lightbox-details {
+      padding: 18px 20px;
+    }
+
+    .ub-lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Bottom Hub Section */
+    .ub-bottom-hub {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .ub-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .ub-hub-link {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-decoration: none;
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--brand-light);
+      transition: all 0.2s;
+    }
+
+    .ub-hub-link:hover {
+      border-color: var(--brand-secondary);
+      background: #eef7f4;
+      transform: translateY(-2px);
+    }
+
+    .ub-hub-icon {
+      font-size: 1.8rem;
+    }
+
+    .ub-hub-text h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+    }
+
+    .ub-hub-text p {
+      font-size: 0.8rem;
+      color: var(--brand-gray);
+    }
+
+    /* Cart Sidebar */
+    .ub-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 76, 58, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      display: none;
+    }
+
+    .ub-drawer {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background: var(--white);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+      transition: right 0.3s ease;
+    }
+
+    .ub-drawer.open {
+      right: 0;
+    }
+
+    .ub-drawer-head {
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+      color: var(--white);
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand {
+    .ub-cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .ub-c-item {
       display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      text-decoration: none;
-    }
-
-    .back-store-btn {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 700;
-      padding: 8px 16px;
-      border: 1px solid var(--primary);
-      border-radius: 50px;
-      transition: all 0.2s;
-    }
-
-    .back-store-btn:hover {
-      background: var(--primary);
-      color: var(--white);
-    }
-
-    .contact-wrapper {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .page-header {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .page-header h1 {
-      font-size: 2.2rem;
-      color: var(--primary-dark);
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .page-header p {
-      color: #666;
-      font-size: 1.05rem;
-    }
-
-    .content-box {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 35px;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-    }
-
-    .info-column h3 {
-      font-size: 1.25rem;
-      color: var(--primary);
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
       margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .info-column p {
-      color: #4a5568;
-      margin-bottom: 20px;
-      font-size: 0.95rem;
+    .ub-c-item img {
+      width: 65px;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 6px;
     }
 
-    .rating-box {
-      margin: 15px 0 25px 0;
+    .ub-c-details {
+      flex: 1;
     }
 
-    .rating-container {
-      display: flex;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .star-btn {
-      font-size: 2rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #cbd5e1;
-      transition: color 0.15s;
-    }
-
-    .star-btn.active {
-      color: #ffb703;
-    }
-
-    .form-column label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--dark);
-    }
-
-    .form-column input, .form-column textarea {
-      width: 100%;
-      padding: 12px;
+    .ub-qty-btn {
+      width: 26px;
+      height: 26px;
+      background: var(--brand-light);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 16px;
-      font-size: 0.95rem;
-      background: var(--light-bg);
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
     }
 
-    .form-column textarea {
-      min-height: 120px;
-      resize: vertical;
+    .ub-drawer-foot {
+      background: var(--brand-light);
+      border-top: 1px solid var(--border);
+      padding: 18px;
     }
 
-    .form-column input:focus, .form-column textarea:focus {
-      outline: 2px solid var(--primary-light);
-      background: var(--white);
+    .ub-price-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.92rem;
+      margin-bottom: 6px;
     }
 
-    .submit-btn {
-      background: var(--primary);
+    .ub-price-row.total {
+      font-size: 1.15rem;
+      font-weight: 800;
+      border-top: 1px dashed var(--border);
+      padding-top: 10px;
+      margin-top: 10px;
+      color: var(--brand-primary);
+    }
+
+    .ub-checkout-btn {
+      width: 100%;
+      background: var(--brand-orange);
       color: var(--white);
       border: none;
       padding: 14px;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      width: 100%;
       font-size: 1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 12px;
       transition: background 0.2s;
     }
 
-    .submit-btn:hover {
-      background: var(--primary-dark);
+    .ub-checkout-btn:hover {
+      background: #dc5a3c;
     }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #666;
+    /* 2-Step Checkout Modal */
+    .ub-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 76, 58, 0.6);
+      backdrop-filter: blur(2px);
+      z-index: 400;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .ub-modal {
+      background: var(--white);
+      max-width: 520px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .ub-modal-head {
+      background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+      color: var(--white);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ub-modal-body {
+      padding: 20px;
+    }
+
+    .ub-step-indicator {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .ub-step-badge {
+      color: var(--brand-gray);
+    }
+
+    .ub-step-badge.active {
+      color: var(--brand-secondary);
+    }
+
+    .ub-step-badge.completed {
+      color: var(--brand-green);
+    }
+
+    .ub-input-group {
+      margin-bottom: 14px;
+    }
+
+    .ub-input-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--brand-dark);
+      margin-bottom: 4px;
+    }
+
+    .ub-input-group input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
       font-size: 0.9rem;
-      margin-top: 50px;
-      border-top: 1px solid var(--border);
+      outline: none;
+      background: var(--brand-light);
     }
 
-    @media (max-width: 768px) {
-      .content-box { grid-template-columns: 1fr; gap: 30px; }
+    .ub-input-group input:focus {
+      border-color: var(--brand-secondary);
+      background: var(--white);
+    }
+
+    .ub-pin-msg {
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .ub-pin-msg.valid { color: var(--brand-green); }
+    .ub-pin-msg.invalid { color: var(--danger); }
+    .ub-pin-msg.checking { color: var(--brand-gold); }
+
+    .ub-pay-btn {
+      width: 100%;
+      background: var(--brand-orange);
+      color: var(--white);
+      border: none;
+      padding: 13px;
+      font-size: 1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background 0.2s;
+    }
+
+    .ub-pay-btn:hover {
+      background: #dc5a3c;
+    }
+
+    .ub-pay-methods {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .ub-pay-opt {
+      border: 1px solid var(--border);
+      padding: 10px 4px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 6px;
+      background: var(--brand-light);
+    }
+
+    .ub-pay-opt.active {
+      border-color: var(--brand-secondary);
+      background: #eef7f4;
+      color: var(--brand-primary);
+    }
+
+    .ub-summary-pill {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .ub-edit-addr {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      color: var(--brand-secondary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .ub-footer {
+      background: var(--brand-primary);
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      padding: 28px 16px;
+      margin-top: 40px;
+    }
+
+    .ub-footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .ub-footer a {
+      color: var(--brand-gold);
+      text-decoration: none;
+      margin-left: 10px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .ub-search-box { display: none; }
+      .ub-product-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="brand">
-        <span>🌾 AgriGrow</span>
+  <!-- Top Header Bar -->
+  <header class="ub-header">
+    <div class="ub-header-container">
+      <a href="index.html" class="ub-brand">
+        <span class="ub-brand-name">🌱 Unnati Beej Bhandar</span>
+        <span class="ub-brand-sub">Certified Seeds, Tools, Fertilizers, Pesticides & Decor Flowers</span>
       </a>
-      <a href="index.html" class="back-store-btn">&larr; Back to Shop</a>
+
+      <!-- Live Search Bar -->
+      <div class="ub-search-box">
+        <input type="text" id="searchInput" placeholder="Search Artificial Flowers, Vegetables, Seeds, Tools, Pesticides..." onkeyup="searchProducts(this.value)" />
+      </div>
+
+      <div class="ub-header-actions">
+        <button class="ub-cart-btn" onclick="toggleCart(true)">
+          🛒 <span>Cart</span>
+          <span class="ub-cart-badge" id="cartCount">0</span>
+        </button>
+      </div>
     </div>
-  </nav>
+  </header>
 
-  <main class="contact-wrapper">
-    <div class="page-header">
-      <h1>Contact Us & Leave Feedback</h1>
-      <p>Have farming queries, tool requirements, or store reviews? We are here for you.</p>
+  <!-- Category Strip with Round Icons -->
+  <div class="ub-category-strip">
+    <div class="ub-category-container">
+      <div class="ub-cat-item active" onclick="filterCategory('all', this)">
+        <div class="ub-cat-icon">🌾</div>
+        <span class="ub-cat-title">All Offers</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('flowers', this)">
+        <div class="ub-cat-icon">🌸</div>
+        <span class="ub-cat-title">Flower Seeds & Plants</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('artificial', this)">
+        <div class="ub-cat-icon">💐</div>
+        <span class="ub-cat-title">Decor Flowers</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('vegetables', this)">
+        <div class="ub-cat-icon">🥦</div>
+        <span class="ub-cat-title">Vegetables</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('seeds', this)">
+        <div class="ub-cat-icon">🌱</div>
+        <span class="ub-cat-title">Crop Seeds</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('tools', this)">
+        <div class="ub-cat-icon">🚜</div>
+        <span class="ub-cat-title">Tools & Sprayers</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('fertilizer', this)">
+        <div class="ub-cat-icon">🌿</div>
+        <span class="ub-cat-title">Fertilizers</span>
+      </div>
+      <div class="ub-cat-item" onclick="filterCategory('pesticide', this)">
+        <div class="ub-cat-icon">🛡️</div>
+        <span class="ub-cat-title">Pesticides</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Store Section -->
+  <main class="ub-main">
+    <div class="ub-deal-banner">
+      <div>
+        <div class="ub-deal-title">🌾 Unnati Harvest, Gardening & Decor Sale</div>
+        <div class="ub-deal-sub">Flat 20% OFF coupon: <strong>HARVEST20</strong> | Delivery within 1 week</div>
+      </div>
     </div>
 
-    <div class="content-box">
-      <!-- Location & Support Details -->
-      <div class="info-column">
-        <h3>📞 Direct Support</h3>
-        <p>Call / WhatsApp: <strong>+91 7309530081</strong><br>Email: <strong>umangverma24aug@gmail.com</strong></p>
+    <!-- Product Grid Card -->
+    <section class="ub-card-section">
+      <div class="ub-section-header">
+        <h2 class="ub-section-heading" id="sectionHeading">Top Certified Seeds, Plants, Tools & Crop Care</h2>
+      </div>
+      <div class="ub-product-grid" id="productGrid"></div>
+    </section>
 
-        <h3>📍 Agro-Hub Depot Location</h3>
-        <p>
-          <strong>AgriGrow Hub</strong><br>
-          Vinayaka Kolhwa, Kamchchha, Bhelupur,<br>
-          Varanasi, Uttar Pradesh 221010
-        </p>
-
-        <!-- Live Google Map -->
-        <div style="border-radius: 8px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 20px;">
-          <iframe 
-            width="100%" 
-            height="190" 
-            style="border:0;" 
-            loading="lazy" 
-            allowfullscreen 
-            src="https://maps.google.com/maps?q=25.3005715,82.986275&hl=en&z=16&output=embed">
-          </iframe>
-        </div>
-
-        <div class="rating-box" id="feedback">
-          <h3>🌟 Rate Your Experience</h3>
-          <p>Rate our store quality and equipment support:</p>
-          <div class="rating-container">
-            <button class="star-btn" onclick="setRating(1)">★</button>
-            <button class="star-btn" onclick="setRating(2)">★</button>
-            <button class="star-btn" onclick="setRating(3)">★</button>
-            <button class="star-btn" onclick="setRating(4)">★</button>
-            <button class="star-btn" onclick="setRating(5)">★</button>
+    <!-- LAST SECTION: Shop, Contact Us ↗, Feedback ↗ -->
+    <section class="ub-bottom-hub">
+      <div class="ub-bottom-grid">
+        <a href="#productGrid" class="ub-hub-link" onclick="filterCategory('all', document.querySelector('.ub-cat-item'))">
+          <span class="ub-hub-icon">🛍️</span>
+          <div class="ub-hub-text">
+            <h4>Shop All Categories</h4>
+            <p>Plants, seeds, decor flowers, tools, pesticides & bio-nutrients</p>
           </div>
-        </div>
+        </a>
+
+        <a href="contact.html" target="_blank" rel="noopener noreferrer" class="ub-hub-link">
+          <span class="ub-hub-icon">📍</span>
+          <div class="ub-hub-text">
+            <h4>Contact Us ↗</h4>
+            <p>Varanasi depot location & farmer helpline</p>
+          </div>
+        </a>
+
+        <a href="contact.html#feedback" target="_blank" rel="noopener noreferrer" class="ub-hub-link">
+          <span class="ub-hub-icon">⭐</span>
+          <div class="ub-hub-text">
+            <h4>Feedback ↗</h4>
+            <p>Send reviews to unnatibeejbhandar@gmail.com</p>
+          </div>
+        </a>
       </div>
-
-      <!-- Feedback Form -->
-      <div class="form-column">
-        <form id="contactPageForm" onsubmit="submitForm(event)">
-          <label>Full Name / Farmer Name</label>
-          <input type="text" id="custName" placeholder="e.g. Ramesh Kumar" required />
-
-          <label>Email Address</label>
-          <input type="email" id="custEmail" placeholder="yourname@gmail.com" required />
-
-          <label>Contact Phone Number</label>
-          <input type="tel" id="custPhone" placeholder="10-digit mobile number" required />
-
-          <label>Your Message / Tool Requirement / Feedback</label>
-          <textarea id="custMessage" placeholder="Type your query regarding tools, seeds, fertilizers, or order delivery..." required></textarea>
-
-          <button type="submit" class="submit-btn">Send Message Directly</button>
-        </form>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <footer>
-    <p>&copy; 2026 AgriGrow E-Commerce Storefront. Varanasi, UP.</p>
+  <!-- Big Image Lightbox Modal -->
+  <div class="ub-lightbox-overlay" id="lightboxModal" onclick="closeLightbox(event)">
+    <div class="ub-lightbox-card" onclick="event.stopPropagation()">
+      <button class="ub-lightbox-close" onclick="closeLightbox()">&times;</button>
+      <div class="ub-lightbox-img-container">
+        <img id="lightboxImg" src="" alt="Zoomed Product View">
+      </div>
+      <div class="ub-lightbox-details">
+        <h3 id="lightboxTitle" style="font-size: 1.15rem; color: var(--brand-primary); margin-bottom: 6px;"></h3>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+          <div>
+            <span id="lightboxPrice" style="font-size: 1.3rem; font-weight: 800; color: var(--brand-primary);"></span>
+            <span id="lightboxOrigPrice" style="font-size: 0.9rem; color: var(--brand-gray); text-decoration: line-through; margin-left:6px;"></span>
+          </div>
+          <button class="ub-add-btn" id="lightboxAddBtn" style="padding: 9px 18px;">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="ub-drawer-overlay" id="cartOverlay" onclick="toggleCart(false)"></div>
+  <div class="ub-drawer" id="cartDrawer">
+    <div class="ub-drawer-head">
+      <h3>My Farm Cart</h3>
+      <button style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;" onclick="toggleCart(false)">&times;</button>
+    </div>
+
+    <div class="ub-cart-items" id="cartItemsContainer"></div>
+
+    <div class="ub-drawer-foot">
+      <div class="ub-input-group" style="display:flex; gap:6px; margin-bottom:10px;">
+        <input type="text" id="couponInput" placeholder="Coupon (e.g. HARVEST20)" style="text-transform:uppercase;" />
+        <button style="background:var(--brand-secondary); color:#fff; border:none; padding:8px 14px; font-weight:700; border-radius:4px; cursor:pointer;" onclick="applyCoupon()">Apply</button>
+      </div>
+      
+      <div class="ub-price-row">
+        <span>Subtotal (<span id="cartTotalItems">0</span> items)</span>
+        <span id="subtotalPrice">₹0.00</span>
+      </div>
+      <div class="ub-price-row" id="discountRow" style="display:none; color:var(--brand-green);">
+        <span>Discount (20% OFF)</span>
+        <span id="discountPrice">-₹0.00</span>
+      </div>
+      <div class="ub-price-row">
+        <span>Delivery Charges</span>
+        <span style="color:var(--brand-green); font-weight:700;">FREE</span>
+      </div>
+      <div class="ub-price-row total">
+        <span>Total Amount</span>
+        <span id="totalPrice">₹0.00</span>
+      </div>
+
+      <button class="ub-checkout-btn" onclick="openCheckoutModal()">PROCEED TO CHECKOUT</button>
+    </div>
+  </div>
+
+  <!-- 2-Step Checkout Modal -->
+  <div class="ub-modal-overlay" id="checkoutModal">
+    <div class="ub-modal">
+      <div class="ub-modal-head">
+        <h3 id="modalTitle">Delivery Address</h3>
+        <button style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;" onclick="closeCheckoutModal()">&times;</button>
+      </div>
+
+      <div class="ub-modal-body">
+        <div class="ub-step-indicator" id="stepTracker">
+          <span class="ub-step-badge active" id="badgeStep1">1. DELIVERY DETAILS</span>
+          <span class="ub-step-badge" id="badgeStep2">2. PAYMENT</span>
+        </div>
+
+        <!-- Step 1: Delivery Address with Live India Post PIN Validator -->
+        <div id="step1Form">
+          <div style="display:flex; gap:10px;">
+            <div class="ub-input-group" style="flex:1;">
+              <label>Farmer / Full Name *</label>
+              <input type="text" id="custName" placeholder="e.g. Ramesh Kumar" required />
+            </div>
+            <div class="ub-input-group" style="flex:1;">
+              <label>10-digit Mobile *</label>
+              <input type="tel" id="custPhone" placeholder="Mobile Number" maxlength="10" required />
+            </div>
+          </div>
+
+          <div class="ub-input-group">
+            <label>Full Address / Village / Landmark *</label>
+            <input type="text" id="custAddress" placeholder="House/Shop No, Village, Area" required />
+          </div>
+
+          <div class="ub-input-group">
+            <label>Pincode (Live India Post Verification) *</label>
+            <input type="text" id="custPincode" placeholder="e.g. 221010" maxlength="6" oninput="validatePincodeLive(this.value)" required />
+            <div id="pinStatus" class="ub-pin-msg"></div>
+          </div>
+
+          <button type="button" class="ub-pay-btn" id="step1NextBtn" onclick="goToStep2()">DELIVER TO THIS ADDRESS &rarr;</button>
+        </div>
+
+        <!-- Step 2: Payment Options -->
+        <div id="step2Form" style="display:none;">
+          <div class="ub-summary-pill">
+            <span class="ub-edit-addr" onclick="goToStep1()">CHANGE</span>
+            <strong>Deliver to:</strong> <span id="sumName"></span>, <span id="sumPhone"></span><br>
+            <span id="sumAddress" style="color:#555;"></span> - <span id="sumPincode" style="font-weight:700;"></span>
+            <div id="sumLocation" style="font-size:0.75rem; color:var(--brand-green); font-weight:700; margin-top:2px;"></div>
+          </div>
+
+          <div class="ub-pay-methods">
+            <div class="ub-pay-opt active" onclick="switchPayment('upi', this)">📱 UPI / QR</div>
+            <div class="ub-pay-opt" onclick="switchPayment('card', this)">💳 Card</div>
+            <div class="ub-pay-opt" onclick="switchPayment('cod', this)">💵 COD</div>
+          </div>
+
+          <!-- UPI QR Code View -->
+          <div id="upiView">
+            <div style="text-align:center; margin:10px 0;">
+              <p style="font-weight:700; font-size:0.95rem; color:var(--brand-primary);">Umesh Verma (Unnati Beej Bhandar)</p>
+              <p style="font-size:0.8rem; color:#555;">UPI ID: <strong>umeshverma.01129-1@oksbi</strong></p>
+              <div style="background:#fff; padding:8px; display:inline-block; border:1px solid var(--border); border-radius:6px; margin-top:6px;">
+                <img id="upiQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=umeshverma.01129-1@oksbi%26pn=Umesh%20Verma%26cu=INR" alt="UPI QR" style="width:160px; height:160px; display:block;" />
+              </div>
+              <p style="font-size:0.75rem; color:var(--danger); margin-top:4px;">Scan & Pay with GPay / PhonePe / Paytm</p>
+            </div>
+
+            <div class="ub-input-group">
+              <label>Enter 12-Digit UTR / Ref No. (After Payment) *</label>
+              <input type="text" id="upiRef" placeholder="12-digit UTR number" maxlength="12" />
+            </div>
+
+            <button type="button" class="ub-pay-btn" id="paySubmitBtn" onclick="processOrder('UPI')">VERIFY & CONFIRM ORDER</button>
+          </div>
+
+          <!-- Card View -->
+          <div id="cardView" style="display:none;">
+            <div class="ub-input-group">
+              <label>Cardholder Name *</label>
+              <input type="text" id="cardName" placeholder="Name on card" />
+            </div>
+            <div class="ub-input-group">
+              <label>Card Number *</label>
+              <input type="text" id="cardNum" placeholder="16-digit card number" maxlength="19" />
+            </div>
+            <div style="display:flex; gap:8px;">
+              <div class="ub-input-group" style="flex:1;">
+                <label>Expiry (MM/YY) *</label>
+                <input type="text" id="cardExp" placeholder="MM/YY" maxlength="5" />
+              </div>
+              <div class="ub-input-group" style="flex:1;">
+                <label>CVV *</label>
+                <input type="password" id="cardCvv" placeholder="123" maxlength="3" />
+              </div>
+            </div>
+            <button type="button" class="ub-pay-btn" onclick="processOrder('Card')">PAY & PLACE ORDER</button>
+          </div>
+
+          <!-- COD View -->
+          <div id="codView" style="display:none;">
+            <div style="background:#f8fafc; border:1px dashed var(--border); border-radius:6px; padding:12px; font-size:0.85rem; margin-bottom:12px;">
+              <p>🚚 <strong>Cash on Delivery:</strong> Pay cash upon doorstep delivery.</p>
+              <div style="display:flex; justify-content:space-between; margin-top:6px; font-weight:700;">
+                <span>Total Amount Payable:</span>
+                <span id="codTotalDisplay">₹0.00</span>
+              </div>
+            </div>
+            <button type="button" class="ub-pay-btn" onclick="processOrder('Cash on Delivery')">CONFIRM COD ORDER</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Order Confirmation Screen -->
+        <div id="step3Success" style="display:none; text-align:center; padding:10px 0;">
+          <div style="font-size:3.2rem; color:var(--brand-green);">✓</div>
+          <h3 style="font-size:1.35rem; color:var(--brand-primary); margin-bottom:4px;">Order Placed Successfully!</h3>
+          <p style="font-size:0.82rem; color:var(--brand-gray); margin-bottom:14px;">Order ID: <strong id="successId" style="color:var(--brand-dark);"></strong></p>
+
+          <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:14px; text-align:left; font-size:0.85rem; margin-bottom:14px;">
+            <p><strong>Estimated Delivery:</strong> Within 1 Week (5-7 Days)</p>
+            <p style="color:#555; font-size:0.78rem;">Updates will be sent to <span id="successPhone"></span></p>
+            <p style="margin-top:6px;"><strong>Deliver to:</strong> <span id="successName"></span> (<span id="successAddr"></span>)</p>
+            <p><strong>Total:</strong> <span id="successAmt" style="font-weight:700; color:var(--brand-primary);"></span> via <span id="successMode"></span></p>
+          </div>
+
+          <button class="ub-pay-btn" onclick="closeCheckoutModal()">CONTINUE SHOPPING</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="ub-footer">
+    <div class="ub-footer-container">
+      <div>
+        <span>© 2026 Unnati Beej Bhandar - Certified Agro & Decor Hub, Varanasi</span>
+      </div>
+      <div>
+        <span>Help & Support:</span>
+        <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a>
+        <a href="contact.html#feedback" target="_blank" rel="noopener noreferrer">Feedback ↗</a>
+      </div>
+    </div>
   </footer>
 
   <script>
-    let selectedRating = 0;
+    const TARGET_OWNER_EMAIL = "unnatibeejbhandar@gmail.com";
 
-    function setRating(rating) {
-      selectedRating = rating;
-      const stars = document.querySelectorAll('.star-btn');
-      stars.forEach((star, index) => {
-        if (index < rating) {
-          star.classList.add('active');
-        } else {
-          star.classList.remove('active');
-        }
+    const products = [
+      // 🌸 Natural Flower Plants & Seeds (Updated with user's Jatropha product)
+      {
+        id: 200,
+        title: "Natural Sunder Rupa Flower Plant (Jatropha)",
+        category: "flowers",
+        price: 156.00,
+        originalPrice: 400.00,
+        discount: "61% off",
+        rating: "4.9",
+        image: "flower3.jpg"
+      },
+      {
+        id: 201,
+        title: "Gazania Sunshine Hybrid Seeds (50 Seeds Pack)",
+        category: "flowers",
+        price: 149.00,
+        originalPrice: 199.00,
+        discount: "25% off",
+        rating: "4.5",
+        image: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 202,
+        title: "Pink Rain Lily & Red Mini Rose Combo Flower Pack",
+        category: "flowers",
+        price: 249.00,
+        originalPrice: 320.00,
+        discount: "22% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 203,
+        title: "Red Jatropha & Perennial Garden Flower Seeds",
+        category: "flowers",
+        price: 189.00,
+        originalPrice: 250.00,
+        discount: "24% off",
+        rating: "4.3",
+        image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 204,
+        title: "Hibiscus & Bicolor Gerbera Daisy Garden Kit",
+        category: "flowers",
+        price: 220.00,
+        originalPrice: 290.00,
+        discount: "24% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 205,
+        title: "Pink Chinese Evergreen / Aglaonema Plant Seeds",
+        category: "flowers",
+        price: 299.00,
+        originalPrice: 399.00,
+        discount: "25% off",
+        rating: "4.6",
+        image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 206,
+        title: "Crimson Ruellia / Wild Petunia Flower Seeds",
+        category: "flowers",
+        price: 129.00,
+        originalPrice: 180.00,
+        discount: "28% off",
+        rating: "4.2",
+        image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 207,
+        title: "African Royal Marigold (Genda) Hybrid Seeds",
+        category: "flowers",
+        price: 139.00,
+        originalPrice: 190.00,
+        discount: "26% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 208,
+        title: "Dwarf Mammoth Sunflower Flower Seeds (100 Seeds)",
+        category: "flowers",
+        price: 159.00,
+        originalPrice: 210.00,
+        discount: "24% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=800&q=80"
+      },
+
+      // 💐 Artificial Flowers & Decor Plants
+      {
+        id: 601,
+        title: "Velvet Red Artificial Rose Bunch with Ceramic Pot (12 Blooms)",
+        category: "artificial",
+        price: 349.00,
+        originalPrice: 499.00,
+        discount: "30% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 602,
+        title: "Luxury Artificial Orchid Flower Garland for Home & Wall Decor",
+        category: "artificial",
+        price: 299.00,
+        originalPrice: 420.00,
+        discount: "28% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 603,
+        title: "Realistic Dutch Tulip Bunch (Pack of 10 Stems - Multi Colors)",
+        category: "artificial",
+        price: 380.00,
+        originalPrice: 550.00,
+        discount: "30% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 604,
+        title: "Hanging Artificial Wisteria & Money Plant Vine Strings (5 Pcs)",
+        category: "artificial",
+        price: 249.00,
+        originalPrice: 350.00,
+        discount: "28% off",
+        rating: "4.6",
+        image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 605,
+        title: "Mini Artificial Pine Bonsai Plant with Elegant White Pot",
+        category: "artificial",
+        price: 420.00,
+        originalPrice: 600.00,
+        discount: "30% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 606,
+        title: "Rustic Lavender Artificial Flower Bunch for Living Room (Pack of 4)",
+        category: "artificial",
+        price: 279.00,
+        originalPrice: 390.00,
+        discount: "28% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=800&q=80"
+      },
+
+      // 🥦 Vegetable Seeds
+      {
+        id: 301,
+        title: "F1 Hybrid Bhindi / Okra High-Yield Seeds (100g)",
+        category: "vegetables",
+        price: 180.00,
+        originalPrice: 240.00,
+        discount: "25% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1563865436874-9aef32095fad?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 302,
+        title: "Hybrid Red Carrot (Gajar) Seeds (250g Pack)",
+        category: "vegetables",
+        price: 160.00,
+        originalPrice: 220.00,
+        discount: "27% off",
+        rating: "4.6",
+        image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5c317?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 303,
+        title: "Desi Long Bottle Gourd (Lauki) Hybrid Seeds",
+        category: "vegetables",
+        price: 120.00,
+        originalPrice: 160.00,
+        discount: "25% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 304,
+        title: "Hybrid Dark Green Chilli / Mirchi Seeds (50g)",
+        category: "vegetables",
+        price: 190.00,
+        originalPrice: 260.00,
+        discount: "26% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 305,
+        title: "Purple Round Eggplant / Brinjal Seeds (100g)",
+        category: "vegetables",
+        price: 140.00,
+        originalPrice: 190.00,
+        discount: "26% off",
+        rating: "4.5",
+        image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 306,
+        title: "All-Season Crispy Spinach / Palak Seeds (500g)",
+        category: "vegetables",
+        price: 130.00,
+        originalPrice: 180.00,
+        discount: "27% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 307,
+        title: "Crispy Summer Cucumber (Kheera) Seeds (100g)",
+        category: "vegetables",
+        price: 150.00,
+        originalPrice: 200.00,
+        discount: "25% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        title: "Heirloom Hybrid Tomato Seeds Pack (100g)",
+        category: "vegetables",
+        price: 199.00,
+        originalPrice: 280.00,
+        discount: "29% off",
+        rating: "4.5",
+        image: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=800&q=80"
+      },
+
+      // 🌱 Crop Seeds
+      {
+        id: 1,
+        title: "Hybrid High-Yield Wheat Seeds (10kg Pack)",
+        category: "seeds",
+        price: 850.00,
+        originalPrice: 1100.00,
+        discount: "23% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 105,
+        title: "Basmati Paddy / Dhan Hybrid Seeds (10kg)",
+        category: "seeds",
+        price: 920.00,
+        originalPrice: 1200.00,
+        discount: "23% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 106,
+        title: "Yellow Mustard / Sarson Certified Seeds (5kg)",
+        category: "seeds",
+        price: 490.00,
+        originalPrice: 650.00,
+        discount: "24% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80"
+      },
+
+      // 🚜 Agricultural Tools & Sprayers
+      {
+        id: 101,
+        title: "Heavy-Duty Bypass Pruning Shears for Gardening",
+        category: "tools",
+        price: 499.00,
+        originalPrice: 650.00,
+        discount: "23% off",
+        rating: "4.6",
+        image: "https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 102,
+        title: "Stainless Steel Hand Cultivator Rake for Farm",
+        category: "tools",
+        price: 349.00,
+        originalPrice: 480.00,
+        discount: "27% off",
+        rating: "4.4",
+        image: "https://images.unsplash.com/photo-1617576683096-00fc8eecb3af?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 103,
+        title: "Ergonomic Garden Spade & Trowel Tool",
+        category: "tools",
+        price: 299.00,
+        originalPrice: 399.00,
+        discount: "25% off",
+        rating: "4.3",
+        image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 104,
+        title: "Soil Moisture & pH Meter (3-in-1 Soil Tester)",
+        category: "tools",
+        price: 799.00,
+        originalPrice: 1100.00,
+        discount: "27% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 107,
+        title: "16-Litre 2-in-1 Battery & Manual Knapsack Sprayer",
+        category: "tools",
+        price: 1899.00,
+        originalPrice: 2600.00,
+        discount: "27% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 108,
+        title: "High-Carbon Steel Grass Sickle / Hasia (2 Pcs)",
+        category: "tools",
+        price: 260.00,
+        originalPrice: 360.00,
+        discount: "27% off",
+        rating: "4.6",
+        image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=800&q=80"
+      },
+
+      // 🌿 Fertilizers & Bio-Nutrients
+      {
+        id: 2,
+        title: "100% Organic Vermicompost Fertilizer (25kg Bag)",
+        category: "fertilizer",
+        price: 650.00,
+        originalPrice: 800.00,
+        discount: "19% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 401,
+        title: "Water Soluble NPK 19:19:19 Plant Food (1kg)",
+        category: "fertilizer",
+        price: 230.00,
+        originalPrice: 310.00,
+        discount: "25% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 402,
+        title: "Concentrated Liquid Seaweed Extract Bio-Stimulant (500ml)",
+        category: "fertilizer",
+        price: 340.00,
+        originalPrice: 450.00,
+        discount: "24% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 403,
+        title: "Steamed Bone Meal Powder for Root Growth (2kg)",
+        category: "fertilizer",
+        price: 210.00,
+        originalPrice: 280.00,
+        discount: "25% off",
+        rating: "4.6",
+        image: "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=800&q=80"
+      },
+
+      // 🛡️ Pesticides & Crop Protection
+      {
+        id: 501,
+        title: "Pure Cold-Pressed Neem Oil 10,000 PPM Bio-Pesticide (1 Litre)",
+        category: "pesticide",
+        price: 480.00,
+        originalPrice: 650.00,
+        discount: "26% off",
+        rating: "4.9",
+        image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 502,
+        title: "Trichoderma Viride Bio-Fungicide Powder (1kg)",
+        category: "pesticide",
+        price: 260.00,
+        originalPrice: 350.00,
+        discount: "25% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 503,
+        title: "Systemic Broad-Spectrum Plant Fungicide SAFF (500g)",
+        category: "pesticide",
+        price: 390.00,
+        originalPrice: 520.00,
+        discount: "25% off",
+        rating: "4.7",
+        image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 504,
+        title: "Multi-Pest Sticky Yellow & Blue Traps (Pack of 20)",
+        category: "pesticide",
+        price: 299.00,
+        originalPrice: 400.00,
+        discount: "25% off",
+        rating: "4.8",
+        image: "https://images.unsplash.com/photo-1563865436874-9aef32095fad?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    let cart = [];
+    let discountApplied = false;
+    const DISCOUNT_CODE = "HARVEST20";
+    const DISCOUNT_RATE = 0.20;
+
+    let isPincodeValid = false;
+    let validatedLocation = "";
+
+    function renderProducts(list = products) {
+      const grid = document.getElementById('productGrid');
+      grid.innerHTML = '';
+
+      if (list.length === 0) {
+        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding:40px; color:#888;">No products found in this category.</p>`;
+        return;
+      }
+
+      list.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'ub-product-card';
+        card.innerHTML = `
+          <div class="ub-img-wrap" onclick="openLightbox(${p.id})">
+            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            <span class="ub-zoom-tag">🔍 Click to Zoom</span>
+          </div>
+          <div class="ub-p-title" onclick="openLightbox(${p.id})" style="cursor:pointer;">${p.title}</div>
+          <div class="ub-rating-pill">★ ${p.rating}</div>
+          <div class="ub-p-pricing">
+            <span class="ub-current-price">₹${p.price.toFixed(2)}</span>
+            <span class="ub-original-price">₹${p.originalPrice.toFixed(2)}</span>
+            <span class="ub-discount-txt">${p.discount}</span>
+          </div>
+          <button class="ub-add-btn" onclick="addToCart(${p.id})">ADD TO CART</button>
+        `;
+        grid.appendChild(card);
       });
     }
 
-    function submitForm(e) {
-      e.preventDefault();
-      const name = document.getElementById('custName').value.trim();
-      const email = document.getElementById('custEmail').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const message = document.getElementById('custMessage').value.trim();
-      const targetEmail = "umangverma24aug@gmail.com";
+    // Lightbox / Big Image Functions
+    function openLightbox(productId) {
+      const p = products.find(item => item.id === productId);
+      if (!p) return;
 
-      const subject = encodeURIComponent(`AgriGrow Inquiry from ${name}`);
-      const body = encodeURIComponent(
-        `Farmer / Customer Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Phone: ${phone}\n` +
-        `Rating Given: ${selectedRating > 0 ? selectedRating + ' / 5 Stars' : 'Not Rated'}\n\n` +
-        `Message & Feedback:\n${message}`
-      );
+      document.getElementById('lightboxImg').src = p.image;
+      document.getElementById('lightboxTitle').innerText = p.title;
+      document.getElementById('lightboxPrice').innerText = `₹${p.price.toFixed(2)}`;
+      document.getElementById('lightboxOrigPrice').innerText = `₹${p.originalPrice.toFixed(2)}`;
+      
+      const addBtn = document.getElementById('lightboxAddBtn');
+      addBtn.onclick = function() {
+        addToCart(p.id);
+        closeLightbox();
+      };
 
-      // Open user's email client
-      window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
-
-      alert(`Thank you, ${name}! Aapka message email client me load ho gaya hai.`);
-      document.getElementById('contactPageForm').reset();
-      setRating(0);
+      document.getElementById('lightboxModal').style.display = 'flex';
     }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').style.display = 'none';
+    }
+
+    function filterCategory(cat, el) {
+      document.querySelectorAll('.ub-cat-item').forEach(i => i.classList.remove('active'));
+      if (el) el.classList.add('active');
+
+      const filtered = (cat === 'all') ? products : products.filter(p => p.category === cat);
+      document.getElementById('sectionHeading').innerText = (cat === 'all') ? "Top Certified Seeds, Plants, Tools & Crop Care" : `${cat.toUpperCase()} Category`;
+      renderProducts(filtered);
+    }
+
+    function searchProducts(query) {
+      const cleanQ = query.trim().toLowerCase();
+      const matched = products.filter(p => p.title.toLowerCase().includes(cleanQ) || p.category.toLowerCase().includes(cleanQ));
+      renderProducts(matched);
+    }
+
+    function addToCart(productId) {
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        const item = products.find(p => p.id === productId);
+        cart.push({ ...item, qty: 1 });
+      }
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function updateQuantity(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      updateCartUI();
+    }
+
+    function calculateOrderTotal() {
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = discountApplied ? subtotal * DISCOUNT_RATE : 0;
+      return Number((subtotal - discount).toFixed(2));
+    }
+
+    function updateCartUI() {
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCount').innerText = totalQty;
+      document.getElementById('cartTotalItems').innerText = totalQty;
+
+      const container = document.getElementById('cartItemsContainer');
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align:center; color:#888; margin-top:50px;">Your cart is empty!</p>';
+      } else {
+        container.innerHTML = cart.map(item => `
+          <div class="ub-c-item">
+            <img src="${item.image}" alt="${item.title}">
+            <div class="ub-c-details">
+              <div style="font-size:0.85rem; font-weight:600;">${item.title}</div>
+              <div style="font-size:0.9rem; font-weight:700; color:var(--brand-primary); margin:4px 0;">₹${(item.price * item.qty).toFixed(2)}</div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <button class="ub-qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button class="ub-qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const discount = discountApplied ? subtotal * DISCOUNT_RATE : 0;
+      const total = subtotal - discount;
+
+      document.getElementById('subtotalPrice').innerText = `₹${subtotal.toFixed(2)}`;
+      document.getElementById('totalPrice').innerText = `₹${total.toFixed(2)}`;
+
+      const discountRow = document.getElementById('discountRow');
+      if (discountApplied && subtotal > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('discountPrice').innerText = `-₹${discount.toFixed(2)}`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+    }
+
+    function applyCoupon() {
+      const code = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (code === DISCOUNT_CODE) {
+        discountApplied = true;
+        alert('Coupon Applied: 20% discount activated!');
+      } else {
+        alert('Invalid Coupon! Use code HARVEST20');
+      }
+      updateCartUI();
+    }
+
+    function toggleCart(open) {
+      const drawer = document.getElementById('cartDrawer');
+      const overlay = document.getElementById('cartOverlay');
+      if (open) {
+        drawer.classList.add('open');
+        overlay.style.display = 'block';
+      } else {
+        drawer.classList.remove('open');
+        overlay.style.display = 'none';
+      }
+    }
+
+    function openCheckoutModal() {
+      if (cart.length === 0) {
+        alert("Cart is empty!");
+        return;
+      }
+      toggleCart(false);
+      goToStep1();
+      document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').style.display = 'none';
+    }
+
+    function goToStep1() {
+      document.getElementById('step1Form').style.display = 'block';
+      document.getElementById('step2Form').style.display = 'none';
+      document.getElementById('step3Success').style.display = 'none';
+      document.getElementById('stepTracker').style.display = 'flex';
+      document.getElementById('modalTitle').innerText = "Delivery Details";
+
+      document.getElementById('badgeStep1').classList.add('active');
+      document.getElementById('badgeStep2').classList.remove('active');
+    }
+
+    async function validatePincodeLive(pin) {
+      const status = document.getElementById('pinStatus');
+      const cleanPin = pin.trim();
+
+      if (!cleanPin) {
+        status.innerText = "";
+        status.className = "ub-pin-msg";
+        isPincodeValid = false;
+        return;
+      }
+
+      if (!/^[1-9][0-9]{5}$/.test(cleanPin)) {
+        status.innerText = "❌ Invalid PIN Format! Enter 6-digit number.";
+        status.className = "ub-pin-msg invalid";
+        isPincodeValid = false;
+        return;
+      }
+
+      status.innerText = "⏳ Checking India Post network...";
+      status.className = "ub-pin-msg checking";
+
+      try {
+        const res = await fetch(`https://api.postalpincode.in/pincode/${cleanPin}`);
+        const data = await res.json();
+        if (data && data[0] && data[0].Status === "Success" && data[0].PostOffice && data[0].PostOffice.length > 0) {
+          const po = data[0].PostOffice[0];
+          validatedLocation = `${po.District}, ${po.State}`;
+          status.innerText = `✅ Delivery Available: ${po.Name} (${validatedLocation})`;
+          status.className = "ub-pin-msg valid";
+          isPincodeValid = true;
+        } else {
+          status.innerText = "❌ Invalid Pincode! Not found in India Postal database.";
+          status.className = "ub-pin-msg invalid";
+          isPincodeValid = false;
+        }
+      } catch (err) {
+        status.innerText = "✅ 6-Digit PIN Verified.";
+        status.className = "ub-pin-msg valid";
+        isPincodeValid = true;
+      }
+    }
+
+    async function goToStep2() {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const pincode = document.getElementById('custPincode').value.trim();
+
+      if (!name || !phone || !address || !pincode) {
+        alert("Please enter Name, Mobile, Address and Pincode.");
+        return;
+      }
+      if (phone.length < 10) {
+        alert("Please enter valid 10-digit mobile number.");
+        return;
+      }
+
+      const btn = document.getElementById('step1NextBtn');
+      btn.innerText = "Verifying PIN...";
+      btn.disabled = true;
+
+      await validatePincodeLive(pincode);
+      btn.innerText = "DELIVER TO THIS ADDRESS →";
+      btn.disabled = false;
+
+      if (!isPincodeValid) {
+        alert("Please enter a valid 6-digit Indian postal code.");
+        document.getElementById('custPincode').focus();
+        return;
+      }
+
+      document.getElementById('sumName').innerText = name;
+      document.getElementById('sumPhone').innerText = phone;
+      document.getElementById('sumAddress').innerText = address;
+      document.getElementById('sumPincode').innerText = pincode;
+      document.getElementById('sumLocation').innerText = validatedLocation ? `(${validatedLocation})` : '';
+
+      const total = calculateOrderTotal();
+      document.getElementById('codTotalDisplay').innerText = `₹${total.toFixed(2)}`;
+
+      const upiUrl = `upi://pay?pa=umeshverma.01129-1@oksbi&pn=Umesh%20Verma&am=${total}&cu=INR&tn=Unnati Beej Bhandar Order`;
+      document.getElementById('upiQr').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
+
+      document.getElementById('step1Form').style.display = 'none';
+      document.getElementById('step2Form').style.display = 'block';
+      document.getElementById('modalTitle').innerText = "Payment Options";
+
+      document.getElementById('badgeStep1').classList.remove('active');
+      document.getElementById('badgeStep1').classList.add('completed');
+      document.getElementById('badgeStep2').classList.add('active');
+
+      switchPayment('upi', document.querySelector('.ub-pay-opt'));
+    }
+
+    function switchPayment(method, el) {
+      document.querySelectorAll('.ub-pay-opt').forEach(o => o.classList.remove('active'));
+      el.classList.add('active');
+
+      document.getElementById('upiView').style.display = (method === 'upi') ? 'block' : 'none';
+      document.getElementById('cardView').style.display = (method === 'card') ? 'block' : 'none';
+      document.getElementById('codView').style.display = (method === 'cod') ? 'block' : 'none';
+    }
+
+    function processOrder(paymentMode) {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const pincode = document.getElementById('custPincode').value.trim();
+      let utrOrCard = "Cash on Delivery";
+
+      if (paymentMode === 'UPI') {
+        const utr = document.getElementById('upiRef').value.trim();
+        if (!utr || utr.length < 12) {
+          alert("Please enter valid 12-digit UTR number after scanning QR code.");
+          document.getElementById('upiRef').focus();
+          return;
+        }
+        utrOrCard = `UPI UTR: ${utr}`;
+      }
+
+      if (paymentMode === 'Card') {
+        const cName = document.getElementById('cardName').value.trim();
+        const cNum = document.getElementById('cardNum').value.trim();
+        const cExp = document.getElementById('cardExp').value.trim();
+        const cCvv = document.getElementById('cardCvv').value.trim();
+
+        if (!cName || !cNum || !cExp || !cCvv || cNum.length < 16) {
+          alert("Please enter full 16-digit card details.");
+          return;
+        }
+        utrOrCard = `Cardholder: ${cName}, Ending: ${cNum.slice(-4)}`;
+      }
+
+      const total = calculateOrderTotal();
+      const orderId = "UB-" + Math.floor(100000 + Math.random() * 900000);
+      const itemsList = cart.map(i => `${i.title} (x${i.qty}) = ₹${(i.price * i.qty).toFixed(2)}`).join(' | ');
+
+      // Direct Dispatch to unnatibeejbhandar@gmail.com
+      const hiddenForm = document.createElement("form");
+      hiddenForm.method = "POST";
+      hiddenForm.action = `https://formsubmit.co/${TARGET_OWNER_EMAIL}`;
+      hiddenForm.target = "_blank";
+
+      const orderData = {
+        "_subject": `🔥 New Unnati Beej Bhandar Order #${orderId} - ₹${total.toFixed(2)}`,
+        "Order ID": `#${orderId}`,
+        "Customer Name": name,
+        "Mobile Number": phone,
+        "Delivery Address": `${address}, Pincode: ${pincode} (${validatedLocation || 'India'})`,
+        "Ordered Items": itemsList,
+        "Payment Mode": paymentMode,
+        "Payment / UTR Detail": utrOrCard,
+        "Total Amount": `₹${total.toFixed(2)}`
+      };
+
+      for (const key in orderData) {
+        const inputField = document.createElement("input");
+        inputField.type = "hidden";
+        inputField.name = key;
+        inputField.value = orderData[key];
+        hiddenForm.appendChild(inputField);
+      }
+
+      document.body.appendChild(hiddenForm);
+      hiddenForm.submit();
+      document.body.removeChild(hiddenForm);
+
+      // Order Confirmation View
+      document.getElementById('step2Form').style.display = 'none';
+      document.getElementById('stepTracker').style.display = 'none';
+      document.getElementById('modalTitle').innerText = "Order Confirmed";
+
+      document.getElementById('successId').innerText = `#${orderId}`;
+      document.getElementById('successPhone').innerText = phone;
+      document.getElementById('successName').innerText = name;
+      document.getElementById('successAddr').innerText = `${address}, ${pincode}`;
+      document.getElementById('successAmt').innerText = `₹${total.toFixed(2)}`;
+      document.getElementById('successMode').innerText = paymentMode;
+
+      document.getElementById('step3Success').style.display = 'block';
+
+      // Reset
+      cart = [];
+      discountApplied = false;
+      document.getElementById('custName').value = '';
+      document.getElementById('custPhone').value = '';
+      document.getElementById('custAddress').value = '';
+      document.getElementById('custPincode').value = '';
+      document.getElementById('pinStatus').innerText = '';
+      if (document.getElementById('upiRef')) document.getElementById('upiRef').value = '';
+      if (document.getElementById('couponInput')) document.getElementById('couponInput').value = '';
+      updateCartUI();
+    }
+
+    renderProducts();
   </script>
 </body>
 </html>
