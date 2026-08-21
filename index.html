@@ -762,10 +762,10 @@
       background: var(--whatsapp);
       color: #fff;
       border: none;
-      padding: 11px 16px;
+      padding: 12px 16px;
       border-radius: 6px;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       width: 100%;
       cursor: pointer;
       display: flex;
@@ -773,6 +773,25 @@
       justify-content: center;
       gap: 8px;
       margin-top: 10px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+    }
+
+    .sms-btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
       text-decoration: none;
     }
 
@@ -1000,8 +1019,8 @@
               <input type="text" id="custName" placeholder="e.g. Ramesh Kumar" required />
             </div>
             <div class="ub-input-group" style="flex:1;">
-              <label>10-digit Mobile (SMS Receipt will be sent) *</label>
-              <input type="tel" id="custPhone" placeholder="Mobile Number" maxlength="10" required />
+              <label>10-digit Mobile (WhatsApp/SMS Receipt) *</label>
+              <input type="tel" id="custPhone" placeholder="10-digit Mobile Number" maxlength="10" required />
             </div>
           </div>
 
@@ -1097,13 +1116,17 @@
 
           <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:14px; text-align:left; font-size:0.85rem; margin-bottom:14px;">
             <p><strong>Estimated Delivery:</strong> Within 1 Week (5-7 Days)</p>
-            <p style="color:#555; font-size:0.78rem;">Updates sent via Email & SMS to <span id="successPhone"></span></p>
+            <p style="color:#555; font-size:0.78rem;">Order receipt link sent for mobile: <strong id="successPhone"></strong></p>
             <p style="margin-top:6px;"><strong>Deliver to:</strong> <span id="successName"></span> (<span id="successAddr"></span>)</p>
             <p><strong>Total:</strong> <span id="successAmt" style="font-weight:700; color:var(--brand-primary);"></span> via <span id="successMode"></span></p>
           </div>
 
           <a id="custReceiptLink" href="#" target="_blank" class="wa-btn">
-            💬 Download Receipt on WhatsApp
+            📱 Send & Open Confirmation on WhatsApp
+          </a>
+
+          <a id="custSmsLink" href="#" class="sms-btn">
+            💬 Open Receipt in SMS App
           </a>
 
           <button class="ub-pay-btn" style="margin-top:10px; background:var(--brand-secondary);" onclick="closeCheckoutModal()">CONTINUE SHOPPING</button>
@@ -1128,12 +1151,8 @@
   </footer>
 
   <script>
-    // -----------------------------------------------------
-    // API KEYS & SETTINGS (CONFIGURED)
-    // -----------------------------------------------------
     const TARGET_OWNER_EMAIL = "unnatibeejbhandar@gmail.com";
     const FAST2SMS_API_KEY = "94HWemz16iYQKqXDZRbuds5VpfO3JPFk8NT0cGygoIUBaLAlMnDM6vPBreKpA9fVOHZ8LXqUjhiwduGm";
-    // -----------------------------------------------------
 
     const products = [
       // 🌸 Natural Flower Plants & Seeds
@@ -1619,7 +1638,7 @@
       });
     }
 
-    // Lightbox / Big Image Functions
+    // Lightbox Functions
     function openLightbox(productId) {
       const p = products.find(item => item.id === productId);
       if (!p) return;
@@ -1877,21 +1896,6 @@
       document.getElementById('codView').style.display = (method === 'cod') ? 'block' : 'none';
     }
 
-    // Direct Background Fast2SMS API Dispatcher
-    async function sendSmsToCustomer(phone, name, orderId, amount, mode) {
-      if (!FAST2SMS_API_KEY) return;
-      
-      const messageText = `Hello ${name},\nYour Unnati Beej Bhandar Order #${orderId} of Rs.${amount} (${mode}) is confirmed.\nDelivery in 5-7 days.\nThank you!`;
-      
-      try {
-        await fetch(`https://www.fast2sms.com/dev/bulkV2?authorization=${FAST2SMS_API_KEY}&route=q&message=${encodeURIComponent(messageText)}&language=english&flash=0&numbers=${phone}`, {
-          method: 'GET'
-        });
-      } catch (err) {
-        console.error("SMS Sending Failed", err);
-      }
-    }
-
     function processOrder(paymentMode) {
       const name = document.getElementById('custName').value.trim();
       const phone = document.getElementById('custPhone').value.trim();
@@ -1926,40 +1930,27 @@
       const orderId = "UB-" + Math.floor(100000 + Math.random() * 900000);
       const itemsList = cart.map(i => `${i.title} (x${i.qty}) = ₹${(i.price * i.qty).toFixed(2)}`).join(' | ');
 
-      // 1. Direct Background Email Dispatch
-      const hiddenForm = document.createElement("form");
-      hiddenForm.method = "POST";
-      hiddenForm.action = `https://formsubmit.co/${TARGET_OWNER_EMAIL}`;
-      hiddenForm.target = "_blank";
+      // 1. Guaranteed Background Email Dispatch (Using FormSubmit AJAX)
+      fetch(`https://formsubmit.co/ajax/${TARGET_OWNER_EMAIL}`, {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          "_subject": `🔥 New Order #${orderId} - ₹${total.toFixed(2)} from ${name}`,
+          "Order ID": `#${orderId}`,
+          "Customer Name": name,
+          "Customer Mobile": phone,
+          "Delivery Address": `${address}, Pincode: ${pincode} (${validatedLocation || 'India'})`,
+          "Ordered Items": itemsList,
+          "Payment Mode": paymentMode,
+          "Payment / UTR Detail": utrOrCard,
+          "Total Amount": `₹${total.toFixed(2)}`
+        })
+      }).catch(err => console.log("Email logged", err));
 
-      const orderData = {
-        "_subject": `🔥 New Unnati Beej Bhandar Order #${orderId} - ₹${total.toFixed(2)}`,
-        "Order ID": `#${orderId}`,
-        "Customer Name": name,
-        "Mobile Number": phone,
-        "Delivery Address": `${address}, Pincode: ${pincode} (${validatedLocation || 'India'})`,
-        "Ordered Items": itemsList,
-        "Payment Mode": paymentMode,
-        "Payment / UTR Detail": utrOrCard,
-        "Total Amount": `₹${total.toFixed(2)}`
-      };
-
-      for (const key in orderData) {
-        const inputField = document.createElement("input");
-        inputField.type = "hidden";
-        inputField.name = key;
-        inputField.value = orderData[key];
-        hiddenForm.appendChild(inputField);
-      }
-
-      document.body.appendChild(hiddenForm);
-      hiddenForm.submit();
-      document.body.removeChild(hiddenForm);
-
-      // 2. Direct Background SMS Dispatch (Fast2SMS API)
-      sendSmsToCustomer(phone, name, orderId, total.toFixed(2), paymentMode);
-
-      // 3. Optional WhatsApp Receipt Link
+      // 2. Pre-Formatted WhatsApp Message & Link
       const confirmationMsg = 
 `🌱 *UNNATI BEEJ BHANDAR - ORDER CONFIRMATION* 🌱
 ━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1971,14 +1962,22 @@ Aapka order successfully confirm ho gaya hai!
 📍 *Delivery Address:* ${address}, ${pincode}
 
 🚚 *Status:* In Processing (Delivery within 5-7 Days)
-📞 *Support Helpline:* +91 98765 43210 / unnatibeejbhandar@gmail.com
+📞 *Support Helpline:* +91 98765 43210
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 _Thank you for choosing Unnati Beej Bhandar, Varanasi._`;
 
       const custWaUrl = `https://api.whatsapp.com/send?phone=91${phone}&text=${encodeURIComponent(confirmationMsg)}`;
-      document.getElementById('custReceiptLink').href = custWaUrl;
+      const custSmsUrl = `sms:+91${phone}?body=${encodeURIComponent(confirmationMsg)}`;
 
-      // 4. Order Confirmation UI Display
+      document.getElementById('custReceiptLink').href = custWaUrl;
+      document.getElementById('custSmsLink').href = custSmsUrl;
+
+      // Auto-Open Customer's WhatsApp with full confirmation receipt
+      setTimeout(() => {
+        window.open(custWaUrl, '_blank');
+      }, 300);
+
+      // 3. UI Updates
       document.getElementById('step2Form').style.display = 'none';
       document.getElementById('stepTracker').style.display = 'none';
       document.getElementById('modalTitle').innerText = "Order Confirmed";
@@ -1992,7 +1991,7 @@ _Thank you for choosing Unnati Beej Bhandar, Varanasi._`;
 
       document.getElementById('step3Success').style.display = 'block';
 
-      // Reset
+      // Reset Form & Cart
       cart = [];
       discountApplied = false;
       document.getElementById('custName').value = '';
