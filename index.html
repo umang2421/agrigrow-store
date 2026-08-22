@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Unnati Beej Bhandar | Certified Seeds, Tools, Fertilizers, Pesticides & Decor Flowers</title>
+  <title>Unnati Beej Bhandar | Certified Seeds, Tools, Fertilizers & Decor Flowers</title>
   <style>
     :root {
       --brand-primary: #0f4c3a;
@@ -181,10 +181,6 @@
       transform: translateY(-1px);
     }
 
-    .ub-cat-icon {
-      font-size: 1rem;
-    }
-
     /* Main Container */
     .ub-main {
       max-width: 1280px;
@@ -192,28 +188,117 @@
       padding: 0 12px;
     }
 
-    .ub-deal-banner {
-      background: linear-gradient(135deg, #0f4c3a 0%, #1b7a5a 60%, #2a9d8f 100%);
-      color: var(--white);
+    /* =========================================
+       NEW: 6-SLIDE AUTO MOVING HERO BANNER 
+       ========================================= */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 260px;
       border-radius: 12px;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
+      overflow: hidden;
+      margin-bottom: 18px;
       box-shadow: var(--shadow);
+      background: var(--brand-dark);
     }
 
-    .ub-deal-title {
-      font-size: clamp(1rem, 3.5vw, 1.3rem);
+    .slide {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .slide-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      transform: scale(1.1);
+      transition: transform 6s ease-out; /* Slow Zoom Effect */
+    }
+
+    .slide.active .slide-bg {
+      transform: scale(1);
+    }
+
+    .slide-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, rgba(15,76,58,0.95) 0%, rgba(15,76,58,0.1) 100%);
+      z-index: -1;
+    }
+
+    .slide-content {
+      color: #fff;
+      max-width: 500px;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.8s ease-out 0.3s;
+    }
+
+    .slide.active .slide-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .slide-title { 
+      font-size: clamp(1.4rem, 4vw, 2.2rem); 
+      font-weight: 800; 
+      margin-bottom: 8px; 
+      line-height: 1.2;
+    }
+
+    .slide-desc { 
+      font-size: clamp(0.85rem, 2vw, 1.05rem); 
+      color: #a7f3d0; 
+      font-weight: 600; 
+    }
+
+    .slide-coupon {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--brand-orange);
+      padding: 6px 14px;
+      border-radius: 6px;
       font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(231, 111, 81, 0.4);
     }
 
-    .ub-deal-sub {
-      font-size: clamp(0.75rem, 2.5vw, 0.85rem);
-      color: var(--brand-gold);
-      margin-top: 2px;
+    .slide-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 10;
     }
+
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer; transition: 0.3s;
+    }
+
+    .dot.active { background: #fff; width: 22px; border-radius: 5px; }
+
+    @media (max-width: 650px) {
+      .hero-slider { height: 190px; }
+      .slide { padding: 15px; }
+      .slide-overlay { background: linear-gradient(90deg, rgba(15,76,58,0.9) 0%, rgba(15,76,58,0.5) 100%); }
+    }
+    /* ========================================= */
 
     .ub-card-section {
       background: var(--white);
@@ -254,7 +339,6 @@
       flex-direction: column;
       transition: all 0.25s ease;
       background: var(--white);
-      position: relative;
     }
 
     .ub-product-card:hover {
@@ -396,12 +480,6 @@
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
       position: relative;
-      animation: zoomIn 0.2s ease-out;
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.92); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
     }
 
     .ub-lightbox-img-container {
@@ -602,7 +680,7 @@
       margin-top: 10px;
     }
 
-    /* 2-Step Checkout Modal */
+    /* Checkout Modal */
     .ub-modal-overlay {
       position: fixed;
       top: 0;
@@ -790,26 +868,9 @@
       font-size: 0.8rem;
       padding: 24px 16px;
       margin-top: 30px;
+      text-align: center;
     }
 
-    .ub-footer-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .ub-footer a {
-      color: var(--brand-gold);
-      text-decoration: none;
-      margin-left: 8px;
-      font-weight: 600;
-    }
-
-    /* Mobile Specific Tweaks */
     @media (max-width: 650px) {
       .ub-header-container { flex-wrap: wrap; }
       .ub-search-box { order: 3; max-width: 100%; width: 100%; margin-top: 4px; }
@@ -818,8 +879,6 @@
       .ub-img-wrap { height: 130px; }
       .ub-current-price { font-size: 0.95rem; }
       .ub-add-btn { padding: 7px 4px; font-size: 0.75rem; }
-      .ub-bottom-grid { grid-template-columns: 1fr; }
-      .ub-deal-banner { flex-direction: column; text-align: center; gap: 6px; }
     }
   </style>
 </head>
@@ -830,10 +889,9 @@
     <div class="ub-header-container">
       <a href="index.html" class="ub-brand">
         <span class="ub-brand-name">🌱 Unnati Beej Bhandar</span>
-        <span class="ub-brand-sub">Certified Seeds, Tools, Fertilizers & Decor Flowers</span>
+        <span class="ub-brand-sub">Certified Agro & Live Plants Hub</span>
       </a>
 
-      <!-- Live Search Bar -->
       <div class="ub-search-box">
         <input type="text" id="searchInput" placeholder="Search Plants, Seeds, Tools..." onkeyup="searchProducts(this.value)" />
       </div>
@@ -850,53 +908,101 @@
   <!-- Category Strip with Round Icons -->
   <div class="ub-category-strip">
     <div class="ub-category-container">
-      <div class="ub-cat-item active" onclick="filterCategory('all', this)">
-        <span class="ub-cat-icon">🌾</span>
-        <span>All Offers</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('plants', this)">
-        <span class="ub-cat-icon">🪴</span>
-        <span>Live Plants</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('flowers', this)">
-        <span class="ub-cat-icon">🌸</span>
-        <span>Flowers</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('artificial', this)">
-        <span class="ub-cat-icon">💐</span>
-        <span>Decor</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('vegetables', this)">
-        <span class="ub-cat-icon">🥦</span>
-        <span>Vegetables</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('seeds', this)">
-        <span class="ub-cat-icon">🌱</span>
-        <span>Crops</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('tools', this)">
-        <span class="ub-cat-icon">🚜</span>
-        <span>Tools</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('fertilizer', this)">
-        <span class="ub-cat-icon">🌿</span>
-        <span>Fertilizers</span>
-      </div>
-      <div class="ub-cat-item" onclick="filterCategory('pesticide', this)">
-        <span class="ub-cat-icon">🛡️</span>
-        <span>Pesticides</span>
-      </div>
+      <div class="ub-cat-item active" onclick="filterCategory('all', this)">🌾 All Offers</div>
+      <div class="ub-cat-item" onclick="filterCategory('plants', this)">🪴 Live Plants</div>
+      <div class="ub-cat-item" onclick="filterCategory('flowers', this)">🌸 Flowers</div>
+      <div class="ub-cat-item" onclick="filterCategory('artificial', this)">💐 Decor</div>
+      <div class="ub-cat-item" onclick="filterCategory('vegetables', this)">🥦 Vegetables</div>
+      <div class="ub-cat-item" onclick="filterCategory('seeds', this)">🌱 Crops</div>
+      <div class="ub-cat-item" onclick="filterCategory('tools', this)">🚜 Tools</div>
+      <div class="ub-cat-item" onclick="filterCategory('fertilizer', this)">🌿 Fertilizers</div>
+      <div class="ub-cat-item" onclick="filterCategory('pesticide', this)">🛡️ Pesticides</div>
     </div>
   </div>
 
   <!-- Main Store Section -->
   <main class="ub-main">
-    <div class="ub-deal-banner">
-      <div>
-        <div class="ub-deal-title">🌾 Unnati Harvest & Decor Sale</div>
-        <div class="ub-deal-sub">Flat 20% OFF coupon: <strong>HARVEST20</strong> | Delivery within 1 week</div>
+
+    <!-- 6-SLIDE ANIMATED BANNER -->
+    <div class="hero-slider">
+      
+      <!-- Slide 1: Artificial Decor -->
+      <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Artificial Plants">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-title">Premium Artificial Decor</div>
+          <div class="slide-desc">Elevate your home interiors with our lifelike artificial plants and flowers.</div>
+          <div class="slide-coupon">COUPON: DECOR20</div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Flowers -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1460500063983-994d4c27756c?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Flowers">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-title">Exotic Flower Seeds</div>
+          <div class="slide-desc">Bring vibrant colors to your garden with our premium flower collection.</div>
+          <div class="slide-coupon">FLAT 15% OFF</div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Seeds -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Seeds">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-title">High-Yield Crop Seeds</div>
+          <div class="slide-desc">Certified and hybrid seeds ensuring the best harvest for your farm.</div>
+          <div class="slide-coupon">BUMPER HARVEST</div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Live Plants -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1466692476877-3e580e0a4f5c?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Live Plants">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-title">100% Organic Live Plants</div>
+          <div class="slide-desc">Transform your space with fresh, healthy indoor and outdoor plants.</div>
+          <div class="slide-coupon">GO GREEN TODAY</div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Pesticides -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Pesticides">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-title">Advanced Crop Protection</div>
+          <div class="slide-desc">Safe and effective pesticides to protect your hard work from pests.</div>
+          <div class="slide-coupon">SAFE CROP 10% OFF</div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Fertilizer -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Fertilizer">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-title">Bio-Nutrients & Fertilizers</div>
+          <div class="slide-desc">Boost your soil's health with our organic vermicompost and fertilizers.</div>
+          <div class="slide-coupon">ORGANIC BOOST</div>
+        </div>
+      </div>
+
+      <!-- Slider Controls -->
+      <div class="slide-dots">
+        <div class="dot active" onclick="showSlide(0)"></div>
+        <div class="dot" onclick="showSlide(1)"></div>
+        <div class="dot" onclick="showSlide(2)"></div>
+        <div class="dot" onclick="showSlide(3)"></div>
+        <div class="dot" onclick="showSlide(4)"></div>
+        <div class="dot" onclick="showSlide(5)"></div>
       </div>
     </div>
+    <!-- END HERO SLIDER -->
 
     <!-- Product Grid Card -->
     <section class="ub-card-section">
@@ -1112,7 +1218,7 @@
 
           <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:12px; text-align:left; font-size:0.82rem; margin-bottom:12px;">
             <p><strong>Estimated Delivery:</strong> Within 1 Week (5-7 Days)</p>
-            <p style="color:#555; font-size:0.75rem;">Updates sent via Email & WhatsApp to <span id="successPhone"></span></p>
+            <p style="color:#555; font-size:0.75rem;">Updates sent to mobile: <span id="successPhone"></span></p>
             <p style="margin-top:6px;"><strong>Deliver to:</strong> <span id="successName"></span> (<span id="successAddr"></span>)</p>
             <p><strong>Total:</strong> <span id="successAmt" style="font-weight:700; color:var(--brand-primary);"></span> via <span id="successMode"></span></p>
           </div>
@@ -1136,7 +1242,7 @@
   <footer class="ub-footer">
     <div class="ub-footer-container">
       <div>
-        <span>© 2026 Unnati Beej Bhandar - Certified Agro & Decor Hub, Varanasi</span>
+        <span>© 2026 Unnati Beej Bhandar - Certified Agro & Live Plants Hub, Varanasi</span>
       </div>
       <div>
         <span>Help & Support:</span>
@@ -1150,450 +1256,45 @@
     const TARGET_OWNER_EMAIL = "unnatibeejbhandar@gmail.com";
     const FAST2SMS_API_KEY = "94HWemz16iYQKqXDZRbuds5VpfO3JPFk8NT0cGygoIUBaLAlMnDM6vPBreKpA9fVOHZ8LXqUjhiwduGm";
 
+    // ==========================================
+    // HERO SLIDER LOGIC
+    // ==========================================
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    function showSlide(index) {
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
+      currentSlide = index;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+    
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    
+    setInterval(nextSlide, 4500);
+    // ==========================================
+
     const products = [
-      // 🌸 Natural Flower Plants & Seeds
-      {
-        id: 200,
-        title: "Natural Sunder Rupa Flower Plant (Jatropha)",
-        category: "flowers",
-        price: 156.00,
-        originalPrice: 400.00,
-        discount: "61% off",
-        rating: "4.9",
-        image: "flower3.jpg.jpg"
-      },
-      {
-        id: 211,
-        title: "Dwarf Jade or Elephant Bush (Crassula)",
-        category: "plants",
-        price: 170.00,
-        originalPrice: 500.00,
-        discount: "66% off",
-        rating: "4.9",
-        image: "flower5.jpg.jpg"
-      },
-      {
-        id: 212,
-        title: "Spider Plant (Chlorophytum comosum)",
-        category: "plants",
-        price: 270.00,
-        originalPrice: 870.00,
-        discount: "69% off",
-        rating: "4.9",
-        image: "flower7.jpg.jpg"
-      },
-      {
-        id: 213,
-        title: "Red Ruellia (Ruellia elegans)",
-        category: "flowers",
-        price: 146.00,
-        originalPrice: 450.00,
-        discount: "67% off",
-        rating: "4.9",
-        image: "flower4.jpg.jpg"
-      },
-      {
-        id: 201,
-        title: "Gazania Sunshine Hybrid Seeds (50 Seeds Pack)",
-        category: "flowers",
-        price: 149.00,
-        originalPrice: 199.00,
-        discount: "25% off",
-        rating: "4.5",
-        image: "flower6.jpg.jpg"
-      },
-      {
-        id: 202,
-        title: "Pink Rain Lily & Red Mini Rose Combo Flower Pack",
-        category: "flowers",
-        price: 249.00,
-        originalPrice: 320.00,
-        discount: "22% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 203,
-        title: "Red Jatropha & Perennial Garden Flower Seeds",
-        category: "flowers",
-        price: 189.00,
-        originalPrice: 250.00,
-        discount: "24% off",
-        rating: "4.3",
-        image: "https://images.unsplash.com/photo-1533616688419-b7a585564566?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 204,
-        title: "Hibiscus & Bicolor Gerbera Daisy Garden Kit",
-        category: "flowers",
-        price: 220.00,
-        originalPrice: 290.00,
-        discount: "24% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 205,
-        title: "Pink Chinese Evergreen / Aglaonema Plant Seeds",
-        category: "flowers",
-        price: 299.00,
-        originalPrice: 399.00,
-        discount: "25% off",
-        rating: "4.6",
-        image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 206,
-        title: "Crimson Ruellia / Wild Petunia Flower Seeds",
-        category: "flowers",
-        price: 129.00,
-        originalPrice: 180.00,
-        discount: "28% off",
-        rating: "4.2",
-        image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 207,
-        title: "African Royal Marigold (Genda) Hybrid Seeds",
-        category: "flowers",
-        price: 139.00,
-        originalPrice: 190.00,
-        discount: "26% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1560717789-0ac7c58ac90a?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 208,
-        title: "Dwarf Mammoth Sunflower Flower Seeds (100 Seeds)",
-        category: "flowers",
-        price: 159.00,
-        originalPrice: 210.00,
-        discount: "24% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=800&q=80"
-      },
-
-      // 💐 Artificial Flowers & Decor Plants
-      {
-        id: 601,
-        title: "Velvet Red Artificial Rose Bunch with Ceramic Pot (12 Blooms)",
-        category: "artificial",
-        price: 349.00,
-        originalPrice: 499.00,
-        discount: "30% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 602,
-        title: "Luxury Artificial Orchid Flower Garland for Home & Wall Decor",
-        category: "artificial",
-        price: 299.00,
-        originalPrice: 420.00,
-        discount: "28% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 603,
-        title: "Realistic Dutch Tulip Bunch (Pack of 10 Stems - Multi Colors)",
-        category: "artificial",
-        price: 380.00,
-        originalPrice: 550.00,
-        discount: "30% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 604,
-        title: "Hanging Artificial Wisteria & Money Plant Vine Strings (5 Pcs)",
-        category: "artificial",
-        price: 249.00,
-        originalPrice: 350.00,
-        discount: "28% off",
-        rating: "4.6",
-        image: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 605,
-        title: "Mini Artificial Pine Bonsai Plant with Elegant White Pot",
-        category: "artificial",
-        price: 420.00,
-        originalPrice: 600.00,
-        discount: "30% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 606,
-        title: "Rustic Lavender Artificial Flower Bunch for Living Room (Pack of 4)",
-        category: "artificial",
-        price: 279.00,
-        originalPrice: 390.00,
-        discount: "28% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1508615039623-a25605d2b022?auto=format&fit=crop&w=800&q=80"
-      },
-
-      // 🥦 Vegetable Seeds
-      {
-        id: 301,
-        title: "F1 Hybrid Bhindi / Okra High-Yield Seeds (100g)",
-        category: "vegetables",
-        price: 180.00,
-        originalPrice: 240.00,
-        discount: "25% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1563865436874-9aef32095fad?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 302,
-        title: "Hybrid Red Carrot (Gajar) Seeds (250g Pack)",
-        category: "vegetables",
-        price: 160.00,
-        originalPrice: 220.00,
-        discount: "27% off",
-        rating: "4.6",
-        image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5c317?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 303,
-        title: "Desi Long Bottle Gourd (Lauki) Hybrid Seeds",
-        category: "vegetables",
-        price: 120.00,
-        originalPrice: 160.00,
-        discount: "25% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1589927986089-35812388d1f4?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 304,
-        title: "Hybrid Dark Green Chilli / Mirchi Seeds (50g)",
-        category: "vegetables",
-        price: 190.00,
-        originalPrice: 260.00,
-        discount: "26% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 305,
-        title: "Purple Round Eggplant / Brinjal Seeds (100g)",
-        category: "vegetables",
-        price: 140.00,
-        originalPrice: 190.00,
-        discount: "26% off",
-        rating: "4.5",
-        image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 306,
-        title: "All-Season Crispy Spinach / Palak Seeds (500g)",
-        category: "vegetables",
-        price: 130.00,
-        originalPrice: 180.00,
-        discount: "27% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 307,
-        title: "Crispy Summer Cucumber (Kheera) Seeds (100g)",
-        category: "vegetables",
-        price: 150.00,
-        originalPrice: 200.00,
-        discount: "25% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 4,
-        title: "Heirloom Hybrid Tomato Seeds Pack (100g)",
-        category: "vegetables",
-        price: 199.00,
-        originalPrice: 280.00,
-        discount: "29% off",
-        rating: "4.5",
-        image: "https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&w=800&q=80"
-      },
-
-      // 🌱 Crop Seeds
-      {
-        id: 1,
-        title: "Hybrid High-Yield Wheat Seeds (10kg Pack)",
-        category: "seeds",
-        price: 850.00,
-        originalPrice: 1100.00,
-        discount: "23% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 105,
-        title: "Basmati Paddy / Dhan Hybrid Seeds (10kg)",
-        category: "seeds",
-        price: 920.00,
-        originalPrice: 1200.00,
-        discount: "23% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 106,
-        title: "Yellow Mustard / Sarson Certified Seeds (5kg)",
-        category: "seeds",
-        price: 490.00,
-        originalPrice: 650.00,
-        discount: "24% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1508873696983-2df5293cb32b?auto=format&fit=crop&w=800&q=80"
-      },
-
-      // 🚜 Agricultural Tools & Sprayers
-      {
-        id: 101,
-        title: "Heavy-Duty Bypass Pruning Shears for Gardening",
-        category: "tools",
-        price: 499.00,
-        originalPrice: 650.00,
-        discount: "23% off",
-        rating: "4.6",
-        image: "https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 102,
-        title: "Stainless Steel Hand Cultivator Rake for Farm",
-        category: "tools",
-        price: 349.00,
-        originalPrice: 480.00,
-        discount: "27% off",
-        rating: "4.4",
-        image: "https://images.unsplash.com/photo-1617576683096-00fc8eecb3af?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 103,
-        title: "Ergonomic Garden Spade & Trowel Tool",
-        category: "tools",
-        price: 299.00,
-        originalPrice: 399.00,
-        discount: "25% off",
-        rating: "4.3",
-        image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 104,
-        title: "Soil Moisture & pH Meter (3-in-1 Soil Tester)",
-        category: "tools",
-        price: 799.00,
-        originalPrice: 1100.00,
-        discount: "27% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 107,
-        title: "16-Litre 2-in-1 Battery & Manual Knapsack Sprayer",
-        category: "tools",
-        price: 1899.00,
-        originalPrice: 2600.00,
-        discount: "27% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 108,
-        title: "High-Carbon Steel Grass Sickle / Hasia (2 Pcs)",
-        category: "tools",
-        price: 260.00,
-        originalPrice: 360.00,
-        discount: "27% off",
-        rating: "4.6",
-        image: "https://images.unsplash.com/photo-1591857177580-dc82b9ac4e1e?auto=format&fit=crop&w=800&q=80"
-      },
-
-      // 🌿 Fertilizers & Bio-Nutrients
-      {
-        id: 2,
-        title: "100% Organic Vermicompost Fertilizer (25kg Bag)",
-        category: "fertilizer",
-        price: 650.00,
-        originalPrice: 800.00,
-        discount: "19% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 401,
-        title: "Water Soluble NPK 19:19:19 Plant Food (1kg)",
-        category: "fertilizer",
-        price: 230.00,
-        originalPrice: 310.00,
-        discount: "25% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 402,
-        title: "Concentrated Liquid Seaweed Extract Bio-Stimulant (500ml)",
-        category: "fertilizer",
-        price: 340.00,
-        originalPrice: 450.00,
-        discount: "24% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 403,
-        title: "Steamed Bone Meal Powder for Root Growth (2kg)",
-        category: "fertilizer",
-        price: 210.00,
-        originalPrice: 280.00,
-        discount: "25% off",
-        rating: "4.6",
-        image: "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=800&q=80"
-      },
-
-      // 🛡️ Pesticides & Crop Protection
-      {
-        id: 501,
-        title: "Pure Cold-Pressed Neem Oil 10,000 PPM Bio-Pesticide (1 Litre)",
-        category: "pesticide",
-        price: 480.00,
-        originalPrice: 650.00,
-        discount: "26% off",
-        rating: "4.9",
-        image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 502,
-        title: "Trichoderma Viride Bio-Fungicide Powder (1kg)",
-        category: "pesticide",
-        price: 260.00,
-        originalPrice: 350.00,
-        discount: "25% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 503,
-        title: "Systemic Broad-Spectrum Plant Fungicide SAFF (500g)",
-        category: "pesticide",
-        price: 390.00,
-        originalPrice: 520.00,
-        discount: "25% off",
-        rating: "4.7",
-        image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80"
-      },
-      {
-        id: 504,
-        title: "Multi-Pest Sticky Yellow & Blue Traps (Pack of 20)",
-        category: "pesticide",
-        price: 299.00,
-        originalPrice: 400.00,
-        discount: "25% off",
-        rating: "4.8",
-        image: "https://images.unsplash.com/photo-1563865436874-9aef32095fad?auto=format&fit=crop&w=800&q=80"
-      }
+      { id: 200, title: "Natural Sunder Rupa Flower Plant (Jatropha)", category: "flowers", price: 156.00, originalPrice: 400.00, discount: "61% off", rating: "4.9", image: "flower3.jpg.jpg" },
+      { id: 211, title: "Dwarf Jade or Elephant Bush (Crassula)", category: "plants", price: 170.00, originalPrice: 500.00, discount: "66% off", rating: "4.9", image: "flower5.jpg.jpg" },
+      { id: 212, title: "Spider Plant (Chlorophytum comosum)", category: "plants", price: 270.00, originalPrice: 870.00, discount: "69% off", rating: "4.9", image: "flower7.jpg.jpg" },
+      { id: 213, title: "Red Ruellia (Ruellia elegans)", category: "flowers", price: 146.00, originalPrice: 450.00, discount: "67% off", rating: "4.9", image: "flower4.jpg.jpg" },
+      { id: 201, title: "Gazania Sunshine Hybrid Seeds (50 Seeds Pack)", category: "flowers", price: 149.00, originalPrice: 199.00, discount: "25% off", rating: "4.5", image: "flower6.jpg.jpg" },
+      { id: 601, title: "Velvet Red Artificial Rose Bunch (12 Blooms)", category: "artificial", price: 349.00, originalPrice: 499.00, discount: "30% off", rating: "4.9", image: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=800&q=80" },
+      { id: 602, title: "Luxury Artificial Orchid Flower Garland", category: "artificial", price: 299.00, originalPrice: 420.00, discount: "28% off", rating: "4.8", image: "https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=800&q=80" },
+      { id: 301, title: "F1 Hybrid Bhindi / Okra High-Yield Seeds (100g)", category: "vegetables", price: 180.00, originalPrice: 240.00, discount: "25% off", rating: "4.8", image: "https://images.unsplash.com/photo-1563865436874-9aef32095fad?auto=format&fit=crop&w=800&q=80" },
+      { id: 302, title: "Hybrid Red Carrot (Gajar) Seeds (250g Pack)", category: "vegetables", price: 160.00, originalPrice: 220.00, discount: "27% off", rating: "4.6", image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5c317?auto=format&fit=crop&w=800&q=80" },
+      { id: 304, title: "Hybrid Dark Green Chilli Seeds (50g)", category: "vegetables", price: 190.00, originalPrice: 260.00, discount: "26% off", rating: "4.9", image: "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?auto=format&fit=crop&w=800&q=80" },
+      { id: 1, title: "Hybrid High-Yield Wheat Seeds (10kg Pack)", category: "seeds", price: 850.00, originalPrice: 1100.00, discount: "23% off", rating: "4.9", image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80" },
+      { id: 101, title: "Heavy-Duty Bypass Pruning Shears", category: "tools", price: 499.00, originalPrice: 650.00, discount: "23% off", rating: "4.6", image: "https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=800&q=80" },
+      { id: 107, title: "16-Litre 2-in-1 Knapsack Sprayer", category: "tools", price: 1899.00, originalPrice: 2600.00, discount: "27% off", rating: "4.9", image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80" },
+      { id: 2, title: "100% Organic Vermicompost Fertilizer (25kg)", category: "fertilizer", price: 650.00, originalPrice: 800.00, discount: "19% off", rating: "4.8", image: "https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=800&q=80" },
+      { id: 501, title: "Pure Neem Oil 10,000 PPM Bio-Pesticide (1L)", category: "pesticide", price: 480.00, originalPrice: 650.00, discount: "26% off", rating: "4.9", image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80" }
     ];
 
     let cart = [];
@@ -1871,25 +1572,22 @@
 
       // Silent Background Email Dispatch via FormSubmit AJAX
       fetch(`https://formsubmit.co/ajax/${TARGET_OWNER_EMAIL}`, {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          "_subject": `🔥 New Order #${orderId} - ₹${total.toFixed(2)} from ${name}`,
-          "Order ID": `#${orderId}`,
-          "Customer Name": name,
-          "Customer Mobile": phone,
-          "Delivery Address": `${address}, Pincode: ${pincode} (${validatedLocation || 'India'})`,
-          "Ordered Items": itemsList,
-          "Payment Mode": paymentMode,
-          "Payment / UTR Detail": utrOrCard,
-          "Total Amount": `₹${total.toFixed(2)}`
+          '_subject': `🔥 New Order #${orderId} - ₹${total.toFixed(2)} from ${name}`,
+          'Order ID': `#${orderId}`,
+          'Customer Name': name,
+          'Customer Mobile': phone,
+          'Delivery Address': `${address}, Pincode: ${pincode} (${validatedLocation || 'India'})`,
+          'Ordered Items': itemsList,
+          'Payment Mode': paymentMode,
+          'Payment Detail': utrOrCard,
+          'Total Amount': `₹${total.toFixed(2)}`
         })
-      }).catch(err => console.log("Email logged"));
+      }).catch(err => console.log('Mail Logged'));
 
-      // WhatsApp Message Setup
+      // WhatsApp Link Setup
       const confirmationMsg = `🌱 *UNNATI BEEJ BHANDAR - ORDER CONFIRMATION* 🌱\n━━━━━━━━━━━━━━━━━━━━━━━━━\nNamaste *${name}* ji,\nAapka order successfully confirm ho gaya hai!\n\n📦 *Order ID:* #${orderId}\n💰 *Total Amount:* ₹${total.toFixed(2)} (${paymentMode})\n📍 *Delivery Address:* ${address}, ${pincode}\n\n🚚 *Status:* In Processing (Delivery within 5-7 Days)\n📞 *Support Helpline:* +91 98765 43210\n━━━━━━━━━━━━━━━━━━━━━━━━━\n_Thank you for choosing Unnati Beej Bhandar, Varanasi._`;
       const custWaUrl = 'https://api.whatsapp.com/send?phone=91' + phone + '&text=' + encodeURIComponent(confirmationMsg);
       const custSmsUrl = 'sms:+91' + phone + '?body=' + encodeURIComponent(confirmationMsg);
@@ -1897,7 +1595,7 @@
       document.getElementById('custReceiptLink').href = custWaUrl;
       document.getElementById('custSmsLink').href = custSmsUrl;
 
-      // UI Screen Transition
+      // UI Switch
       document.getElementById('step2Form').style.display = 'none';
       document.getElementById('stepTracker').style.display = 'none';
       document.getElementById('modalTitle').innerText = "Order Confirmed";
@@ -1909,7 +1607,6 @@
       document.getElementById('successMode').innerText = paymentMode;
       document.getElementById('step3Success').style.display = 'block';
 
-      // Reset
       cart = [];
       discountApplied = false;
       document.getElementById('custName').value = '';
