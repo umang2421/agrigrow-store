@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Unnati Beej Bhandar | Certified Seeds, Tools, Fertilizers, Pesticides & Decor Flowers</title>
   <style>
     :root {
@@ -27,12 +27,15 @@
       padding: 0;
       box-sizing: border-box;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       background-color: #f1f5f9;
       color: var(--brand-dark);
       line-height: 1.4;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     /* Header */
@@ -50,8 +53,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      padding: 12px 16px;
+      gap: 12px;
+      padding: 10px 16px;
     }
 
     .ub-brand {
@@ -59,68 +62,72 @@
       flex-direction: column;
       text-decoration: none;
       color: var(--white);
+      flex-shrink: 0;
     }
 
     .ub-brand-name {
-      font-size: 1.35rem;
+      font-size: clamp(1.05rem, 3.5vw, 1.35rem);
       font-weight: 800;
       letter-spacing: -0.5px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .ub-brand-sub {
-      font-size: 0.72rem;
+      font-size: clamp(0.6rem, 2vw, 0.72rem);
       color: var(--brand-gold);
       font-weight: 600;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .ub-search-box {
       flex: 1;
-      max-width: 540px;
+      max-width: 500px;
       position: relative;
       background: var(--white);
-      border-radius: 6px;
+      border-radius: 50px;
       display: flex;
       align-items: center;
       border: 1px solid rgba(255,255,255,0.2);
+      padding: 2px 6px;
     }
 
     .ub-search-box input {
       width: 100%;
       border: none;
-      padding: 10px 14px;
-      font-size: 0.9rem;
+      padding: 8px 14px;
+      font-size: 0.85rem;
       outline: none;
-      border-radius: 6px;
+      border-radius: 50px;
+      background: transparent;
     }
 
     .ub-cart-btn {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.18);
       border: 1px solid rgba(255,255,255,0.3);
       color: var(--white);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       cursor: pointer;
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 50px;
       transition: all 0.2s;
+      flex-shrink: 0;
     }
 
     .ub-cart-btn:hover {
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.28);
     }
 
     .ub-cart-badge {
       background: var(--brand-orange);
       color: var(--white);
-      font-size: 0.75rem;
-      padding: 2px 7px;
+      font-size: 0.72rem;
+      padding: 2px 6px;
       border-radius: 50px;
       font-weight: 700;
     }
@@ -129,99 +136,92 @@
     .ub-category-strip {
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      margin-bottom: 12px;
+      position: sticky;
+      top: 55px;
+      z-index: 90;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
 
     .ub-category-container {
       max-width: 1280px;
       margin: 0 auto;
       display: flex;
-      justify-content: space-around;
-      padding: 12px 10px;
+      justify-content: flex-start;
+      padding: 8px 12px;
       overflow-x: auto;
-      gap: 12px;
+      gap: 10px;
+      scrollbar-width: none;
+    }
+
+    .ub-category-container::-webkit-scrollbar {
+      display: none;
     }
 
     .ub-cat-item {
       display: flex;
-      flex-direction: column;
       align-items: center;
       gap: 6px;
       cursor: pointer;
-      min-width: 85px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--brand-light);
+      border: 1px solid var(--border);
       text-decoration: none;
       color: var(--brand-dark);
       transition: all 0.2s;
+      white-space: nowrap;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
 
     .ub-cat-item:hover, .ub-cat-item.active {
-      color: var(--brand-secondary);
-      font-weight: 700;
+      background: #eef7f4;
+      color: var(--brand-primary);
+      border-color: var(--brand-secondary);
+      transform: translateY(-1px);
     }
 
     .ub-cat-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: #eef7f4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      border: 1px solid transparent;
-      transition: all 0.2s;
-    }
-
-    .ub-cat-item.active .ub-cat-icon {
-      background: #d8f3dc;
-      border-color: var(--brand-secondary);
-      transform: translateY(-2px);
-    }
-
-    .ub-cat-title {
-      font-size: 0.82rem;
-      white-space: nowrap;
+      font-size: 1rem;
     }
 
     /* Main Container */
     .ub-main {
       max-width: 1280px;
       margin: 12px auto;
-      padding: 0 10px;
+      padding: 0 12px;
     }
 
-    /* Banner */
     .ub-deal-banner {
-      background: linear-gradient(135deg, #0f4c3a 0%, #1b7a5a 50%, #2a9d8f 100%);
+      background: linear-gradient(135deg, #0f4c3a 0%, #1b7a5a 60%, #2a9d8f 100%);
       color: var(--white);
-      border-radius: 8px;
-      padding: 20px 24px;
+      border-radius: 12px;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       box-shadow: var(--shadow);
     }
 
     .ub-deal-title {
-      font-size: 1.35rem;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
       font-weight: 800;
     }
 
     .ub-deal-sub {
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 2.5vw, 0.85rem);
       color: var(--brand-gold);
       margin-top: 2px;
     }
 
-    /* Products Section Card */
     .ub-card-section {
       background: var(--white);
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      padding: 20px;
-      margin-bottom: 24px;
+      padding: 16px;
+      margin-bottom: 20px;
     }
 
     .ub-section-header {
@@ -229,12 +229,12 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-      margin-bottom: 18px;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .ub-section-heading {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 3vw, 1.2rem);
       font-weight: 800;
       color: var(--brand-primary);
     }
@@ -242,49 +242,50 @@
     /* Products Grid */
     .ub-product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
     }
 
     .ub-product-card {
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px;
+      border-radius: 10px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
       transition: all 0.25s ease;
       background: var(--white);
+      position: relative;
     }
 
     .ub-product-card:hover {
-      box-shadow: 0 8px 24px rgba(15, 76, 58, 0.12);
+      box-shadow: 0 6px 18px rgba(15, 76, 58, 0.12);
       border-color: var(--brand-secondary);
       transform: translateY(-3px);
     }
 
     .ub-img-wrap {
       width: 100%;
-      height: 180px;
+      height: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       overflow: hidden;
-      border-radius: 6px;
+      border-radius: 8px;
       background: #f8fafc;
       position: relative;
       cursor: pointer;
     }
 
     .ub-img-wrap img {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       transition: transform 0.3s;
     }
 
     .ub-img-wrap:hover img {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
 
     .ub-zoom-tag {
@@ -293,60 +294,62 @@
       right: 6px;
       background: rgba(15, 76, 58, 0.85);
       color: #fff;
-      font-size: 0.7rem;
-      padding: 3px 6px;
+      font-size: 0.65rem;
+      padding: 2px 6px;
       border-radius: 4px;
       pointer-events: none;
       font-weight: 600;
     }
 
     .ub-p-title {
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--brand-dark);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      min-height: 40px;
+      min-height: 38px;
+      line-height: 1.25;
     }
 
     .ub-rating-pill {
       background: var(--brand-primary);
       color: var(--white);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
       display: inline-flex;
       align-items: center;
-      gap: 3px;
-      margin-bottom: 8px;
+      gap: 2px;
+      margin-bottom: 6px;
       width: fit-content;
     }
 
     .ub-p-pricing {
       display: flex;
       align-items: baseline;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
     }
 
     .ub-current-price {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
       color: var(--brand-primary);
     }
 
     .ub-original-price {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       color: var(--brand-gray);
       text-decoration: line-through;
     }
 
     .ub-discount-txt {
-      font-size: 0.82rem;
+      font-size: 0.75rem;
       color: var(--brand-orange);
       font-weight: 700;
     }
@@ -355,13 +358,14 @@
       background: var(--brand-secondary);
       color: var(--white);
       border: none;
-      padding: 10px;
-      font-size: 0.88rem;
+      padding: 9px;
+      font-size: 0.82rem;
       font-weight: 700;
       border-radius: 6px;
       cursor: pointer;
       margin-top: auto;
       transition: background 0.2s;
+      width: 100%;
     }
 
     .ub-add-btn:hover {
@@ -380,23 +384,29 @@
       display: none;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 16px;
       backdrop-filter: blur(4px);
     }
 
     .ub-lightbox-card {
       background: var(--white);
-      border-radius: 8px;
-      max-width: 600px;
+      border-radius: 12px;
+      max-width: 500px;
       width: 100%;
       overflow: hidden;
       box-shadow: 0 10px 40px rgba(0,0,0,0.5);
       position: relative;
+      animation: zoomIn 0.2s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .ub-lightbox-img-container {
       width: 100%;
-      height: 380px;
+      height: 300px;
       background: #f1f5f9;
       display: flex;
       align-items: center;
@@ -411,7 +421,7 @@
     }
 
     .ub-lightbox-details {
-      padding: 18px 20px;
+      padding: 14px 16px;
     }
 
     .ub-lightbox-close {
@@ -421,8 +431,8 @@
       background: rgba(0,0,0,0.6);
       color: #fff;
       border: none;
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       font-size: 1.2rem;
       cursor: pointer;
@@ -434,28 +444,28 @@
     /* Bottom Hub Section */
     .ub-bottom-hub {
       background: var(--white);
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      padding: 24px;
-      margin-top: 24px;
+      padding: 18px 14px;
+      margin-top: 20px;
     }
 
     .ub-bottom-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
     }
 
     .ub-hub-link {
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
+      border-radius: 10px;
+      padding: 12px 14px;
       text-decoration: none;
       color: var(--brand-dark);
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       background: var(--brand-light);
       transition: all 0.2s;
     }
@@ -467,17 +477,17 @@
     }
 
     .ub-hub-icon {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
 
     .ub-hub-text h4 {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 700;
       color: var(--brand-primary);
     }
 
     .ub-hub-text p {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--brand-gray);
     }
 
@@ -499,7 +509,7 @@
       top: 0;
       right: -420px;
       width: 100%;
-      max-width: 400px;
+      max-width: 380px;
       height: 100%;
       background: var(--white);
       z-index: 300;
@@ -516,7 +526,7 @@
     .ub-drawer-head {
       background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
       color: var(--white);
-      padding: 16px 20px;
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -525,20 +535,20 @@
     .ub-cart-items {
       flex: 1;
       overflow-y: auto;
-      padding: 16px;
+      padding: 14px;
     }
 
     .ub-c-item {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
-      margin-bottom: 12px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
     }
 
     .ub-c-item img {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
       object-fit: cover;
       border-radius: 6px;
     }
@@ -548,8 +558,8 @@
     }
 
     .ub-qty-btn {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       background: var(--brand-light);
       border: 1px solid var(--border);
       border-radius: 4px;
@@ -560,22 +570,22 @@
     .ub-drawer-foot {
       background: var(--brand-light);
       border-top: 1px solid var(--border);
-      padding: 18px;
+      padding: 14px 16px;
     }
 
     .ub-price-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.92rem;
-      margin-bottom: 6px;
+      font-size: 0.88rem;
+      margin-bottom: 4px;
     }
 
     .ub-price-row.total {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
       border-top: 1px dashed var(--border);
-      padding-top: 10px;
-      margin-top: 10px;
+      padding-top: 8px;
+      margin-top: 8px;
       color: var(--brand-primary);
     }
 
@@ -584,17 +594,12 @@
       background: var(--brand-orange);
       color: var(--white);
       border: none;
-      padding: 14px;
-      font-size: 1rem;
+      padding: 12px;
+      font-size: 0.95rem;
       font-weight: 700;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 12px;
-      transition: background 0.2s;
-    }
-
-    .ub-checkout-btn:hover {
-      background: #dc5a3c;
+      margin-top: 10px;
     }
 
     /* 2-Step Checkout Modal */
@@ -610,61 +615,50 @@
       display: none;
       justify-content: center;
       align-items: center;
-      padding: 15px;
+      padding: 12px;
     }
 
     .ub-modal {
       background: var(--white);
-      max-width: 520px;
+      max-width: 480px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      border-radius: 8px;
+      border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
     .ub-modal-head {
       background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
       color: var(--white);
-      padding: 16px 20px;
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .ub-modal-body {
-      padding: 20px;
+      padding: 16px;
     }
 
     .ub-step-indicator {
       display: flex;
       justify-content: space-between;
       border-bottom: 2px solid var(--border);
-      margin-bottom: 18px;
-      padding-bottom: 10px;
-      font-size: 0.85rem;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      font-size: 0.8rem;
       font-weight: 700;
     }
 
-    .ub-step-badge {
-      color: var(--brand-gray);
-    }
+    .ub-step-badge { color: var(--brand-gray); }
+    .ub-step-badge.active { color: var(--brand-secondary); }
+    .ub-step-badge.completed { color: var(--brand-green); }
 
-    .ub-step-badge.active {
-      color: var(--brand-secondary);
-    }
-
-    .ub-step-badge.completed {
-      color: var(--brand-green);
-    }
-
-    .ub-input-group {
-      margin-bottom: 14px;
-    }
-
+    .ub-input-group { margin-bottom: 12px; }
     .ub-input-group label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: var(--brand-dark);
       margin-bottom: 4px;
@@ -672,10 +666,10 @@
 
     .ub-input-group input {
       width: 100%;
-      padding: 10px 12px;
+      padding: 9px 12px;
       border: 1px solid var(--border);
       border-radius: 6px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
       background: var(--brand-light);
     }
@@ -686,7 +680,7 @@
     }
 
     .ub-pin-msg {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       margin-top: 4px;
     }
@@ -700,31 +694,26 @@
       background: var(--brand-orange);
       color: var(--white);
       border: none;
-      padding: 13px;
-      font-size: 1rem;
+      padding: 12px;
+      font-size: 0.95rem;
       font-weight: 700;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 12px;
-      transition: background 0.2s;
-    }
-
-    .ub-pay-btn:hover {
-      background: #dc5a3c;
+      margin-top: 10px;
     }
 
     .ub-pay-methods {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin: 14px 0;
+      gap: 6px;
+      margin: 12px 0;
     }
 
     .ub-pay-opt {
       border: 1px solid var(--border);
-      padding: 10px 4px;
+      padding: 8px 4px;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       border-radius: 6px;
@@ -740,20 +729,20 @@
     .ub-summary-pill {
       background: #f8fafc;
       border: 1px solid var(--border);
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-radius: 6px;
-      font-size: 0.88rem;
-      margin-bottom: 14px;
+      font-size: 0.82rem;
+      margin-bottom: 12px;
       position: relative;
     }
 
     .ub-edit-addr {
       position: absolute;
-      top: 10px;
-      right: 12px;
+      top: 8px;
+      right: 10px;
       color: var(--brand-secondary);
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       cursor: pointer;
       text-decoration: underline;
     }
@@ -762,26 +751,7 @@
       background: var(--whatsapp);
       color: #fff;
       border: none;
-      padding: 12px 16px;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      width: 100%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 10px;
-      text-decoration: none;
-      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
-    }
-
-    .sms-btn {
-      background: #0284c7;
-      color: #fff;
-      border: none;
-      padding: 10px 16px;
+      padding: 11px 14px;
       border-radius: 6px;
       font-weight: 700;
       font-size: 0.9rem;
@@ -790,18 +760,36 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
+      margin-top: 8px;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+    }
+
+    .sms-btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      width: 100%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       margin-top: 8px;
       text-decoration: none;
     }
 
-    /* Footer */
     .ub-footer {
       background: var(--brand-primary);
       color: #cbd5e1;
-      font-size: 0.85rem;
-      padding: 28px 16px;
-      margin-top: 40px;
+      font-size: 0.8rem;
+      padding: 24px 16px;
+      margin-top: 30px;
     }
 
     .ub-footer-container {
@@ -811,19 +799,27 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
     .ub-footer a {
       color: var(--brand-gold);
       text-decoration: none;
-      margin-left: 10px;
+      margin-left: 8px;
       font-weight: 600;
     }
 
-    @media (max-width: 600px) {
-      .ub-search-box { display: none; }
-      .ub-product-grid { grid-template-columns: 1fr 1fr; }
+    /* Mobile Specific Tweaks */
+    @media (max-width: 650px) {
+      .ub-header-container { flex-wrap: wrap; }
+      .ub-search-box { order: 3; max-width: 100%; width: 100%; margin-top: 4px; }
+      .ub-product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .ub-product-card { padding: 8px; }
+      .ub-img-wrap { height: 130px; }
+      .ub-current-price { font-size: 0.95rem; }
+      .ub-add-btn { padding: 7px 4px; font-size: 0.75rem; }
+      .ub-bottom-grid { grid-template-columns: 1fr; }
+      .ub-deal-banner { flex-direction: column; text-align: center; gap: 6px; }
     }
   </style>
 </head>
@@ -834,12 +830,12 @@
     <div class="ub-header-container">
       <a href="index.html" class="ub-brand">
         <span class="ub-brand-name">🌱 Unnati Beej Bhandar</span>
-        <span class="ub-brand-sub">Certified Seeds, Tools, Fertilizers, Pesticides & Decor Flowers</span>
+        <span class="ub-brand-sub">Certified Seeds, Tools, Fertilizers & Decor Flowers</span>
       </a>
 
       <!-- Live Search Bar -->
       <div class="ub-search-box">
-        <input type="text" id="searchInput" placeholder="Search Artificial Flowers, Vegetables, Seeds, Tools, Pesticides..." onkeyup="searchProducts(this.value)" />
+        <input type="text" id="searchInput" placeholder="Search Plants, Seeds, Tools..." onkeyup="searchProducts(this.value)" />
       </div>
 
       <div class="ub-header-actions">
@@ -855,40 +851,40 @@
   <div class="ub-category-strip">
     <div class="ub-category-container">
       <div class="ub-cat-item active" onclick="filterCategory('all', this)">
-        <div class="ub-cat-icon">🌾</div>
-        <span class="ub-cat-title">All Offers</span>
+        <span class="ub-cat-icon">🌾</span>
+        <span>All Offers</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('plants', this)">
-        <div class="ub-cat-icon">🪴</div>
-        <span class="ub-cat-title">Live Plants</span>
+        <span class="ub-cat-icon">🪴</span>
+        <span>Live Plants</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('flowers', this)">
-        <div class="ub-cat-icon">🌸</div>
-        <span class="ub-cat-title">Flower Seeds & Plants</span>
+        <span class="ub-cat-icon">🌸</span>
+        <span>Flowers</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('artificial', this)">
-        <div class="ub-cat-icon">💐</div>
-        <span class="ub-cat-title">Decor Flowers</span>
+        <span class="ub-cat-icon">💐</span>
+        <span>Decor</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('vegetables', this)">
-        <div class="ub-cat-icon">🥦</div>
-        <span class="ub-cat-title">Vegetables</span>
+        <span class="ub-cat-icon">🥦</span>
+        <span>Vegetables</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('seeds', this)">
-        <div class="ub-cat-icon">🌱</div>
-        <span class="ub-cat-title">Crop Seeds</span>
+        <span class="ub-cat-icon">🌱</span>
+        <span>Crops</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('tools', this)">
-        <div class="ub-cat-icon">🚜</div>
-        <span class="ub-cat-title">Tools & Sprayers</span>
+        <span class="ub-cat-icon">🚜</span>
+        <span>Tools</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('fertilizer', this)">
-        <div class="ub-cat-icon">🌿</div>
-        <span class="ub-cat-title">Fertilizers</span>
+        <span class="ub-cat-icon">🌿</span>
+        <span>Fertilizers</span>
       </div>
       <div class="ub-cat-item" onclick="filterCategory('pesticide', this)">
-        <div class="ub-cat-icon">🛡️</div>
-        <span class="ub-cat-title">Pesticides</span>
+        <span class="ub-cat-icon">🛡️</span>
+        <span>Pesticides</span>
       </div>
     </div>
   </div>
@@ -897,7 +893,7 @@
   <main class="ub-main">
     <div class="ub-deal-banner">
       <div>
-        <div class="ub-deal-title">🌾 Unnati Harvest, Gardening & Decor Sale</div>
+        <div class="ub-deal-title">🌾 Unnati Harvest & Decor Sale</div>
         <div class="ub-deal-sub">Flat 20% OFF coupon: <strong>HARVEST20</strong> | Delivery within 1 week</div>
       </div>
     </div>
@@ -905,7 +901,7 @@
     <!-- Product Grid Card -->
     <section class="ub-card-section">
       <div class="ub-section-header">
-        <h2 class="ub-section-heading" id="sectionHeading">Top Certified Seeds, Plants, Tools & Crop Care</h2>
+        <h2 class="ub-section-heading" id="sectionHeading">Top Certified Seeds, Plants & Farm Care</h2>
       </div>
       <div class="ub-product-grid" id="productGrid"></div>
     </section>
@@ -917,7 +913,7 @@
           <span class="ub-hub-icon">🛍️</span>
           <div class="ub-hub-text">
             <h4>Shop All Categories</h4>
-            <p>Plants, seeds, decor flowers, tools, pesticides & bio-nutrients</p>
+            <p>Plants, seeds, decor flowers, tools & pesticides</p>
           </div>
         </a>
 
@@ -948,13 +944,13 @@
         <img id="lightboxImg" src="" alt="Zoomed Product View">
       </div>
       <div class="ub-lightbox-details">
-        <h3 id="lightboxTitle" style="font-size: 1.15rem; color: var(--brand-primary); margin-bottom: 6px;"></h3>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+        <h3 id="lightboxTitle" style="font-size: 1.05rem; color: var(--brand-primary); margin-bottom: 4px;"></h3>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
           <div>
-            <span id="lightboxPrice" style="font-size: 1.3rem; font-weight: 800; color: var(--brand-primary);"></span>
-            <span id="lightboxOrigPrice" style="font-size: 0.9rem; color: var(--brand-gray); text-decoration: line-through; margin-left:6px;"></span>
+            <span id="lightboxPrice" style="font-size: 1.2rem; font-weight: 800; color: var(--brand-primary);"></span>
+            <span id="lightboxOrigPrice" style="font-size: 0.85rem; color: var(--brand-gray); text-decoration: line-through; margin-left:4px;"></span>
           </div>
-          <button class="ub-add-btn" id="lightboxAddBtn" style="padding: 9px 18px;">ADD TO CART</button>
+          <button class="ub-add-btn" id="lightboxAddBtn" style="padding: 8px 16px; width:auto;">ADD TO CART</button>
         </div>
       </div>
     </div>
@@ -1013,14 +1009,14 @@
 
         <!-- Step 1: Delivery Address with Live India Post PIN Validator -->
         <div id="step1Form">
-          <div style="display:flex; gap:10px;">
+          <div style="display:flex; gap:8px;">
             <div class="ub-input-group" style="flex:1;">
               <label>Farmer / Full Name *</label>
               <input type="text" id="custName" placeholder="e.g. Ramesh Kumar" required />
             </div>
             <div class="ub-input-group" style="flex:1;">
-              <label>10-digit Mobile (WhatsApp/SMS Receipt) *</label>
-              <input type="tel" id="custPhone" placeholder="10-digit Mobile Number" maxlength="10" required />
+              <label>10-digit Mobile *</label>
+              <input type="tel" id="custPhone" placeholder="Mobile Number" maxlength="10" required />
             </div>
           </div>
 
@@ -1030,7 +1026,7 @@
           </div>
 
           <div class="ub-input-group">
-            <label>Pincode (Live India Post Verification) *</label>
+            <label>Pincode (Live Postal Validation) *</label>
             <input type="text" id="custPincode" placeholder="e.g. 221010" maxlength="6" oninput="validatePincodeLive(this.value)" required />
             <div id="pinStatus" class="ub-pin-msg"></div>
           </div>
@@ -1055,13 +1051,13 @@
 
           <!-- UPI QR Code View -->
           <div id="upiView">
-            <div style="text-align:center; margin:10px 0;">
-              <p style="font-weight:700; font-size:0.95rem; color:var(--brand-primary);">Umesh Verma (Unnati Beej Bhandar)</p>
-              <p style="font-size:0.8rem; color:#555;">UPI ID: <strong>umeshverma.01129-1@oksbi</strong></p>
-              <div style="background:#fff; padding:8px; display:inline-block; border:1px solid var(--border); border-radius:6px; margin-top:6px;">
-                <img id="upiQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=umeshverma.01129-1@oksbi%26pn=Umesh%20Verma%26cu=INR" alt="UPI QR" style="width:160px; height:160px; display:block;" />
+            <div style="text-align:center; margin:8px 0;">
+              <p style="font-weight:700; font-size:0.92rem; color:var(--brand-primary);">Umesh Verma (Unnati Beej Bhandar)</p>
+              <p style="font-size:0.78rem; color:#555;">UPI ID: <strong>umeshverma.01129-1@oksbi</strong></p>
+              <div style="background:#fff; padding:6px; display:inline-block; border:1px solid var(--border); border-radius:6px; margin-top:4px;">
+                <img id="upiQr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=umeshverma.01129-1@oksbi%26pn=Umesh%20Verma%26cu=INR" alt="UPI QR" style="width:140px; height:140px; display:block;" />
               </div>
-              <p style="font-size:0.75rem; color:var(--danger); margin-top:4px;">Scan & Pay with GPay / PhonePe / Paytm</p>
+              <p style="font-size:0.72rem; color:var(--danger); margin-top:3px;">Scan & Pay with GPay / PhonePe / Paytm</p>
             </div>
 
             <div class="ub-input-group">
@@ -1097,7 +1093,7 @@
 
           <!-- COD View -->
           <div id="codView" style="display:none;">
-            <div style="background:#f8fafc; border:1px dashed var(--border); border-radius:6px; padding:12px; font-size:0.85rem; margin-bottom:12px;">
+            <div style="background:#f8fafc; border:1px dashed var(--border); border-radius:6px; padding:10px; font-size:0.82rem; margin-bottom:10px;">
               <p>🚚 <strong>Cash on Delivery:</strong> Pay cash upon doorstep delivery.</p>
               <div style="display:flex; justify-content:space-between; margin-top:6px; font-weight:700;">
                 <span>Total Amount Payable:</span>
@@ -1110,13 +1106,13 @@
 
         <!-- Step 3: Order Confirmation Screen -->
         <div id="step3Success" style="display:none; text-align:center; padding:10px 0;">
-          <div style="font-size:3.2rem; color:var(--brand-green);">✓</div>
-          <h3 style="font-size:1.35rem; color:var(--brand-primary); margin-bottom:4px;">Order Placed Successfully!</h3>
-          <p style="font-size:0.82rem; color:var(--brand-gray); margin-bottom:14px;">Order ID: <strong id="successId" style="color:var(--brand-dark);"></strong></p>
+          <div style="font-size:3rem; color:var(--brand-green);">✓</div>
+          <h3 style="font-size:1.25rem; color:var(--brand-primary); margin-bottom:4px;">Order Placed Successfully!</h3>
+          <p style="font-size:0.8rem; color:var(--brand-gray); margin-bottom:12px;">Order ID: <strong id="successId" style="color:var(--brand-dark);"></strong></p>
 
-          <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:14px; text-align:left; font-size:0.85rem; margin-bottom:14px;">
+          <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:12px; text-align:left; font-size:0.82rem; margin-bottom:12px;">
             <p><strong>Estimated Delivery:</strong> Within 1 Week (5-7 Days)</p>
-            <p style="color:#555; font-size:0.78rem;">Order receipt link sent for mobile: <strong id="successPhone"></strong></p>
+            <p style="color:#555; font-size:0.75rem;">Updates sent via Email & WhatsApp to <span id="successPhone"></span></p>
             <p style="margin-top:6px;"><strong>Deliver to:</strong> <span id="successName"></span> (<span id="successAddr"></span>)</p>
             <p><strong>Total:</strong> <span id="successAmt" style="font-weight:700; color:var(--brand-primary);"></span> via <span id="successMode"></span></p>
           </div>
@@ -1129,7 +1125,7 @@
             💬 Open Receipt in SMS App
           </a>
 
-          <button class="ub-pay-btn" style="margin-top:10px; background:var(--brand-secondary);" onclick="closeCheckoutModal()">CONTINUE SHOPPING</button>
+          <button class="ub-pay-btn" style="margin-top:8px; background:var(--brand-secondary);" onclick="closeCheckoutModal()">CONTINUE SHOPPING</button>
         </div>
 
       </div>
@@ -1604,26 +1600,23 @@
     let discountApplied = false;
     const DISCOUNT_CODE = "HARVEST20";
     const DISCOUNT_RATE = 0.20;
-
     let isPincodeValid = false;
     let validatedLocation = "";
 
     function renderProducts(list = products) {
       const grid = document.getElementById('productGrid');
       grid.innerHTML = '';
-
       if (list.length === 0) {
-        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding:40px; color:#888;">No products found in this category.</p>`;
+        grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:30px; color:#888;">No products found in this category.</p>';
         return;
       }
-
       list.forEach(p => {
         const card = document.createElement('div');
         card.className = 'ub-product-card';
         card.innerHTML = `
           <div class="ub-img-wrap" onclick="openLightbox(${p.id})">
             <img src="${p.image}" alt="${p.title}" loading="lazy">
-            <span class="ub-zoom-tag">🔍 Click to Zoom</span>
+            <span class="ub-zoom-tag">🔍 Zoom</span>
           </div>
           <div class="ub-p-title" onclick="openLightbox(${p.id})" style="cursor:pointer;">${p.title}</div>
           <div class="ub-rating-pill">★ ${p.rating}</div>
@@ -1638,22 +1631,14 @@
       });
     }
 
-    // Lightbox Functions
     function openLightbox(productId) {
       const p = products.find(item => item.id === productId);
       if (!p) return;
-
       document.getElementById('lightboxImg').src = p.image;
       document.getElementById('lightboxTitle').innerText = p.title;
-      document.getElementById('lightboxPrice').innerText = `₹${p.price.toFixed(2)}`;
-      document.getElementById('lightboxOrigPrice').innerText = `₹${p.originalPrice.toFixed(2)}`;
-      
-      const addBtn = document.getElementById('lightboxAddBtn');
-      addBtn.onclick = function() {
-        addToCart(p.id);
-        closeLightbox();
-      };
-
+      document.getElementById('lightboxPrice').innerText = '₹' + p.price.toFixed(2);
+      document.getElementById('lightboxOrigPrice').innerText = '₹' + p.originalPrice.toFixed(2);
+      document.getElementById('lightboxAddBtn').onclick = () => { addToCart(p.id); closeLightbox(); };
       document.getElementById('lightboxModal').style.display = 'flex';
     }
 
@@ -1664,9 +1649,8 @@
     function filterCategory(cat, el) {
       document.querySelectorAll('.ub-cat-item').forEach(i => i.classList.remove('active'));
       if (el) el.classList.add('active');
-
       const filtered = (cat === 'all') ? products : products.filter(p => p.category === cat);
-      document.getElementById('sectionHeading').innerText = (cat === 'all') ? "Top Certified Seeds, Plants, Tools & Crop Care" : `${cat.toUpperCase()} Category`;
+      document.getElementById('sectionHeading').innerText = (cat === 'all') ? "Top Certified Seeds, Plants & Farm Care" : cat.toUpperCase() + " Category";
       renderProducts(filtered);
     }
 
@@ -1678,9 +1662,7 @@
 
     function addToCart(productId) {
       const existing = cart.find(item => item.id === productId);
-      if (existing) {
-        existing.qty += 1;
-      } else {
+      if (existing) { existing.qty += 1; } else {
         const item = products.find(p => p.id === productId);
         cart.push({ ...item, qty: 1 });
       }
@@ -1692,9 +1674,7 @@
       const item = cart.find(i => i.id === productId);
       if (!item) return;
       item.qty += delta;
-      if (item.qty <= 0) {
-        cart = cart.filter(i => i.id !== productId);
-      }
+      if (item.qty <= 0) { cart = cart.filter(i => i.id !== productId); }
       updateCartUI();
     }
 
@@ -1708,17 +1688,16 @@
       const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
       document.getElementById('cartCount').innerText = totalQty;
       document.getElementById('cartTotalItems').innerText = totalQty;
-
       const container = document.getElementById('cartItemsContainer');
       if (cart.length === 0) {
-        container.innerHTML = '<p style="text-align:center; color:#888; margin-top:50px;">Your cart is empty!</p>';
+        container.innerHTML = '<p style="text-align:center; color:#888; margin-top:40px;">Your cart is empty!</p>';
       } else {
         container.innerHTML = cart.map(item => `
           <div class="ub-c-item">
             <img src="${item.image}" alt="${item.title}">
             <div class="ub-c-details">
-              <div style="font-size:0.85rem; font-weight:600;">${item.title}</div>
-              <div style="font-size:0.9rem; font-weight:700; color:var(--brand-primary); margin:4px 0;">₹${(item.price * item.qty).toFixed(2)}</div>
+              <div style="font-size:0.82rem; font-weight:600;">${item.title}</div>
+              <div style="font-size:0.88rem; font-weight:700; color:var(--brand-primary); margin:3px 0;">₹${(item.price * item.qty).toFixed(2)}</div>
               <div style="display:flex; align-items:center; gap:8px;">
                 <button class="ub-qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
                 <span>${item.qty}</span>
@@ -1728,18 +1707,15 @@
           </div>
         `).join('');
       }
-
       const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
       const discount = discountApplied ? subtotal * DISCOUNT_RATE : 0;
       const total = subtotal - discount;
-
-      document.getElementById('subtotalPrice').innerText = `₹${subtotal.toFixed(2)}`;
-      document.getElementById('totalPrice').innerText = `₹${total.toFixed(2)}`;
-
+      document.getElementById('subtotalPrice').innerText = '₹' + subtotal.toFixed(2);
+      document.getElementById('totalPrice').innerText = '₹' + total.toFixed(2);
       const discountRow = document.getElementById('discountRow');
       if (discountApplied && subtotal > 0) {
         discountRow.style.display = 'flex';
-        document.getElementById('discountPrice').innerText = `-₹${discount.toFixed(2)}`;
+        document.getElementById('discountPrice').innerText = '-₹' + discount.toFixed(2);
       } else {
         discountRow.style.display = 'none';
       }
@@ -1759,20 +1735,12 @@
     function toggleCart(open) {
       const drawer = document.getElementById('cartDrawer');
       const overlay = document.getElementById('cartOverlay');
-      if (open) {
-        drawer.classList.add('open');
-        overlay.style.display = 'block';
-      } else {
-        drawer.classList.remove('open');
-        overlay.style.display = 'none';
-      }
+      if (open) { drawer.classList.add('open'); overlay.style.display = 'block'; }
+      else { drawer.classList.remove('open'); overlay.style.display = 'none'; }
     }
 
     function openCheckoutModal() {
-      if (cart.length === 0) {
-        alert("Cart is empty!");
-        return;
-      }
+      if (cart.length === 0) { alert("Cart is empty!"); return; }
       toggleCart(false);
       goToStep1();
       document.getElementById('checkoutModal').style.display = 'flex';
@@ -1788,7 +1756,6 @@
       document.getElementById('step3Success').style.display = 'none';
       document.getElementById('stepTracker').style.display = 'flex';
       document.getElementById('modalTitle').innerText = "Delivery Details";
-
       document.getElementById('badgeStep1').classList.add('active');
       document.getElementById('badgeStep2').classList.remove('active');
     }
@@ -1796,35 +1763,26 @@
     async function validatePincodeLive(pin) {
       const status = document.getElementById('pinStatus');
       const cleanPin = pin.trim();
-
-      if (!cleanPin) {
-        status.innerText = "";
-        status.className = "ub-pin-msg";
-        isPincodeValid = false;
-        return;
-      }
-
+      if (!cleanPin) { status.innerText = ""; status.className = "ub-pin-msg"; isPincodeValid = false; return; }
       if (!/^[1-9][0-9]{5}$/.test(cleanPin)) {
-        status.innerText = "❌ Invalid PIN Format! Enter 6-digit number.";
+        status.innerText = "❌ Invalid PIN! Enter 6-digit number.";
         status.className = "ub-pin-msg invalid";
         isPincodeValid = false;
         return;
       }
-
-      status.innerText = "⏳ Checking India Post network...";
+      status.innerText = "⏳ Checking postal network...";
       status.className = "ub-pin-msg checking";
-
       try {
-        const res = await fetch(`https://api.postalpincode.in/pincode/${cleanPin}`);
+        const res = await fetch('https://api.postalpincode.in/pincode/' + cleanPin);
         const data = await res.json();
         if (data && data[0] && data[0].Status === "Success" && data[0].PostOffice && data[0].PostOffice.length > 0) {
           const po = data[0].PostOffice[0];
-          validatedLocation = `${po.District}, ${po.State}`;
-          status.innerText = `✅ Delivery Available: ${po.Name} (${validatedLocation})`;
+          validatedLocation = po.District + ", " + po.State;
+          status.innerText = "✅ Delivery Available: " + po.Name + " (" + validatedLocation + ")";
           status.className = "ub-pin-msg valid";
           isPincodeValid = true;
         } else {
-          status.innerText = "❌ Invalid Pincode! Not found in India Postal database.";
+          status.innerText = "❌ Invalid Pincode! Not found in database.";
           status.className = "ub-pin-msg invalid";
           isPincodeValid = false;
         }
@@ -1840,57 +1798,39 @@
       const phone = document.getElementById('custPhone').value.trim();
       const address = document.getElementById('custAddress').value.trim();
       const pincode = document.getElementById('custPincode').value.trim();
-
-      if (!name || !phone || !address || !pincode) {
-        alert("Please enter Name, Mobile, Address and Pincode.");
-        return;
-      }
-      if (phone.length < 10) {
-        alert("Please enter valid 10-digit mobile number.");
-        return;
-      }
+      if (!name || !phone || !address || !pincode) { alert("Please enter Name, Mobile, Address and Pincode."); return; }
+      if (phone.length < 10) { alert("Please enter valid 10-digit mobile number."); return; }
 
       const btn = document.getElementById('step1NextBtn');
       btn.innerText = "Verifying PIN...";
       btn.disabled = true;
-
       await validatePincodeLive(pincode);
       btn.innerText = "DELIVER TO THIS ADDRESS →";
       btn.disabled = false;
-
-      if (!isPincodeValid) {
-        alert("Please enter a valid 6-digit Indian postal code.");
-        document.getElementById('custPincode').focus();
-        return;
-      }
+      if (!isPincodeValid) { alert("Please enter a valid 6-digit Indian postal code."); return; }
 
       document.getElementById('sumName').innerText = name;
       document.getElementById('sumPhone').innerText = phone;
       document.getElementById('sumAddress').innerText = address;
       document.getElementById('sumPincode').innerText = pincode;
-      document.getElementById('sumLocation').innerText = validatedLocation ? `(${validatedLocation})` : '';
-
+      document.getElementById('sumLocation').innerText = validatedLocation ? '(' + validatedLocation + ')' : '';
       const total = calculateOrderTotal();
-      document.getElementById('codTotalDisplay').innerText = `₹${total.toFixed(2)}`;
-
-      const upiUrl = `upi://pay?pa=umeshverma.01129-1@oksbi&pn=Umesh%20Verma&am=${total}&cu=INR&tn=Unnati Beej Bhandar Order`;
-      document.getElementById('upiQr').src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
+      document.getElementById('codTotalDisplay').innerText = '₹' + total.toFixed(2);
+      const upiUrl = 'upi://pay?pa=umeshverma.01129-1@oksbi&pn=Umesh%20Verma&am=' + total + '&cu=INR&tn=Unnati Beej Bhandar Order';
+      document.getElementById('upiQr').src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(upiUrl);
 
       document.getElementById('step1Form').style.display = 'none';
       document.getElementById('step2Form').style.display = 'block';
       document.getElementById('modalTitle').innerText = "Payment Options";
-
       document.getElementById('badgeStep1').classList.remove('active');
       document.getElementById('badgeStep1').classList.add('completed');
       document.getElementById('badgeStep2').classList.add('active');
-
       switchPayment('upi', document.querySelector('.ub-pay-opt'));
     }
 
     function switchPayment(method, el) {
       document.querySelectorAll('.ub-pay-opt').forEach(o => o.classList.remove('active'));
       el.classList.add('active');
-
       document.getElementById('upiView').style.display = (method === 'upi') ? 'block' : 'none';
       document.getElementById('cardView').style.display = (method === 'card') ? 'block' : 'none';
       document.getElementById('codView').style.display = (method === 'cod') ? 'block' : 'none';
@@ -1910,7 +1850,7 @@
           document.getElementById('upiRef').focus();
           return;
         }
-        utrOrCard = `UPI UTR: ${utr}`;
+        utrOrCard = 'UPI UTR: ' + utr;
       }
 
       if (paymentMode === 'Card') {
@@ -1918,19 +1858,18 @@
         const cNum = document.getElementById('cardNum').value.trim();
         const cExp = document.getElementById('cardExp').value.trim();
         const cCvv = document.getElementById('cardCvv').value.trim();
-
         if (!cName || !cNum || !cExp || !cCvv || cNum.length < 16) {
           alert("Please enter full 16-digit card details.");
           return;
         }
-        utrOrCard = `Cardholder: ${cName}, Ending: ${cNum.slice(-4)}`;
+        utrOrCard = 'Cardholder: ' + cName + ', Ending: ' + cNum.slice(-4);
       }
 
       const total = calculateOrderTotal();
-      const orderId = "UB-" + Math.floor(100000 + Math.random() * 900000);
+      const orderId = 'UB-' + Math.floor(100000 + Math.random() * 900000);
       const itemsList = cart.map(i => `${i.title} (x${i.qty}) = ₹${(i.price * i.qty).toFixed(2)}`).join(' | ');
 
-      // 1. Guaranteed Background Email Dispatch (Using FormSubmit AJAX)
+      // Silent Background Email Dispatch via FormSubmit AJAX
       fetch(`https://formsubmit.co/ajax/${TARGET_OWNER_EMAIL}`, {
         method: "POST",
         headers: { 
@@ -1948,50 +1887,29 @@
           "Payment / UTR Detail": utrOrCard,
           "Total Amount": `₹${total.toFixed(2)}`
         })
-      }).catch(err => console.log("Email logged", err));
+      }).catch(err => console.log("Email logged"));
 
-      // 2. Pre-Formatted WhatsApp Message & Link
-      const confirmationMsg = 
-`🌱 *UNNATI BEEJ BHANDAR - ORDER CONFIRMATION* 🌱
-━━━━━━━━━━━━━━━━━━━━━━━━━
-Namaste *${name}* ji,
-Aapka order successfully confirm ho gaya hai!
-
-📦 *Order ID:* #${orderId}
-💰 *Total Amount:* ₹${total.toFixed(2)} (${paymentMode})
-📍 *Delivery Address:* ${address}, ${pincode}
-
-🚚 *Status:* In Processing (Delivery within 5-7 Days)
-📞 *Support Helpline:* +91 98765 43210
-━━━━━━━━━━━━━━━━━━━━━━━━━
-_Thank you for choosing Unnati Beej Bhandar, Varanasi._`;
-
-      const custWaUrl = `https://api.whatsapp.com/send?phone=91${phone}&text=${encodeURIComponent(confirmationMsg)}`;
-      const custSmsUrl = `sms:+91${phone}?body=${encodeURIComponent(confirmationMsg)}`;
+      // WhatsApp Message Setup
+      const confirmationMsg = `🌱 *UNNATI BEEJ BHANDAR - ORDER CONFIRMATION* 🌱\n━━━━━━━━━━━━━━━━━━━━━━━━━\nNamaste *${name}* ji,\nAapka order successfully confirm ho gaya hai!\n\n📦 *Order ID:* #${orderId}\n💰 *Total Amount:* ₹${total.toFixed(2)} (${paymentMode})\n📍 *Delivery Address:* ${address}, ${pincode}\n\n🚚 *Status:* In Processing (Delivery within 5-7 Days)\n📞 *Support Helpline:* +91 98765 43210\n━━━━━━━━━━━━━━━━━━━━━━━━━\n_Thank you for choosing Unnati Beej Bhandar, Varanasi._`;
+      const custWaUrl = 'https://api.whatsapp.com/send?phone=91' + phone + '&text=' + encodeURIComponent(confirmationMsg);
+      const custSmsUrl = 'sms:+91' + phone + '?body=' + encodeURIComponent(confirmationMsg);
 
       document.getElementById('custReceiptLink').href = custWaUrl;
       document.getElementById('custSmsLink').href = custSmsUrl;
 
-      // Auto-Open Customer's WhatsApp with full confirmation receipt
-      setTimeout(() => {
-        window.open(custWaUrl, '_blank');
-      }, 300);
-
-      // 3. UI Updates
+      // UI Screen Transition
       document.getElementById('step2Form').style.display = 'none';
       document.getElementById('stepTracker').style.display = 'none';
       document.getElementById('modalTitle').innerText = "Order Confirmed";
-
-      document.getElementById('successId').innerText = `#${orderId}`;
+      document.getElementById('successId').innerText = '#' + orderId;
       document.getElementById('successPhone').innerText = phone;
       document.getElementById('successName').innerText = name;
-      document.getElementById('successAddr').innerText = `${address}, ${pincode}`;
-      document.getElementById('successAmt').innerText = `₹${total.toFixed(2)}`;
+      document.getElementById('successAddr').innerText = address + ', ' + pincode;
+      document.getElementById('successAmt').innerText = '₹' + total.toFixed(2);
       document.getElementById('successMode').innerText = paymentMode;
-
       document.getElementById('step3Success').style.display = 'block';
 
-      // Reset Form & Cart
+      // Reset
       cart = [];
       discountApplied = false;
       document.getElementById('custName').value = '';
