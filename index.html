@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Unnati Beej Bhandar | Certified Seeds, Tools, Fertilizers & Decor Flowers</title>
+  <title>Unnati Beej Bhandar | Certified Seeds, Tools, Fertilizers, Pesticides & Decor Flowers</title>
   <style>
     :root {
       --brand-primary: #0f4c3a;
@@ -22,6 +23,51 @@
       --whatsapp: #25d366;
     }
 
+    /* =========================================
+       DARK MODE VARIABLES
+       ========================================= */
+    [data-theme="dark"] {
+      --brand-dark: #f8fafc;       
+      --brand-gray: #94a3b8;       
+      --brand-light: #1e293b;      
+      --white: #0f172a;            
+      --border: #334155;           
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+    
+    [data-theme="dark"] body {
+      background-color: #020617;   
+    }
+    
+    [data-theme="dark"] .ub-search-box input, 
+    [data-theme="dark"] .ub-input-group input {
+      color: #f8fafc;              
+    }
+    
+    [data-theme="dark"] .ub-img-wrap,
+    [data-theme="dark"] .ub-lightbox-img-container {
+      background: #1e293b;         
+    }
+
+    [data-theme="dark"] .ub-cat-item:hover, 
+    [data-theme="dark"] .ub-cat-item.active {
+      color: #4ade80;
+    }
+
+    [data-theme="dark"] .ub-section-heading,
+    [data-theme="dark"] .ub-current-price,
+    [data-theme="dark"] .ub-hub-text h4,
+    [data-theme="dark"] .ub-price-row.total,
+    [data-theme="dark"] .ub-step-badge.active { 
+      color: #4ade80; 
+    }
+
+    [data-theme="dark"] .ub-pay-opt.active { 
+      background: #064e3b; 
+      color: #4ade80; 
+    }
+    /* ========================================= */
+
     * {
       margin: 0;
       padding: 0;
@@ -36,6 +82,7 @@
       line-height: 1.4;
       overflow-x: hidden;
       width: 100%;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* Header */
@@ -61,7 +108,7 @@
       display: flex;
       flex-direction: column;
       text-decoration: none;
-      color: var(--white);
+      color: #ffffff;
       flex-shrink: 0;
     }
 
@@ -91,6 +138,7 @@
       align-items: center;
       border: 1px solid rgba(255,255,255,0.2);
       padding: 2px 6px;
+      transition: all 0.3s ease;
     }
 
     .ub-search-box input {
@@ -106,7 +154,7 @@
     .ub-cart-btn {
       background: rgba(255,255,255,0.18);
       border: 1px solid rgba(255,255,255,0.3);
-      color: var(--white);
+      color: #ffffff;
       font-size: 0.88rem;
       font-weight: 600;
       display: flex;
@@ -125,7 +173,7 @@
 
     .ub-cart-badge {
       background: var(--brand-orange);
-      color: var(--white);
+      color: #ffffff;
       font-size: 0.72rem;
       padding: 2px 6px;
       border-radius: 50px;
@@ -140,6 +188,7 @@
       top: 55px;
       z-index: 90;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
     }
 
     .ub-category-container {
@@ -189,7 +238,7 @@
     }
 
     /* =========================================
-       NEW: 6-SLIDE AUTO MOVING HERO BANNER 
+       6-SLIDE AUTO MOVING HERO BANNER 
        ========================================= */
     .hero-slider {
       position: relative;
@@ -223,7 +272,7 @@
       object-fit: cover;
       z-index: -2;
       transform: scale(1.1);
-      transition: transform 6s ease-out; /* Slow Zoom Effect */
+      transition: transform 6s ease-out; 
     }
 
     .slide.active .slide-bg {
@@ -267,6 +316,7 @@
       display: inline-block;
       margin-top: 12px;
       background: var(--brand-orange);
+      color: #ffffff;
       padding: 6px 14px;
       border-radius: 6px;
       font-weight: 800;
@@ -300,6 +350,7 @@
     }
     /* ========================================= */
 
+    /* Products Section Card */
     .ub-card-section {
       background: var(--white);
       border-radius: 12px;
@@ -307,6 +358,7 @@
       box-shadow: var(--shadow);
       padding: 16px;
       margin-bottom: 20px;
+      transition: all 0.3s ease;
     }
 
     .ub-section-header {
@@ -527,6 +579,7 @@
       box-shadow: var(--shadow);
       padding: 18px 14px;
       margin-top: 20px;
+      transition: all 0.3s ease;
     }
 
     .ub-bottom-grid {
@@ -603,7 +656,7 @@
 
     .ub-drawer-head {
       background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
-      color: var(--white);
+      color: #ffffff;
       padding: 14px 16px;
       display: flex;
       justify-content: space-between;
@@ -639,6 +692,7 @@
       width: 24px;
       height: 24px;
       background: var(--brand-light);
+      color: var(--brand-dark);
       border: 1px solid var(--border);
       border-radius: 4px;
       cursor: pointer;
@@ -796,6 +850,7 @@
       cursor: pointer;
       border-radius: 6px;
       background: var(--brand-light);
+      color: var(--brand-dark);
     }
 
     .ub-pay-opt.active {
@@ -805,7 +860,7 @@
     }
 
     .ub-summary-pill {
-      background: #f8fafc;
+      background: var(--brand-light);
       border: 1px solid var(--border);
       padding: 10px 12px;
       border-radius: 6px;
@@ -896,7 +951,13 @@
         <input type="text" id="searchInput" placeholder="Search Plants, Seeds, Tools..." onkeyup="searchProducts(this.value)" />
       </div>
 
-      <div class="ub-header-actions">
+      <div class="ub-header-actions" style="display: flex; gap: 8px;">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggle" class="ub-cart-btn" onclick="toggleTheme()" style="padding: 7px 12px; font-size: 1.1rem;" aria-label="Toggle Dark Mode">
+          🌙
+        </button>
+
+        <!-- Cart Button -->
         <button class="ub-cart-btn" onclick="toggleCart(true)">
           🛒 <span>Cart</span>
           <span class="ub-cart-badge" id="cartCount">0</span>
@@ -905,7 +966,7 @@
     </div>
   </header>
 
-  <!-- Category Strip with Round Icons -->
+  <!-- Category Strip -->
   <div class="ub-category-strip">
     <div class="ub-category-container">
       <div class="ub-cat-item active" onclick="filterCategory('all', this)">🌾 All Offers</div>
@@ -920,19 +981,20 @@
     </div>
   </div>
 
-  <!-- Main Store Section -->
   <main class="ub-main">
 
-    <!-- 6-SLIDE ANIMATED BANNER -->
+    <!-- =========================================
+         NEW: 6-SLIDE ANIMATED BANNER 
+         ========================================= -->
     <div class="hero-slider">
       
-      <!-- Slide 1: Artificial Decor -->
+      <!-- Slide 1: Artificial Plants -->
       <div class="slide active">
         <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Artificial Plants">
         <div class="slide-overlay"></div>
         <div class="slide-content">
-          <div class="slide-title">Premium Artificial Decor</div>
-          <div class="slide-desc">Elevate your home interiors with our lifelike artificial plants and flowers.</div>
+          <div class="slide-title">Premium Artificial Plants</div>
+          <div class="slide-desc">Elevate your home interiors with our lifelike artificial decor plants.</div>
           <div class="slide-coupon">COUPON: DECOR20</div>
         </div>
       </div>
@@ -942,8 +1004,8 @@
         <img src="https://images.unsplash.com/photo-1460500063983-994d4c27756c?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Flowers">
         <div class="slide-overlay"></div>
         <div class="slide-content">
-          <div class="slide-title">Exotic Flower Seeds</div>
-          <div class="slide-desc">Bring vibrant colors to your garden with our premium flower collection.</div>
+          <div class="slide-title">Exotic Flower Collection</div>
+          <div class="slide-desc">Bring vibrant colors to your garden with our premium flower seeds & plants.</div>
           <div class="slide-coupon">FLAT 15% OFF</div>
         </div>
       </div>
@@ -959,7 +1021,7 @@
         </div>
       </div>
 
-      <!-- Slide 4: Live Plants -->
+      <!-- Slide 4: Plants -->
       <div class="slide">
         <img src="https://images.unsplash.com/photo-1466692476877-3e580e0a4f5c?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Live Plants">
         <div class="slide-overlay"></div>
@@ -981,7 +1043,7 @@
         </div>
       </div>
 
-      <!-- Slide 6: Fertilizer -->
+      <!-- Slide 6: Fertilizers -->
       <div class="slide">
         <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=1200&q=80" class="slide-bg" alt="Fertilizer">
         <div class="slide-overlay"></div>
@@ -1004,7 +1066,6 @@
     </div>
     <!-- END HERO SLIDER -->
 
-    <!-- Product Grid Card -->
     <section class="ub-card-section">
       <div class="ub-section-header">
         <h2 class="ub-section-heading" id="sectionHeading">Top Certified Seeds, Plants & Farm Care</h2>
@@ -1012,7 +1073,7 @@
       <div class="ub-product-grid" id="productGrid"></div>
     </section>
 
-    <!-- LAST SECTION: Shop, Contact Us ↗, Feedback ↗ -->
+    <!-- Bottom Hub Section -->
     <section class="ub-bottom-hub">
       <div class="ub-bottom-grid">
         <a href="#productGrid" class="ub-hub-link" onclick="filterCategory('all', document.querySelector('.ub-cat-item'))">
@@ -1022,7 +1083,6 @@
             <p>Plants, seeds, decor flowers, tools & pesticides</p>
           </div>
         </a>
-
         <a href="contact.html" target="_blank" rel="noopener noreferrer" class="ub-hub-link">
           <span class="ub-hub-icon">📍</span>
           <div class="ub-hub-text">
@@ -1030,7 +1090,6 @@
             <p>Varanasi depot location & farmer helpline</p>
           </div>
         </a>
-
         <a href="contact.html#feedback" target="_blank" rel="noopener noreferrer" class="ub-hub-link">
           <span class="ub-hub-icon">⭐</span>
           <div class="ub-hub-text">
@@ -1042,7 +1101,7 @@
     </section>
   </main>
 
-  <!-- Big Image Lightbox Modal -->
+  <!-- Lightbox Modal -->
   <div class="ub-lightbox-overlay" id="lightboxModal" onclick="closeLightbox(event)">
     <div class="ub-lightbox-card" onclick="event.stopPropagation()">
       <button class="ub-lightbox-close" onclick="closeLightbox()">&times;</button>
@@ -1069,15 +1128,12 @@
       <h3>My Farm Cart</h3>
       <button style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;" onclick="toggleCart(false)">&times;</button>
     </div>
-
     <div class="ub-cart-items" id="cartItemsContainer"></div>
-
     <div class="ub-drawer-foot">
       <div class="ub-input-group" style="display:flex; gap:6px; margin-bottom:10px;">
         <input type="text" id="couponInput" placeholder="Coupon (e.g. HARVEST20)" style="text-transform:uppercase;" />
         <button style="background:var(--brand-secondary); color:#fff; border:none; padding:8px 14px; font-weight:700; border-radius:4px; cursor:pointer;" onclick="applyCoupon()">Apply</button>
       </div>
-      
       <div class="ub-price-row">
         <span>Subtotal (<span id="cartTotalItems">0</span> items)</span>
         <span id="subtotalPrice">₹0.00</span>
@@ -1094,26 +1150,23 @@
         <span>Total Amount</span>
         <span id="totalPrice">₹0.00</span>
       </div>
-
       <button class="ub-checkout-btn" onclick="openCheckoutModal()">PROCEED TO CHECKOUT</button>
     </div>
   </div>
 
-  <!-- 2-Step Checkout Modal -->
+  <!-- Checkout Modal -->
   <div class="ub-modal-overlay" id="checkoutModal">
     <div class="ub-modal">
       <div class="ub-modal-head">
         <h3 id="modalTitle">Delivery Address</h3>
         <button style="background:none; border:none; color:#fff; font-size:1.4rem; cursor:pointer;" onclick="closeCheckoutModal()">&times;</button>
       </div>
-
       <div class="ub-modal-body">
         <div class="ub-step-indicator" id="stepTracker">
           <span class="ub-step-badge active" id="badgeStep1">1. DELIVERY DETAILS</span>
           <span class="ub-step-badge" id="badgeStep2">2. PAYMENT</span>
         </div>
 
-        <!-- Step 1: Delivery Address with Live India Post PIN Validator -->
         <div id="step1Form">
           <div style="display:flex; gap:8px;">
             <div class="ub-input-group" style="flex:1;">
@@ -1125,22 +1178,18 @@
               <input type="tel" id="custPhone" placeholder="Mobile Number" maxlength="10" required />
             </div>
           </div>
-
           <div class="ub-input-group">
             <label>Full Address / Village / Landmark *</label>
             <input type="text" id="custAddress" placeholder="House/Shop No, Village, Area" required />
           </div>
-
           <div class="ub-input-group">
             <label>Pincode (Live Postal Validation) *</label>
             <input type="text" id="custPincode" placeholder="e.g. 221010" maxlength="6" oninput="validatePincodeLive(this.value)" required />
             <div id="pinStatus" class="ub-pin-msg"></div>
           </div>
-
           <button type="button" class="ub-pay-btn" id="step1NextBtn" onclick="goToStep2()">DELIVER TO THIS ADDRESS &rarr;</button>
         </div>
 
-        <!-- Step 2: Payment Options -->
         <div id="step2Form" style="display:none;">
           <div class="ub-summary-pill">
             <span class="ub-edit-addr" onclick="goToStep1()">CHANGE</span>
@@ -1155,7 +1204,6 @@
             <div class="ub-pay-opt" onclick="switchPayment('cod', this)">💵 COD</div>
           </div>
 
-          <!-- UPI QR Code View -->
           <div id="upiView">
             <div style="text-align:center; margin:8px 0;">
               <p style="font-weight:700; font-size:0.92rem; color:var(--brand-primary);">Umesh Verma (Unnati Beej Bhandar)</p>
@@ -1165,16 +1213,13 @@
               </div>
               <p style="font-size:0.72rem; color:var(--danger); margin-top:3px;">Scan & Pay with GPay / PhonePe / Paytm</p>
             </div>
-
             <div class="ub-input-group">
               <label>Enter 12-Digit UTR / Ref No. (After Payment) *</label>
               <input type="text" id="upiRef" placeholder="12-digit UTR number" maxlength="12" />
             </div>
-
             <button type="button" class="ub-pay-btn" id="paySubmitBtn" onclick="processOrder('UPI')">VERIFY & CONFIRM ORDER</button>
           </div>
 
-          <!-- Card View -->
           <div id="cardView" style="display:none;">
             <div class="ub-input-group">
               <label>Cardholder Name *</label>
@@ -1197,9 +1242,8 @@
             <button type="button" class="ub-pay-btn" onclick="processOrder('Card')">PAY & PLACE ORDER</button>
           </div>
 
-          <!-- COD View -->
           <div id="codView" style="display:none;">
-            <div style="background:#f8fafc; border:1px dashed var(--border); border-radius:6px; padding:10px; font-size:0.82rem; margin-bottom:10px;">
+            <div style="background:#f8fafc; border:1px dashed var(--border); border-radius:6px; padding:10px; font-size:0.82rem; margin-bottom:10px; color:#1e293b;">
               <p>🚚 <strong>Cash on Delivery:</strong> Pay cash upon doorstep delivery.</p>
               <div style="display:flex; justify-content:space-between; margin-top:6px; font-weight:700;">
                 <span>Total Amount Payable:</span>
@@ -1210,13 +1254,12 @@
           </div>
         </div>
 
-        <!-- Step 3: Order Confirmation Screen -->
         <div id="step3Success" style="display:none; text-align:center; padding:10px 0;">
           <div style="font-size:3rem; color:var(--brand-green);">✓</div>
           <h3 style="font-size:1.25rem; color:var(--brand-primary); margin-bottom:4px;">Order Placed Successfully!</h3>
           <p style="font-size:0.8rem; color:var(--brand-gray); margin-bottom:12px;">Order ID: <strong id="successId" style="color:var(--brand-dark);"></strong></p>
 
-          <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:12px; text-align:left; font-size:0.82rem; margin-bottom:12px;">
+          <div style="background:#eef7f4; border:1px solid #bbf7d0; border-radius:6px; padding:12px; text-align:left; font-size:0.82rem; margin-bottom:12px; color:#1e293b;">
             <p><strong>Estimated Delivery:</strong> Within 1 Week (5-7 Days)</p>
             <p style="color:#555; font-size:0.75rem;">Updates sent to mobile: <span id="successPhone"></span></p>
             <p style="margin-top:6px;"><strong>Deliver to:</strong> <span id="successName"></span> (<span id="successAddr"></span>)</p>
@@ -1233,17 +1276,13 @@
 
           <button class="ub-pay-btn" style="margin-top:8px; background:var(--brand-secondary);" onclick="closeCheckoutModal()">CONTINUE SHOPPING</button>
         </div>
-
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="ub-footer">
     <div class="ub-footer-container">
-      <div>
-        <span>© 2026 Unnati Beej Bhandar - Certified Agro & Live Plants Hub, Varanasi</span>
-      </div>
+      <div><span>© 2026 Unnati Beej Bhandar - Certified Agro & Live Plants Hub, Varanasi</span></div>
       <div>
         <span>Help & Support:</span>
         <a href="contact.html" target="_blank" rel="noopener noreferrer">Contact Us ↗</a>
@@ -1253,8 +1292,32 @@
   </footer>
 
   <script>
+    // ==========================================
+    // DARK MODE LOGIC
+    // ==========================================
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    const themeBtn = document.getElementById('themeToggle');
+
+    if (currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeBtn.innerText = '☀️';
+    }
+
+    function toggleTheme() {
+      const doc = document.documentElement;
+      if (doc.getAttribute('data-theme') === 'dark') {
+        doc.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('themeToggle').innerText = '🌙';
+      } else {
+        doc.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('themeToggle').innerText = '☀️';
+      }
+    }
+    // ==========================================
+
     const TARGET_OWNER_EMAIL = "unnatibeejbhandar@gmail.com";
-    const FAST2SMS_API_KEY = "94HWemz16iYQKqXDZRbuds5VpfO3JPFk8NT0cGygoIUBaLAlMnDM6vPBreKpA9fVOHZ8LXqUjhiwduGm";
 
     // ==========================================
     // HERO SLIDER LOGIC
@@ -1264,6 +1327,7 @@
     const dots = document.querySelectorAll('.dot');
     
     function showSlide(index) {
+      if(slides.length === 0) return;
       slides.forEach(s => s.classList.remove('active'));
       dots.forEach(d => d.classList.remove('active'));
       currentSlide = index;
@@ -1272,6 +1336,7 @@
     }
     
     function nextSlide() {
+      if(slides.length === 0) return;
       currentSlide = (currentSlide + 1) % slides.length;
       showSlide(currentSlide);
     }
